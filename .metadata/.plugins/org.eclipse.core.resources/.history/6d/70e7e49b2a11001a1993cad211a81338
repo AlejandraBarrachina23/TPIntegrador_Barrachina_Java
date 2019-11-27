@@ -1,0 +1,66 @@
+package Negocio;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import Dominio.Alumno;
+
+/**
+ * Servlet implementation class ServeletAlumno
+ */
+@WebServlet("/ServeletAlumno")
+public class ServeletAlumno extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    public ServeletAlumno() {
+        super();
+        
+    }
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		if(request.getParameter("btnAceptar")!=null) {
+			
+			Alumno unNuevoAlumno = new Alumno();
+			Localidad LocalidadSeleccionada = new Localidad();
+			Provincia ProvinciaSeleccionada = new Provincia();
+			unNuevoAlumno.setNombre(request.getParameter("tboxNombre"));
+			unNuevoAlumno.setApellido(request.getParameter("tboxApellido"));
+			unNuevoAlumno.setFechaNacimiento(request.getParameter("tboxFechaNacimiento"));
+			unNuevoAlumno.setDireccion(request.getParameter("tboxNombre"));
+			unNuevoAlumno.setNombre(request.getParameter("tboxDireccion"));
+			
+			unNuevoAlumno.(request.getParameter("tboxNombre"));
+			unNuevoAlumno.setDireccion(request.getParameter("tboxNombre"));
+			unNuevoAlumno.setDireccion(request.getParameter("tboxNombre"));
+			
+			
+			
+			
+			TipoSeguro unTipoSeguro = new TipoSeguro();
+			
+			
+			unNuevoSeguro.setTipoSeguro(unTipoSeguro);
+			SeguroDAO Seguro = new SeguroDAO();
+			Seguro.AgregarSeguro(unNuevoSeguro);		
+					
+		}
+		
+		RequestDispatcher Request = request.getRequestDispatcher("AgregarSeguro.jsp");
+		Request.forward(request, response);
+		
+		
+	}
+
+}

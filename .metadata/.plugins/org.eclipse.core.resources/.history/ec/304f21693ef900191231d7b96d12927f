@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Sistema Universitarios</title>
+<link href="estilos.css" type="text/css" rel=stylesheet>
+<link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+</head>
+<body>
+<header></header>
+<nav>
+	<div id="logo">
+		<img src="iconos/user.png" alt="logo-usuario">
+		<p>Nombre Usuario</p>
+		
+	</div>
+	<ul>
+		<li><a href="alumnos.jsp"><div class="icon-content"><img class="icon" alt="alumno" src="iconos/alumnos.png"></div>ALUMNOS</a></li>
+		<li><a href="cursos.jsp"><div class="icon-content"><img class="icon" alt="cursos" src="iconos/cursos.png"></div>CURSOS</a></li>
+		<li><a href="profesores.jsp"><div class="icon-content"><img class="icon" alt="profesores" src="iconos/profesores.png"></div>PROFESORES</a></li>
+		<li><a href="reportes.jsp"><div class="icon-content"><img class="icon" alt="cursos" src="iconos/reportes.png"></div>REPORTES</a></li>
+	</ul>
+</nav>
+
+<main>
+	<h1>Titulo</h1>
+	
+	
+
+</main>
+
+
+
+
+<footer>
+</footer>
+</body>
+</html>

@@ -1,0 +1,766 @@
+@charset "ISO-8859-1";
+
+
+* {
+	padding:0px;
+	margin:0px;
+	border:0px;
+}
+
+body {
+		background-color:#f3f3f3;
+		background-image: url(iconos/fondo.png);
+		background-repeat: no-repeat;
+ 		background-size: cover;
+		
+}
+/*=============================================================
+      FORMULARIO LOGIN
+ ============================================================== */
+ 
+ 
+ #form-login{
+	
+	width:65%;
+ 	margin	: 5% 17%;	
+ 	
+}
+
+#form-login-right, #form-login-left {
+	
+	
+	height:750px;
+	float:left;
+	background-color:#F9FBFC;
+	
+	
+}
+
+#form-login-left {
+	
+	width:65%;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	box-shadow: 0px 18px 10px -6px rgba(0,0,0,0.31);
+	opacity:0.9;
+}
+
+#form-login-left img {
+	
+	width:90%;
+	padding	: 10% 5%;
+	
+}
+
+#form-login-right {
+	
+	width:33%;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+	box-shadow: 13px 14px 10px -6px rgba(0,0,0,0.31);
+	opacity:0.8;
+	
+}
+
+
+h1 {
+	
+		font-size:50px;
+		font-family: 'Bebas Neue', cursive;
+		color:#2C5060;	
+		margin-top:30%;
+		text-align:center;
+}
+
+p, #form-login-right a {
+	
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+	font-size: 13px;
+	color:black;
+	text-align:center;
+}
+
+.text-box {
+	
+	border-bottom: 1px solid black;
+	width:250px;
+	text-align: center;
+	margin-left:12%;	
+}
+
+.text-box i {
+	
+	float:left;
+	color: #2C5060;
+	padding:7px;
+}
+
+#form-login-right [type="text"], #form-login-right [type="password"]{
+	
+	padding:5px;
+	width:180px;
+	border:none;
+	outline:none;
+	background-color:#FAFCFD;
+	font-family: 'Oswald', sans-serif;
+		
+}
+
+.main-button {
+	
+	background-color: #2C5060;
+	color:white;
+	width:35%;	
+	font-size:15px;
+	border-style:none;
+	padding:5px;
+	border-radius: 15px;
+	border: 0px solid #000000;
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+	font-family: 'Oswald', sans-serif;
+	margin-left: 50%;
+	
+}
+
+.main-button:hover {
+	
+	background-color: #1a6373;
+}
+
+.iconos-redes {
+	
+	width:5%;
+
+}
+
+
+#login-informacion {
+	
+	width:90%;
+	padding:5%;
+	
+}
+
+
+#login-informacion a{
+	
+	font-family: 'Oswald', sans-serif;
+	font-size:15px;
+	margin-left:48%;
+}
+
+#login-contacto{
+	
+	margin-top:50%;
+	text-align:center;
+}
+
+ 
+#login-contacto p {
+	
+	font-size:18px;
+	font-family: 'Oswald', sans-serif;
+	
+}
+
+#login-recuperacion{
+	
+	padding-top:20%;
+	text-align:center;	
+	
+}
+
+.restart-button{
+	
+	background-color: #2C5060;
+	color:white;
+	width:35%;	
+	font-size:15px;
+	border-style:none;
+	padding:5px;
+	border-radius: 15px;
+	border: 0px solid #000000;
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+	font-family: 'Oswald', sans-serif;
+
+}
+
+.icono-advertencia{
+	
+	margin-top:15%;
+	padding:2%;
+	width:20%;	
+	margin: 0 auto;
+
+}
+
+#form-advertencia p {
+	
+	color:red;
+	font-size: 20px;
+}
+
+ 
+ /*=======================
+      FORMULARIO INDEX
+ ========================= */
+ 
+ .section-principal{
+	
+	float:left;
+	height:950px;
+	width:88%;
+	background-color:#f3f3f3;
+	color:black; 
+	text-align:center;
+	margin-left:10%;
+}
+
+.section-principal select {
+	
+	font-family: 'Oswald', sans-serif;
+	border:1px solid black;
+	margin:5px;
+	padding:2px;
+}
+
+.section-principal input{
+	
+	width:15%;
+	padding:5px;
+	border:1px solid black;
+	font-family: 'Oswald', sans-serif;
+}
+
+.section-principal label{
+	
+	font-size:18px;
+	font-family: 'Oswald', sans-serif;
+	
+}
+
+.section-principal a{
+	
+	color:black;
+
+}
+
+
+nav {
+	
+	background-color:#2C5060;
+	font-family: 'Francois One', sans-serif;
+	width:10%;	
+	height:950px;
+	font-size:15px;
+	float:left;
+	position:fixed;
+		
+}
+
+ ul {
+	
+	list-sytle: none;
+	width:100%;
+}
+
+a {
+	
+	text-decoration:none;
+	color:white;
+
+}
+
+li:hover {
+	
+	border-left: solid 4px #2896BC;
+	background-color: #2F5866;
+	transition: background-color 0.3s;
+	transition: border 0.3s;
+	
+}
+
+ul li {
+	
+	border-left: solid 4px #2C5060;
+	font-family: 'Oswald', sans-serif;
+	padding:15px;
+	border-bottom: 1px solid #2D5C6D;
+	
+		
+}
+
+.icon{
+	
+	width:13%;
+	padding-right:5px;	
+		
+}
+
+
+#icon-usuario{
+	
+	width:40%;
+}
+
+li .icon{
+	
+	float:left;
+	
+}
+
+
+#user {
+	
+	width:100%;
+	margin-top:40%;
+	text-align:center;
+	padding: 10% 0%;
+	border-bottom: 1px solid #2D5C6D;
+	
+}
+
+#user h2{
+	
+	color:#fff;
+	
+}
+
+#user p, #header-user p {
+	
+	font-size:15px;
+	color:#fff;	
+	padding:8px;
+	font-family: 'Oswald', sans-serif;
+}
+
+ /*=======================
+      FORMULARIO ALUMNOS
+ ========================= */
+
+
+#logo{
+	
+	width:30%;
+	height:150px;
+	border-bottom: 1px solid white;
+	color:white;
+	text-align:center;
+	margin-top:30px;
+}
+
+#alumnos-principal {
+	
+	background-color:#fff;
+	width:83%;
+	margin-left: 200px;
+	height:300px;
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+	
+}
+
+#form-agregar-usuario {
+	
+	background-color: white;
+	width:95%;
+	height:200px;
+	margin:20px;
+	padding:10px;
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+	display: none;
+	
+	
+}
+
+#form-listado-alumnos,#form-cursos {
+	
+	background-color: white;
+	width:95%;
+	height:730px;
+	margin:20px;
+	padding:10px;
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+	
+}
+#btn-flecha {
+	
+	background-image: url("iconos/flecha.png");
+	background-repeat: no-repeat;
+	width:25px;
+	height:25px;
+	background-color:#2C5060;
+	border: 0;
+	float:right;
+	
+}
+
+.dato {
+	
+	float:left;
+	margin: 10px;
+	width:23%;
+
+
+}
+
+.dato input {
+
+		width: 200px;
+		background: #f3f3f3;		
+		font: inherit;
+		box-shadow: 0 6px 10px 0 rgba(0, 0, 0 , .1);
+		border: 0;
+		outline: 0;
+		padding: 8px;
+
+}
+
+.encabezados {
+	
+	background-color:#2C5060;
+	color:white;
+	padding:10px;
+	margin:10px;
+	font-family: 'Oswald', sans-serif;
+	
+}
+
+
+
+h3 {
+
+	display:inline;
+	
+}
+
+label {
+
+	color:#2C5060;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+	font-size: 10px;
+}
+
+.flecha {
+	
+	float:right;
+} 
+
+.content-table{
+	
+	border-collapse:collapse;
+	margin:20px 10px;
+	font-size:0.9em;
+	width:99%;
+	min-width:600px;
+	box-shadow: 7px 9px 23px -13px rgba(0,0,0,0.93);
+	font-family: 'Roboto', sans-serif;
+	
+}
+
+.content-table-cursos{
+	
+	border-collapse:collapse;
+	margin:20px 10px;
+	font-size:0.9em;
+	width:50%;
+	min-width:600px;
+	box-shadow: 7px 9px 23px -13px rgba(0,0,0,0.93);
+	font-family: 'Roboto', sans-serif;
+}
+
+.content-table th, .content-table-cursos {
+	
+	background-color:#2C5060;
+	color:white;
+	font-weight: 600;
+	padding:12px;
+	
+	
+}
+
+.content-table tr,
+.content-table td {
+	
+	padding:6px 12px;
+}
+
+.content-table td {
+	
+	border-bottom: 1px solid #dddddd;
+	
+}
+
+.content-table tr:nth-of-type(even) {
+	
+	background-color:#f3f3f3;
+
+}
+
+.content-table tr:last-of-type {
+	
+	border-bottom: 3px solid #2C5060;
+	
+}
+
+.content-table-cursos .content-fileter{
+	
+	width:50%;
+	
+}
+
+.content-filter {
+	
+	background-color:#f3f3f3;
+	width:100%;
+	text-align:center;
+	padding:10px;
+	
+}
+
+.pie-pagina{
+	
+	float:left;
+	margin-top:20px;
+	text-align:right;
+	width:100%;
+}
+
+
+#section-index{
+	
+	float:left;
+	height:920px;
+	width:100%;
+	background-color:#f3f3f3;
+	margin:1px 1px;
+	
+}
+
+#index-encabezado{
+	
+	background-color:#2C5060;
+	text-align:center;
+	height:295px;
+	width:100%;	
+	
+}
+
+#section-index img {
+	
+	width:50%;
+	
+}
+
+#index-descripcion {
+	
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+	background-color:#fff;
+	font-family: 'Roboto', sans-serif;
+}
+
+
+
+#index-descripcion-encabezado{
+	
+	padding: 30px 0px;
+	text-align:center;
+	
+}
+
+#index-descripcion-contenido{
+	
+	text-align:center;
+	height:430px;
+	padding-left:220px;
+}
+
+.index-item-descripcion {
+	
+	width:18%;
+	height:300px;
+	float:left;	
+	margin:30px;
+		
+}
+
+.index-item-descripcion img {
+	
+	width:40%;
+	padding:0% 20%;
+	margin:0% 5%;
+}
+
+.index-item-descripcion h3 {
+	
+	font-size:25px;
+	font-family: 'Oswald', sans-serif;
+
+}
+
+.index-item-descripcion p {
+	
+	font-size:15px;
+
+}
+
+.btn-index {
+	
+	padding:10px;
+	margin:15px 45px;
+	background-color: #2C5060;
+	font-family: 'Oswald', sans-serif;
+	font-size:20px;
+	color:#fff;
+	width:60%;
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+	float:left;
+	text-align:left;
+		
+}
+
+.modal-fondo {
+	
+	background: rgba(0,0,0,0.3);
+	position:fixed;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	visibility:hidden;
+	
+}
+
+.modal-fondo.active{
+	
+	visibility:visible;
+}
+
+.modal-contenido {
+	
+	background-color:#fff;
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+	width:20%;
+	border: 3px solid #2C5060;
+	padding-bottom: 15px;
+}
+
+.modal-contenido .btn-modal {
+	
+	width:30%;
+	color:white;
+	background-color: #2C5060;
+	font-size:20px;
+	padding:5px;
+	margin:5px;
+	
+}
+
+.modal-contenido [type="text"] {
+	
+	width:70%;
+	font-size: 13px;
+	margin-bottom:15px;
+	
+}
+
+.modal-contenido h3 {
+	
+	font-size: 20px;
+	font-family: 'Oswald', sans-serif;
+	background-color:#2C5060;
+	display:block;
+	color:#fff;
+	padding:8px;
+	
+}
+
+.modal-contenido label {
+	
+	font-size: 15px;
+	font-family: 'Roboto', sans-serif;
+}
+
+#btnAgregarAlumno {
+	
+	width:10%;
+	padding:10px;
+	font-size: 15px;
+	font-family: 'Oswald', sans-serif;
+	border-radius: 8px;
+	background-color:#2C5060;
+	color:white;
+	float:right;
+	border:0;
+}
+
+td .btn-modificar {
+	
+	width:40px;
+	background-image:url(iconos/modificar.png);
+	background-repeat: no-repeat;
+	border:none;
+	background-color:inherit;
+}
+
+td .btn-eliminar {
+	
+	width:40px;
+	background-image:url(iconos/borrar.png);
+	background-repeat: no-repeat;
+	border:none;
+	background-color:inherit;
+	
+}
+
+/*=============================================================
+      FORMULARIO CURSOS
+ ============================================================== */
+ 
+#form-curso-izquierda{
+	
+		
+	width:50%;
+	float:left;
+	color:black;
+}
+
+#form-curso-derecha{
+	
+	width:50%;
+	float:left;	
+
+}
+
+#form-curso-izquierda [type="radio"], #form-curso-izquierda [type="text"], #form-curso-izquierda select{
+	
+	padding:5px;
+	width:180px;
+	background-color:#FAFCFD;
+	font-family: 'Roboto', sans-serif;
+	font-size: 12px;
+		
+}
+
+#form-curso-izquierda label {
+	
+	font-size:18px;
+}
+
+#form-cursos-encabezado-izquierda{
+	
+	background-color: #2C5060;
+	width:100%;
+	
+}
+
+#form-cursos-encabezado-izquierda h2{
+	
+	color:white;
+	padding:5px;
+}
+

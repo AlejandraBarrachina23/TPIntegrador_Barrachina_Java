@@ -1,0 +1,179 @@
+@charset "ISO-8859-1";
+
+* {
+	padding:0px;
+	margin:0px;
+	
+}
+
+body {
+	
+		background-color:#FAFCFD;
+}
+
+#principal {
+	
+	width:100%;
+		
+}
+
+
+
+#form-login{
+	
+	width:100%;
+	width:60%;
+	height:770px;
+	float:left;
+	background-image: url(img/fondo.png);
+	background-size: cover;
+	heigth:500px;
+	
+}
+
+
+h1 {
+	
+	font-size:50px;
+	font-family: 'Staatliches', cursive;
+	color:#2C5060;	
+	
+}
+
+h2 {
+	
+		font-size:30px;
+		font-family: 'Staatliches', cursive;
+		color:#2C5060;
+	
+}
+
+p {
+	
+	font-family: 'Oswald', sans-serif;
+	font-weight: 300;
+}
+
+.text-box {
+	
+	border-bottom: 1px solid black;
+	width:220px;
+	text-align: center;
+	
+}
+
+.text-box i {
+	
+	float:left;
+	color: #2C5060;
+	padding:7px;
+}
+
+#form-login-right [type="text"], #form-login-right [type="password"]{
+	
+	padding:5px;
+	width:180px;
+	border:none;
+	outline:none;
+	background-color:#FAFCFD;
+	font-family: 'Oswald', sans-serif;
+		
+}
+
+.button {
+	
+	background-color: #2C5060;
+	color:white;
+	width:220px;	
+	font-size:20px;
+	border-style:none;
+	padding:5px;
+	border-radius: 84px 84px 84px 84px;
+	border: 0px solid #000000;
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+	font-family: 'Staatliches', cursive;
+	
+}
+
+#form-login-right {
+	
+	width:16%;
+	float:left;
+	height:750px;
+	top:20%;
+	left:70%;
+	position:absolute;
+	text-align: center;
+}
+
+#form-img {
+	
+	width:80%;
+	
+}
+
+
+header {
+	
+	width:100%;
+	height:50px;
+	background-color:#fff;
+	float:left;
+	
+}
+
+nav {
+	
+	background-color:#2C5060;
+	width:10%;
+	font-family: 'Oswald', sans-serif;
+	float:left;
+	position:fixed;
+	
+}
+
+ ul {
+	
+	list-sytle: none;
+	text-align:center;
+	
+}
+
+a {
+	
+	text-decoration:none;
+	color:white;
+}
+
+.icon {
+	
+	width:25px;	
+
+}
+
+.icon-content {
+	
+	width:100%;
+	text-align:center;
+	
+}
+
+ul {
+	
+	width:96%;
+}
+
+ul li {
+	
+	
+	border-bottom: solid 1px white;
+	padding:10px;
+}
+
+main {
+	
+	float:left;
+	background-color:#f2f2f2;
+	width:90%;
+	
+}

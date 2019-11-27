@@ -1,0 +1,34 @@
+package Dominio;
+
+public class Localidad {
+
+	private int IdLocalidad;
+	private Provincia Provincia;
+	private String Nombre;
+	private int CodigoPostal;
+	
+	public int getIdLocalidad() {
+		return IdLocalidad;
+	}
+	public void setIdLocalidad(int idLocalidad) {
+		IdLocalidad = idLocalidad;
+	}
+	public Provincia getProvincia() {
+		return Provincia;
+	}
+	public void setProvincia(Provincia provincia) {
+		Provincia = provincia;
+	}
+	public String getNombre() {
+		return Nombre;
+	}
+	public void setNombre(String nombre) {
+		Nombre = nombre;
+	}
+	public int getCodigoPostal() {
+		return CodigoPostal;
+	}
+	public void setCodigoPostal(int codigoPostal) {
+		CodigoPostal = codigoPostal;
+	}
+}

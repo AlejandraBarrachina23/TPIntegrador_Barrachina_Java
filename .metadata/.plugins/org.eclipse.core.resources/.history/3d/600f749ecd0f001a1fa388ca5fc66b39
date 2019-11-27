@@ -1,0 +1,27 @@
+package Dominio;
+
+public class Provincia {
+
+	private int IdProvincia;
+	private String Nombre;
+	private String CodigoProvincia;
+
+	public int getIdProvincia() {
+		return IdProvincia;
+	}
+	public void setIdProvincia(int idProvincia) {
+		IdProvincia = idProvincia;
+	}
+	public String getNombre() {
+		return Nombre;
+	}
+	public void setNombre(String nombre) {
+		Nombre = nombre;
+	}	
+	public String getCodigoProvincia() {
+		return CodigoProvincia;
+	}
+	public void setCodigoProvincia(String codigoProvincia) {
+		CodigoProvincia = codigoProvincia;
+	}
+}

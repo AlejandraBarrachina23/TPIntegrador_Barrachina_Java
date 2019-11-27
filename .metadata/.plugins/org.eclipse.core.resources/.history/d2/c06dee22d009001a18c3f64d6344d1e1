@@ -1,0 +1,1058 @@
+@charset "ISO-8859-1";
+
+
+* {
+	padding:0px;
+	margin:0px;
+	border:0px;
+}
+
+body {
+		background-color:#f3f3f3;
+		background-image: url(iconos/fondo.png);
+		background-repeat: no-repeat;
+ 		background-size: cover;
+		
+}
+/*=============================================================
+      FORMULARIO LOGIN
+ ============================================================== */
+ 
+ 
+ #form-login{
+	
+	width:65%;
+ 	margin	: 5% 17%;	
+ 	
+}
+
+#form-login-right, #form-login-left {
+	
+	
+	height:750px;
+	float:left;
+	background-color:#F9FBFC;
+	
+	
+}
+
+#form-login-left {
+	
+	width:65%;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	box-shadow: 0px 18px 10px -6px rgba(0,0,0,0.31);
+	opacity:0.9;
+}
+
+#form-login-left img {
+	
+	width:90%;
+	padding	: 10% 5%;
+	
+}
+
+#form-login-right {
+	
+	width:33%;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+	box-shadow: 13px 14px 10px -6px rgba(0,0,0,0.31);
+	opacity:0.8;
+	
+}
+
+
+h1 {
+	
+		font-size:50px;
+		font-family: 'Bebas Neue', cursive;
+		color:#2C5060;	
+		margin-top:30%;
+		text-align:center;
+}
+
+p, #form-login-right a {
+	
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+	font-size: 13px;
+	color:black;
+	text-align:center;
+}
+
+.text-box {
+	
+	border-bottom: 1px solid black;
+	width:250px;
+	text-align: center;
+	margin-left:12%;	
+}
+
+.text-box i {
+	
+	float:left;
+	color: #2C5060;
+	padding:7px;
+}
+
+#form-login-right [type="text"], #form-login-right [type="password"]{
+	
+	padding:5px;
+	width:180px;
+	border:none;
+	outline:none;
+	background-color:#FAFCFD;
+	font-family: 'Oswald', sans-serif;
+		
+}
+
+.main-button {
+	
+	background-color: #2C5060;
+	color:white;
+	width:35%;	
+	font-size:15px;
+	border-style:none;
+	padding:5px;
+	border-radius: 15px;
+	border: 0px solid #000000;
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+	font-family: 'Oswald', sans-serif;
+	margin-left: 50%;
+	
+}
+
+.main-button:hover {
+	
+	background-color: #1a6373;
+}
+
+.iconos-redes {
+	
+	width:5%;
+
+}
+
+
+#login-informacion {
+	
+	width:90%;
+	padding:5%;
+	
+}
+
+
+#login-informacion a{
+	
+	font-family: 'Oswald', sans-serif;
+	font-size:15px;
+	margin-left:48%;
+}
+
+#login-contacto{
+	
+	margin-top:50%;
+	text-align:center;
+}
+
+ 
+#login-contacto p {
+	
+	font-size:18px;
+	font-family: 'Oswald', sans-serif;
+	
+}
+
+#login-recuperacion{
+	
+	padding-top:20%;
+	text-align:center;	
+	
+}
+
+.restart-button{
+	
+	background-color: #2C5060;
+	color:white;
+	width:35%;	
+	font-size:15px;
+	border-style:none;
+	padding:5px;
+	border-radius: 15px;
+	border: 0px solid #000000;
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+	font-family: 'Oswald', sans-serif;
+
+}
+
+#form-advertencia {
+	
+	width:100%;
+	text-align:center;
+	margin-top:50%;
+	color:#E16C78;
+	font-family: 'Oswald', sans-serif;
+	
+}
+
+.icono-advertencia{
+	
+	margin-top:15%;
+	padding:2%;
+	width:30%;	
+	margin: 0 auto;
+
+}
+
+#form-advertencia p {
+	
+	color:#E16C78;
+	font-size: 15px;
+}
+
+.blue{
+	
+	color:#30A9E3;	
+}
+
+ 
+ /*=======================
+      FORMULARIO INDEX
+ ========================= */
+ 
+ .section-principal{
+	
+	float:left;
+	height:1100px;
+	width:90%;
+	background-color:#f3f3f3;
+	color:black; 
+	text-align:center;
+	margin-left:10%;
+}
+
+.section-principal select {
+	
+	font-family: 'Oswald', sans-serif;
+	border:1px solid black;
+	margin:5px;
+	padding:2px;
+}
+
+.section-principal input{
+	
+	width:15%;
+	padding:5px;
+	border:1px solid black;
+	font-family: 'Oswald', sans-serif;
+}
+
+.section-principal label{
+	
+	font-size:18px;
+	font-family: 'Oswald', sans-serif;
+	
+}
+
+.section-principal a{
+	
+	color:black;
+
+}
+
+
+nav {
+	
+	background-color:#2C5060;
+	font-family: 'Francois One', sans-serif;
+	width:10%;	
+	height:950px;
+	font-size:15px;
+	float:left;
+	position:fixed;
+		
+}
+
+ ul {
+	
+	list-sytle: none;
+	width:100%;
+}
+
+a {
+	
+	text-decoration:none;
+	color:white;
+
+}
+
+li:hover {
+	
+	border-left: solid 4px #2896BC;
+	background-color: #2F5866;
+	transition: background-color 0.3s;
+	transition: border 0.3s;
+	
+}
+
+ul li {
+	
+	border-left: solid 4px #2C5060;
+	font-family: 'Oswald', sans-serif;
+	padding:15px;
+	border-bottom: 1px solid #2D5C6D;
+	
+		
+}
+
+.icon{
+	
+	width:13%;
+	padding-right:5px;	
+		
+}
+
+
+#icon-usuario{
+	
+	width:40%;
+}
+
+li .icon{
+	
+	float:left;
+	
+}
+
+
+#user {
+	
+	width:100%;
+	margin-top:40%;
+	text-align:center;
+	padding: 10% 0%;
+	border-bottom: 1px solid #2D5C6D;
+	
+}
+
+#user h2{
+	
+	color:#fff;
+	
+}
+
+#user p, #header-user p {
+	
+	font-size:15px;
+	color:#fff;	
+	padding:8px;
+	font-family: 'Oswald', sans-serif;
+}
+
+ /*=======================
+      FORMULARIO ALUMNOS
+ ========================= */
+
+
+#logo{
+	
+	width:30%;
+	height:150px;
+	border-bottom: 1px solid white;
+	color:white;
+	text-align:center;
+	margin-top:30px;
+}
+
+#alumnos-principal {
+	
+	background-color:#fff;
+	width:83%;
+	margin-left: 200px;
+	height:300px;
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+	
+}
+
+#form-agregar-usuario {
+	
+	background-color: white;
+	width:95%;
+	height:200px;
+	margin:20px;
+	padding:10px;
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+	display: none;
+	
+	
+}
+
+#form-listado-alumnos,#form-cursos,#form-listado-calificaciones {
+	
+	background-color: white;
+	width:97%;
+	height:970px;
+	margin:20px;
+	padding:10px;
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+	
+}
+
+#btn-flecha {
+	
+	background-image: url("iconos/flecha.png");
+	background-repeat: no-repeat;
+	width:25px;
+	height:25px;
+	background-color:#2C5060;
+	border: 0;
+	float:right;
+	
+}
+
+.dato {
+	
+	float:left;
+	margin: 10px;
+	width:23%;
+
+
+}
+
+.dato input {
+
+		width: 200px;
+		background: #f3f3f3;		
+		font: inherit;
+		box-shadow: 0 6px 10px 0 rgba(0, 0, 0 , .1);
+		border: 0;
+		outline: 0;
+		padding: 8px;
+
+}
+
+.encabezados {
+	
+	background-color:#2C5060;
+	color:white;
+	padding:10px;
+	margin:10px;
+	font-family: 'Oswald', sans-serif;
+	
+}
+
+
+
+h3 {
+
+	display:inline;
+	
+}
+
+label {
+
+	color:#2C5060;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+	font-size: 10px;
+}
+
+.flecha {
+	
+	float:right;
+} 
+
+.content-table{
+	
+	border-collapse:collapse;
+	margin:20px 10px;
+	font-size:0.9em;
+	width:99%;
+	min-width:600px;
+	box-shadow: 7px 9px 23px -13px rgba(0,0,0,0.93);
+	font-family: 'Roboto', sans-serif;
+	
+}
+
+.content-table-cursos{
+	
+	border-collapse:collapse;
+	margin:20px 10px;
+	font-size:0.9em;
+	width:50%;
+	min-width:600px;
+	box-shadow: 7px 9px 23px -13px rgba(0,0,0,0.93);
+	font-family: 'Roboto', sans-serif;
+}
+
+.content-table th, .content-table-cursos {
+	
+	background-color:#2C5060;
+	color:white;
+	font-weight: 600;
+	padding:12px;
+	
+	
+	
+}
+
+.content-table tr,
+.content-table td {
+	
+	padding:5px 5px;
+	
+}
+
+.content-table td {
+	
+	border-bottom: 1px solid #dddddd;
+	
+}
+
+.content-table tr:nth-of-type(even) {
+	
+	background-color:#f3f3f3;
+
+}
+
+.content-table tr:last-of-type {
+	
+	border-bottom: 3px solid #2C5060;
+	
+}
+
+.content-table-cursos .content-fileter{
+	
+	width:50%;
+	
+}
+
+.content-filter {
+	
+	background-color:#f3f3f3;
+	width:100%;
+	text-align:center;
+	padding:10px;
+	
+	
+}
+
+.pie-pagina{
+	
+	float:left;
+	margin-top:20px;
+	text-align:right;
+	width:100%;
+}
+
+ /*=======================
+      FORMULARIO ALUMNOS
+ ========================= */
+
+#section-index{
+	
+	float:left;
+	height:900px;
+	width:100%;
+	margin:1px 1px;
+	text-align:center;
+	
+}
+
+#index-encabezado{
+	
+	background-color:#2C5060;
+	text-align:center;
+	height:295px;
+	width:100%;	
+	
+}
+
+#section-index img {
+	
+	width:50%;
+	
+}
+
+#index-descripcion {
+	
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+	font-family: 'Roboto', sans-serif;
+	background-color:#fff;
+}
+
+
+#index-descripcion-encabezado{
+	
+	text-align:center;
+	background-color:#fff;
+	
+}
+
+#index-descripcion-encabezado img{
+	
+	width:50%;
+	
+}
+
+#index-descripcion-encabezado h2{
+	
+	font-size:50px;
+	font-family: 'Francois One', sans-serif;
+	color:#2C5060;
+	
+}
+
+#index-descripcion-encabezado p{
+	
+	font-size:15px;
+	font-family: 'Francois One', sans-serif;
+	color:#2C5060;
+	
+}
+
+#index-descripcion-contenido{
+	
+	text-align:center;
+	height:430px;
+	padding-left:220px;
+}
+
+#index-descripcion-contenido-profesores{
+	
+	
+	height:430px;
+	width:100%;
+
+
+}
+
+#index-descripcion-contenido-profesores .index-item-descripcion{
+	
+	width:18%;
+	height:300px;
+	float:left;	
+	margin-left:40%;
+
+}
+
+.index-item-descripcion {
+	
+	width:18%;
+	height:300px;
+	float:left;	
+	margin:30px;
+		
+}
+
+.index-item-descripcion img {
+	
+	width:40%;
+	padding:0% 20%;
+	margin:0% 5%;
+}
+
+.index-item-descripcion h3 {
+	
+	font-size:25px;
+	font-family: 'Oswald', sans-serif;
+
+}
+
+.index-item-descripcion p {
+	
+	font-size:15px;
+
+}
+
+.btn-index {
+	
+	padding:10px;
+	margin:10px 38px;
+	background-color: #2C5060;
+	font-family: 'Oswald', sans-serif;
+	font-size:20px;
+	color:#fff;
+	width:60%;
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+	float:left;
+	text-align:center;
+		
+}
+
+.modal-fondo {
+	
+	background: rgba(0,0,0,0.3);
+	position:fixed;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	visibility:hidden;
+	
+}
+
+.modal-fondo.active{
+	
+	visibility:visible;
+}
+
+.modal-contenido {
+	
+	background-color:#fff;
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+	width:20%;
+	border: 3px solid #2C5060;
+	padding-bottom: 15px;
+}
+
+.modal-contenido .btn-modal {
+	
+	width:30%;
+	color:white;
+	background-color: #2C5060;
+	font-size:20px;
+	padding:5px;
+	margin:5px;
+	
+}
+
+.modal-contenido [type="text"] {
+	
+	width:70%;
+	font-size: 13px;
+	margin-bottom:15px;
+	
+}
+
+.modal-contenido h3 {
+	
+	font-size: 20px;
+	font-family: 'Oswald', sans-serif;
+	background-color:#2C5060;
+	display:block;
+	color:#fff;
+	padding:8px;
+	
+}
+
+.modal-contenido label {
+	
+	font-size: 15px;
+	font-family: 'Roboto', sans-serif;
+}
+
+.btnFormulario {
+	
+	width:12%;
+	padding:10px;
+	font-size: 15px;
+	font-family: 'Oswald', sans-serif;
+	border-radius: 8px;
+	background-color:#2C5060;
+	color:white;
+	float:right;
+	border:0;
+	margin:8px;
+}
+
+td .btn-modificar {
+	
+	width:22%;
+	height:32px;
+	background-image:url(iconos/modificar.png);
+	background-repeat: no-repeat;
+	border:none;
+	background-color:inherit;
+}
+
+td .btn-eliminar {
+	
+	width:22%;
+	height:32px;
+	background-image:url(iconos/borrar.png);
+	background-repeat: no-repeat;
+	border:none;
+	background-color:inherit;
+	
+}
+
+td .btn-mostrar {
+	
+	width:12%;
+	height:32px;
+	background-color:blue;
+	background-image:url(iconos/mostrar.png);
+	background-repeat: no-repeat;
+	border:none;
+	background-color:inherit;
+}
+
+td .btn-calificaciones {
+	
+	width:12%;
+	height:32px;
+	background-image:url(iconos/notas.png);
+	background-repeat: no-repeat;
+	border:none;
+	background-color:inherit;
+}
+
+/*=============================================================
+      FORMULARIO CURSOS
+ ============================================================== */
+ 
+#form-curso-izquierda{
+	
+		
+	width:40%;
+	float:left;
+	color:black;
+	padding:0px 5%;
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+}
+
+#form-curso-derecha{
+	
+	width:40%;
+	float:left;	
+	box-shadow: 10px 10px 25px -13px rgba(0,0,0,0.75);
+	padding:5px 5%;
+	margin1:2%;
+
+}
+
+#form-curso-izquierda [type="text"], #form-curso-izquierda select{
+	
+	padding:5px;
+	width:180px;
+	background-color:#FAFCFD;
+	font-family: 'Roboto', sans-serif;
+	font-size: 12px;
+		
+}
+
+#form-curso-izquierda label {
+	
+	font-size:18px;
+	display: block;
+	witdh:20px;
+}
+
+.form-cursos-encabezado-izquierda{
+	
+	background-color: #2C5060;
+	width:100%;
+	margin: 20px 0px;
+	padding:1px;
+	
+	
+}
+
+.form-cursos-encabezado-izquierda h2{
+	
+	color:white;
+	padding:2px;
+	font-family: 'Oswald', sans-serif;
+}
+
+#form-curso-derecha #listado-alumnos {
+	
+	text-align:center;
+	width:100%;
+		
+}
+
+#form-curso-derecha #listado-alumnos li {
+	
+	font-size:15px;
+	padding:0;
+	width:20%;
+	border:none;
+	background-color:none;
+	margin-left:40%;
+	list-style: none;
+	
+	
+	
+}
+
+#form-curso-derecha #listado-alumnos li:hover {
+	
+	background-color:white;
+}
+
+/*=============================================================
+      FORMULARIO CALIFICACIONES
+ ============================================================== */
+
+.busqueda-califaciones{
+	
+	width:98%;
+	margin:1%;
+	box-shadow: 0px 18px 10px -6px rgba(0,0,0,0.31);
+	background-color:#fff;
+	padding-bottom:2%;
+	
+}
+
+.busqueda-califaciones h2{
+	
+	width:99%;
+	background-color:blue;	
+	color:#fff;
+	background-color:#2C5060;
+	font-family: 'Oswald', sans-serif;
+	padding:0.5%;
+	margin-bottom:1%;
+	
+}
+
+#form-listado-calificaciones h2{
+	
+	color:#fff;
+	background-color:#2C5060;
+	font-family: 'Oswald', sans-serif;
+	width:99%;
+	padding:0.5%;
+	
+}
+
+
+/*=============================================================
+      FORMULARIO REPORTES
+ ============================================================== */
+
+
+#form-reportes{
+	
+	background-color: #f3f3f3;
+	width:97%;
+	height:970px;
+	margin:20px;
+	padding:10px;
+
+	
+}
+
+#form-reportes-fila-uno{
+	
+	width:85%;
+	height:200px;
+	padding-left: 15%;
+
+}
+
+.fila-uno-items{
+	
+	width:15%;
+	height:190px;
+	float:left;
+	margin:1%;
+	box-shadow: 0px 18px 10px -6px rgba(0,0,0,0.31);
+	background-color:#fff;
+	padding:1%;
+	border-radius:10px;
+
+}
+
+.fila-uno-items img {
+	
+	width:40%;	
+	padding:3%;
+	
+
+}
+
+.fila-uno-items h2 {
+	
+	font-family: 'Oswald', sans-serif;
+	font-size:20px;
+
+}
+
+.fila-uno-items p {
+	
+	font-size:25px;
+	font-family: 'Francois One', sans-serif;
+	color:#2C5060;
+
+}
+
+.fila-uno-items-pie{
+	
+	padding:2%;	
+	margin-left:25%;
+}
+
+.fila-uno-items-pie img {
+	
+	width:12%;	
+	float:left;
+}
+
+
+.fila-uno-items-pie p {
+	
+	font-size:20px;
+	float:left;
+	
+}
+
+#form-reportes-fila-dos{
+	
+	width:100%;	
+	margin-top:3%;
+	height:470px;
+
+		
+}
+
+.form-reportes-graficos{
+	
+	width:25%;
+	background-color:#fff;
+	float:left;
+	box-shadow: 0px 18px 10px -6px rgba(0,0,0,0.31);
+	margin:3% 1%;
+	padding:3%;
+	border-radius:5px;
+}
+
+#form-reportes-fila-dos h2, #form-reportes-fila-tres h2{
+	
+	font-family: 'Oswald', sans-serif;
+	background-color:#2C5060;
+	color:white;
+	padding:1%;
+	width:98%;
+	
+}
+
+.fila-uno-items-pie{
+	
+	border-top: 1px solid #f3f3f3;
+
+}
+
+#form-reportes-fila-tres {
+	
+	background-color:blue;
+	width:95%;
+	heigth:300px;
+	
+	
+}
+
+#form-reportes-fila-tres .content-table {
+	
+	width:30%;
+	float:left;
+	padding:20px;
+	margin:3%;
+	
+}
