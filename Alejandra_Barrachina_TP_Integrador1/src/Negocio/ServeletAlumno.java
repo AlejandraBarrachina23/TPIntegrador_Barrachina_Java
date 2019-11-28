@@ -29,17 +29,22 @@ public class ServeletAlumno extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		if(request.getParameter("EliminarAlumno")!=null) {
+			
+			System.out.println(request.getParameter("tboxNombre"));
+						
+		}
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String TipoFormulario = request.getParameter("tipoFormulario");
 		
 		try {
 			
 			if(request.getParameter("btnAceptar")!=null) {
-				
+					
 				Alumno unNuevoAlumno = new Alumno();
 				Localidad LocalidadSeleccionada = new Localidad();
 				Provincia ProvinciaSeleccionada = new Provincia();
@@ -55,18 +60,22 @@ public class ServeletAlumno extends HttpServlet {
 				unNuevoAlumno.setLocalidad(LocalidadSeleccionada);
 				
 				AlumnosDAO Alumno = new AlumnosDAO();
-				Alumno.AgregarAlumno(unNuevoAlumno);
-				
+					
+					if(TipoFormulario.equals("agregar")) {Alumno.AgregarAlumno(unNuevoAlumno);}
+					else if(TipoFormulario.equals("modificar")) {
+						unNuevoAlumno.setLegajo(Integer.parseInt(request.getParameter("tboxLegajo")));
+						Alumno.ModificarAlumno(unNuevoAlumno);}							
 			}
-			
-			RequestDispatcher Request = request.getRequestDispatcher("alumnos.jsp");
-			Request.forward(request, response);
+	
 		} 
 		
 		catch (Exception e) {
 			
 			System.out.print("Error al cargar "+ e);
 		}
+		
+		RequestDispatcher Request = request.getRequestDispatcher("alumnos.jsp");
+		Request.forward(request, response);
 	}
 
 }

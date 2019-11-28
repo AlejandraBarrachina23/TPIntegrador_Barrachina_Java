@@ -21,6 +21,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="jquery.dataTables.min.js"></script>
 
+
 </head>
 <body>
 <jsp:include page="menu-administrador.html"></jsp:include>
@@ -28,6 +29,10 @@
 	<div class="encabezados"><h3>LISTADO DE ALUMNOS</h3></div>
 	<div id="form-listado-alumnos">
 			<input type="button" id="btnAgregarAlumno" class="btnFormulario" value="AGREGAR ALUMNO">		
+			<!---------------------------------------------------------------------------------------------------------------
+					TABLA - LISTADO ALUMNOS
+			<!-------------------------------------------------------------------------------------------------------------->	
+			
 			<table id="table_id" class="content-table">
 				<thead>
 					<tr>
@@ -46,7 +51,6 @@
 				<tbody>
 			
 			<% 
-			
 			AlumnosDAO unAlumnoDAO = new AlumnosDAO(); 
 			for(Alumno unAlumno : unAlumnoDAO.ListadoAlumnos()){%>
 					<tr>  
@@ -67,13 +71,16 @@
 			  <%}%>
 				</tbody>
 			</table>
-					
+			<!---------------------------------------------------------------------------------------------------------------
+					FORMULARIO EMERGENTE - AGREGAR/MODIFICAR ALUMNOS
+			<!-------------------------------------------------------------------------------------------------------------->		
 			</div>
 			<div class="modal-fondo" id="modal-fondo">
 				<div class="modal-contenido" id="modal-contenido">
 					<h3>DATOS ALUMNO</h3><br>
 					<form method="post" action="ServeletAlumno" id="form-datos-alumnos">
-						<label>Legajoe<br><input type="text" id="tboxLegajo" name="tboxLegajo" required  ></label><br>
+						<input type="hidden" id="tipoFormulario" name="tipoFormulario" value="">
+						<label>Legajo<br><input type="text" id="tboxLegajo" name="tboxLegajo" readonly="true" required></label><br>
 						<label>Nombre<br><input type="text" id="tboxNombre" name="tboxNombre" required  ></label><br>
 						<label>Apellido<br><input type="text" id="tboxApellido" name="tboxApellido" required></label><br>
 						<label>Fecha de Nacimiento</label><br><input type="date" id="tboxFechaNacimiento" name="tboxFechaNacimiento" required><br>
@@ -95,108 +102,23 @@
 					</form>			
 				</div>
 			</div>
+			<!---------------------------------------------------------------------------------------------------------------
+					FORMULARIO EMERGENTE - BORRAR ALUMNO
+			<!-------------------------------------------------------------------------------------------------------------->	
 			
-			<div class="modal-fondo" id="modal-fondo-advertencia">
-			
-				<div class="modal-contenido" id="modal-advertencia">
-					<h3>ELIMINAR REGISTRO</h3><br>
-					 <p>¿Está seguro que desea eliminar el legajo<label id="registroEliminar"></label>?</p>
-					 <input type="button" class="btn-modal" id="btnBorrar" value="Borrar">
-					 <input type="button" class="btn-modal" id="btnCancelar" value="Cancelar">					
+				<div class="modal-fondo" id="modal-fondo-advertencia">
+					<div class="modal-contenido" id="modal-advertencia">
+						<h3>ELIMINAR REGISTRO</h3><br>
+						 <p>¿Está seguro que desea eliminar el legajo<label id="registroEliminar" name="registroEliminar"></label> ?</p>
+						 <a href="ServeletAlumno?EliminarAlumno"><input type="button" class="btn-modal" id="btnBorrar" name="btnBorrar" value="Borrar"></a>
+						 <input type="button" class="btn-modal" id="btnCancelar" value="Cancelar">					
+					</div>
 				</div>
-			</div>
+			
 			
 </section>
-
-
+<script src="funciones.js"></script>
 <script>
-
-	$(document).ready( function () {
-	    $('#table_id').DataTable();
-		
-	});
-	
-	const btnAbrir = document.getElementById('btnAgregarAlumno');
-	var btnEliminar = document.getElementsByClassName('btn-eliminar');
-	var btnModificar = document.getElementsByClassName('btn-modificar');
-	const fondo = document.getElementById('modal-fondo');
-	const ventanaEmergente = document.getElementById('modal-contenido');
-	const ventanaAdvertencia = document.getElementById('modal-advertencia');
-	const fondoAdvertencia = document.getElementById('modal-fondo-advertencia');
-	const btnCerrar = document.getElementById('btnCerrar');
-	const btnCerrarAdvertencia = document.getElementById('btnCancelar');btnCancelar
-	
-	btnAbrir.addEventListener('click', function(){
-		
-		fondo.classList.add('active');
-		document.getElementById('form-datos-alumnos').reset();
-			
-	});
-	
-	for (var i=0; i< btnModificar.length; i++) {
-        
-        btnModificar[i].addEventListener("click",function() {
-        	
-        	fondo.classList.add('active');
-        	const desplegableLocalidad = document.getElementById("cboxLocalidades");	
-
-			<% LocalidadesDAO Localidad = new LocalidadesDAO();
-			 for(Localidad unaLocalidad : Localidad.ListadoLocalidades()){%>	
-			
-			 	var item = document.createElement('option');
-				item.value = '<%=unaLocalidad.getIdLocalidad()%>';
-				item.innerHTML = '<%=unaLocalidad.getNombre()%>';
-				desplegableLocalidad.appendChild(item);
-			 		
-			 <%}%>
-        	
-        });
-    }
-	
-	for (var i=0; i< btnEliminar.length; i++) {
-        
-		btnEliminar[i].addEventListener("click",function() {
-        	
-        	fondoAdvertencia.classList.add('active');
-			
-        });
-    }
-	
-	btnCerrar.addEventListener('click', function(){
-		
-		fondo.classList.remove('active');
-	});
-	
-	btnCerrarAdvertencia.addEventListener('click', function(){
-		
-		fondoAdvertencia.classList.remove('active');
-
-	});
-			
-	$("td").click(function(){
-			
-			$('#tboxLegajo').val($(this).parents("tr").find("td").eq(0).text());
-			$('#tboxNombre').val($(this).parents("tr").find("td").eq(1).text());
-			$('#tboxApellido').val($(this).parents("tr").find("td").eq(2).text());			
-			$('#tboxFechaNacimiento').val($(this).parents("tr").find("td").eq(3).text());
-			$('#tboxDireccion').val($(this).parents("tr").find("td").eq(4).text());
-			$('#tboxEmail').val($(this).parents("tr").find("td").eq(7).text());
-			$('#tboxTelefono').val($(this).parents("tr").find("td").eq(8).text());
-			
-			var select=document.getElementById("cboxProvincias");
-			var buscar=$(this).parents("tr").find("td").eq(6).text();
-			
-			for(var i=1;i<select.length;i++)
-			{
-				if(select.options[i].text==buscar)
-				{
-					select.selectedIndex=i;
-				}
-			}
-					
-			$("#registroEliminar").text($(this).parents("tr").find("td").eq(0).text());
-			
-	});
 	
 	
 		$('#cboxProvincias').change(function(){
@@ -211,7 +133,7 @@
 			const provinciaSeleccionada = document.getElementById("cboxProvincias").value;
 			const desplegableLocalidad = document.getElementById("cboxLocalidades");	
 	
-			 <%
+			 <%LocalidadesDAO Localidad = new LocalidadesDAO();
 			 for(Localidad unaLocalidad : Localidad.ListadoLocalidades()){%>	
 			
 			 if(provinciaSeleccionada==<%=unaLocalidad.getProvincia().getIdProvincia()%>){
@@ -223,13 +145,6 @@
 			 <%}%>
 			
 		}
-	
-	
-	$( function() {
-			    $( "#datepicker" ).datepicker();
-			  } );
-
-
-	</script>
+</script>
 </body>
 </html>

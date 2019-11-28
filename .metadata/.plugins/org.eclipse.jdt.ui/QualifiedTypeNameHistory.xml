@@ -16,7 +16,7 @@
 <fullyQualifiedTypeName name="Dominio.Localidad"/>
 <fullyQualifiedTypeName name="Dominio.Provincia"/>
 <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
-<fullyQualifiedTypeName name="DAO.AlumnosDAO"/>
 <fullyQualifiedTypeName name="com.mysql.cj.jdbc.CallableStatement"/>
+<fullyQualifiedTypeName name="DAO.AlumnosDAO"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>

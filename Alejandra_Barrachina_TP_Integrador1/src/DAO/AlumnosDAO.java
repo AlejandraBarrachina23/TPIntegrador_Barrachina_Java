@@ -27,28 +27,37 @@ public class AlumnosDAO {
 			
 			while(TablaResultados.next()) {
 				
+				
 				Alumno unAlumno = new Alumno();
 				Localidad unaLocalidad = new Localidad();
 				Provincia unaProvincia = new Provincia();
 				
-				unAlumno.setLegajo(TablaResultados.getInt("Legajo"));
-				unAlumno.setNombre(TablaResultados.getString("Nombre"));
-				unAlumno.setApellido(TablaResultados.getString("Apellido"));
-				unAlumno.setFechaNacimiento(TablaResultados.getString("FechaNacimiento"));
-				unAlumno.setDireccion(TablaResultados.getString("Direccion"));
-				unAlumno.setEmail(TablaResultados.getString("Email"));
-				unAlumno.setTelefono(TablaResultados.getString("Telefono"));
+				if(TablaResultados.getInt("Estado")==1) 
+				{
+					
+					unAlumno.setLegajo(TablaResultados.getInt("Legajo"));
+					unAlumno.setNombre(TablaResultados.getString("Nombre"));
+					unAlumno.setApellido(TablaResultados.getString("Apellido"));
+					unAlumno.setFechaNacimiento(TablaResultados.getString("FechaNacimiento"));
+					unAlumno.setDireccion(TablaResultados.getString("Direccion"));
+					unAlumno.setEmail(TablaResultados.getString("Email"));
+					unAlumno.setTelefono(TablaResultados.getString("Telefono"));
+					
+					unaProvincia.setIdProvincia(TablaResultados.getInt("idProvincia"));
+					unaProvincia.setNombre(TablaResultados.getString("Provincias.Nombre"));
+					
+					unaLocalidad.setIdLocalidad(TablaResultados.getInt("Localidades.idLocalidad"));
+					unaLocalidad.setNombre(TablaResultados.getString("Localidades.Nombre"));
+					unaLocalidad.setProvincia(unaProvincia);
+					
+					unAlumno.setLocalidad(unaLocalidad);
+					
+					ListadoAlumnos.add(unAlumno);
+					
+				}
 				
-				unaProvincia.setIdProvincia(TablaResultados.getInt("idProvincia"));
-				unaProvincia.setNombre(TablaResultados.getString("Provincias.Nombre"));
 				
-				unaLocalidad.setIdLocalidad(TablaResultados.getInt("Localidades.idLocalidad"));
-				unaLocalidad.setNombre(TablaResultados.getString("Localidades.Nombre"));
-				unaLocalidad.setProvincia(unaProvincia);
-				
-				unAlumno.setLocalidad(unaLocalidad);
-				
-				ListadoAlumnos.add(unAlumno);		
+						
 			}
 	
 		}
@@ -84,4 +93,55 @@ public class AlumnosDAO {
 			System.out.print("Error al cargar "+ e);
 		}
 	}
+	
+	public void ModificarAlumno(Alumno modificarAlumno) throws SQLException{
+		
+		nuevaConexion = new ConexionDB();
+		
+		try {
+			
+			 System.out.println(modificarAlumno.getLegajo());
+			 
+			 CallableStatement SP_ModificarAlumno = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL ModificarAlumno(?,?,?,?,?,?,?,?,?)");
+			
+			 SP_ModificarAlumno.setInt(1,modificarAlumno.getLegajo());
+			 SP_ModificarAlumno.setString(2,modificarAlumno.getNombre());
+			 SP_ModificarAlumno.setString(3,modificarAlumno.getApellido());
+			 SP_ModificarAlumno.setString(4,modificarAlumno.getFechaNacimiento());
+			 SP_ModificarAlumno.setString(5,modificarAlumno.getDireccion());
+			 SP_ModificarAlumno.setInt(6,modificarAlumno.getProvincia().getIdProvincia());
+			 SP_ModificarAlumno.setInt(7,modificarAlumno.getLocalidad().getIdLocalidad());
+			 SP_ModificarAlumno.setString(8,modificarAlumno.getEmail());
+			 SP_ModificarAlumno.setString(9,modificarAlumno.getTelefono());
+			 SP_ModificarAlumno.execute();
+	
+		} 
+		
+		catch (Exception e) {
+			
+			System.out.print("Error al modificar "+ e);
+		}
+	}
+	
+	public void EliminarAlumo(Alumno eliminarAlumno) throws SQLException{
+		
+		nuevaConexion = new ConexionDB();
+		
+		try {
+			
+			 System.out.println(eliminarAlumno.getLegajo());
+			 
+			 CallableStatement SP_EliminarAlumno = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL ModificarAlumno(?)");
+			 SP_EliminarAlumno.setInt(1,eliminarAlumno.getLegajo());
+			 SP_EliminarAlumno.execute();
+	
+		} 
+		
+		catch (Exception e) {
+			
+			System.out.print("Error al borrar "+ e);
+		}
+	}
+	
+	
 }
