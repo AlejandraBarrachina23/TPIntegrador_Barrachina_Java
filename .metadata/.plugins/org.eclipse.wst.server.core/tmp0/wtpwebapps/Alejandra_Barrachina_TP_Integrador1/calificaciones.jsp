@@ -26,13 +26,10 @@
 	
 	<div class="busqueda-califaciones">
 		<h2>1. CURSO SELECCIONADO</h2>
-		
 			<input type="text" placeholder="Materia" disabled>
 			<input type="text" placeholder="Semestre" disabled>
 			<input type="number" placeholder="Año" disabled>
-
 	</div>
-	
 	<div id="form-listado-calificaciones">
 			<h2>2. CARGUE LAS CALIFICACIONES</h2>
 			<table id="table_id" class="content-table">
@@ -50,8 +47,7 @@
 				</thead>
 				<tbody>
 			<% 
-		
-				
+			
 			for(Alumno unAlumno : Alumno.CargarAlumnos()){ 
 			
 				%>

@@ -1,0 +1,17 @@
+package Negocio;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import DAO.CursoDAO;
+import Dominio.Curso;
+
+public class CursoNegocio implements ICursoNegocio {
+	
+private CursoDAO unCursoDAO = new CursoDAO();
+
+	@Override
+	public ArrayList<Curso> CursosxProfesor(int IdProfesor) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

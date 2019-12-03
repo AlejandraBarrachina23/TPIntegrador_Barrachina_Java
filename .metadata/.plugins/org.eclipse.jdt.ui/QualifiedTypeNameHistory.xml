@@ -3,7 +3,6 @@
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="com.sun.xml.internal.bind.v2.schemagen.xmlschema.List"/>
 <fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.sql.ResultSet"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
 <fullyQualifiedTypeName name="java.sql.DriverManager"/>
@@ -19,4 +18,11 @@
 <fullyQualifiedTypeName name="com.mysql.cj.jdbc.CallableStatement"/>
 <fullyQualifiedTypeName name="DAO.AlumnosDAO"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="Dominio.Materia"/>
+<fullyQualifiedTypeName name="Negocio.INegocioMateria"/>
+<fullyQualifiedTypeName name="DAO.MateriaDAO"/>
+<fullyQualifiedTypeName name="DAO.ProfesoresDAO"/>
+<fullyQualifiedTypeName name="Dominio.Profesor"/>
+<fullyQualifiedTypeName name="Dominio.Curso"/>
 </qualifiedTypeNameHistroy>

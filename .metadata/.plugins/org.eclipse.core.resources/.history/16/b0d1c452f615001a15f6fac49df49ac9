@@ -1,0 +1,12 @@
+package Negocio;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import Dominio.Materia;
+
+public interface ICursoNegocio {
+
+	public ArrayList<Curso> ListadoMaterias() throws SQLException;
+
+}

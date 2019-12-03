@@ -1,8 +1,0 @@
-package Dominio;
-
-public class Provincia {
-
-	private int IdProvincia;
-	private String Nombre;
-	private int Codigo;
-}

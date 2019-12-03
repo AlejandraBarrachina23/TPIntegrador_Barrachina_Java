@@ -1,0 +1,16 @@
+package Negocio;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import DAO.CursoDAO;
+
+public class CursoNegocio {
+	
+private CursoDAO unCursoDAO = new CursoDAO();
+	
+	public ArrayList<Curso> ListadoMaterias() throws SQLException{
+		
+		return unCursoDAO.CursosxProfesor(IdProfesor);
+		
+	}
+
+}

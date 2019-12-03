@@ -38,7 +38,7 @@
 				</div>
 				
 				<label>Materia</label>
-					<select id="cboxMaterias">
+					<select id="cboxMaterias" required>
 					<option disabled selected>Seleccione una Materia</option>
 					<% MateriaNegocio unaMateriaNegocio = new MateriaNegocio();
 					for(Materia unaMateria : unaMateriaNegocio.ListadoMaterias()){ %>
@@ -98,17 +98,19 @@
 			<div class="form-cursos-encabezado-izquierda">		
 				<h2>3. PREVISUALIZACIÓN DE LA SELECCIÓN</h2>	
 			</div>
+			
 				<label>Materia: </label><br>
-				<input type="text" id="tboxMateria-previsualizacion" readonly=true><br>
+				<input type="text" id="tboxMateria-previsualizacion" name="tboxMateria-previsualizacion" readonly=true><br>
 				<label>Semestre: </label><br>
-				<input type="text" id="tboxSemestre-previsualizacion" readonly=true><br>
+				<input type="text" id="tboxSemestre-previsualizacion" name="tboxSemestre-previsualizacion"  readonly=true><br>
 				<label>Año: </label><br>
-				<input type="text" id="tboxAnio-previsualizacion" value="2019" readonly=true><br>
+				<input type="text" id="tboxAnio-previsualizacion" value="2019" name="tboxAnio-previsualizacion" required readonly=true><br>
 				<label>Profesor: </label><br>
-				<input type="text" id="tboxProfesor-previsualizacion" readonly=true><br>
+				<input type="text" id="tboxProfesor-previsualizacion" name="tboxProfesor-previsualizacion" required readonly=true><br>
 				<label>Listado de Alumnos: </label><br>
+				<input type="hidden" id="listado-alumnos-oculto" name="listado-alumnos-oculto" required/>
 				<ul id="listado-alumnos"></ul>
-				<input type="submit" id="btnAgregarCurso" class="btnFormulario" value="AGREGAR">	
+				<input type="submit" id="btnAgregarCurso" name="btnAgregarCurso" class="btnFormulario" onsubmit="return validacionesFormulario()" value="AGREGAR">	
 			</div>
 	</form>
 </section>
@@ -117,8 +119,9 @@
 	
 	$(document).ready( function () {
 	    $('#table_id').DataTable();
+	    
 	} );
-	
+		
 	//AÑO POR DEFECTO
 	let fecha = new Date();
 	let anio = fecha.getFullYear();
@@ -161,7 +164,9 @@
 	}
 	
 	//RECORRE TABLA Y AGREGAR/ELIMINA VALORES EN LA LISTA DE ALUMNOS
-	let  listadoAlumnos=[];
+	let listadoAlumnos=[];
+	let listadoLegajoAlumnos=[];
+	
 	$('input[type=checkbox]').click(function() {
 
 		 const legajo = $(this).parents("tr").find("td").eq(1).text();
@@ -170,23 +175,46 @@
 		 const itemSeleccionado = legajo+"-"+nombre+" "+apellido;
 		 const lista = document.getElementById("listado-alumnos");
 		 $('#listado-alumnos li').remove();
+		 document.getElementById("listado-alumnos-oculto").value="";
 		
-		if($(this).is(":checked"))listadoAlumnos.push(itemSeleccionado);
+		if($(this).is(":checked")){
+			listadoAlumnos.push(itemSeleccionado);
+			listadoLegajoAlumnos.push(legajo);	
+			
+		}
 		else {
+			
 			 let posicion;
+			 let posicionLegajo;
+			 
 			 for (let i = 0; i < listadoAlumnos.length; i++) {
 				 if(itemSeleccionado===listadoAlumnos[i]) posicion=i;
 			 }
+			
+			 for (let j = 0; j < listadoLegajoAlumnos.length; j++) {
+				 if(legajo===listadoLegajoAlumnos[j]) posicionLegajo=j;
+			 }
+
 			 listadoAlumnos.splice(posicion,1);
+			 listadoLegajoAlumnos.splice(posicionLegajo,1);
 			 $('#listado-alumnos li').remove();
+			 document.getElementById("listado-alumnos-oculto").value="";
+
 		}
 		 for (let i = 0; i < listadoAlumnos.length; i++) {
 			 let item = document.createElement("li");
 			 item.appendChild(document.createTextNode(listadoAlumnos[i]));
 			 lista.appendChild(item);
 		 }
-	
+		 
+		 for (let j = 0; j < listadoLegajoAlumnos.length; j++) {
+			
+			 let tboxListadoLegajoAlumnos = document.getElementById("listado-alumnos-oculto");
+			 tboxListadoLegajoAlumnos.value += listadoLegajoAlumnos[j] +"-";
+		 }
 	});
+	
+
 
 	</script>
 </body>
