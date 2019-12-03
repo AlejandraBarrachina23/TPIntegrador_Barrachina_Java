@@ -1,0 +1,9 @@
+package Negocio;
+
+import java.util.ArrayList;
+
+public class MateriaNegocio {
+
+	public ArrayList<Materia> listarArticulos();
+	
+}

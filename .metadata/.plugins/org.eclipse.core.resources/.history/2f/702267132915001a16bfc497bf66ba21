@@ -1,0 +1,16 @@
+package Negocio;
+
+import java.util.ArrayList;
+
+import Dominio.Materia;
+
+public class MateriaNegocio implements INegocioMateria {
+
+	private MateriaDAO unaMateriaDAO = new MateriaDAO();
+	
+	public ArrayList<Materia> ListadoMaterias(){
+		
+		
+	}
+	
+}

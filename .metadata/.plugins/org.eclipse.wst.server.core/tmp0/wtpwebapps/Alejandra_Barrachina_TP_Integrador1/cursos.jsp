@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="Dominio.Alumno"%>
+    <%@page import="Dominio.Materia"%>
+     <%@page import="DAO.AlumnosDAO"%>
+     <%@page import="Dominio.Profesor"%>
+     <%@page import="Negocio.MateriaNegocio"%>
+     <%@page import="Negocio.ProfesorNegocio"%>
     <%@page import="java.util.ArrayList"%>    
 <!DOCTYPE html>
 <html>
@@ -23,35 +28,41 @@
 
 <section class="section-principal">
 	<div class="encabezados"><h3>ALTA CURSOS</h3></div>
-		<form method="post" action="" id="form-cursos">
+		<form method="post" action="ServeletCurso" id="form-cursos">
+			<!---------------------------------------------------------------------------------------------------------------
+					FORM IZQUIERDA - ARRIBA
+			<!-------------------------------------------------------------------------------------------------------------->
 			<div id="form-curso-izquierda">				
 				<div class="form-cursos-encabezado-izquierda">		
 					<h2>1. SELECCIONA LOS DATOS DEL CURSO</h2>	
 				</div>
+				
 				<label>Materia</label>
-					<select>
-						<option>Opción 1</option>
-						<option>Opción 2</option>
-						<option>Opción 3</option>
-						<option>Opción 4</option>
+					<select id="cboxMaterias">
+					<option disabled selected>Seleccione una Materia</option>
+					<% MateriaNegocio unaMateriaNegocio = new MateriaNegocio();
+					for(Materia unaMateria : unaMateriaNegocio.ListadoMaterias()){ %>
+						<option class="opciones" value="<%=unaMateria.getIdMateria()%>"><%= unaMateria.getNombre()%></option><%}%>
 					</select><br>
-					<label>Semestre</label>
-					<select>
+				<label>Semestre</label>
+					<select id="cboxSemestre">
+					 	<option disabled selected>Seleccione un Semestre</option>
 						<option>Primero</option>
 						<option>Segundo</option>
-						
 					</select><br>
-					
-					<label>Año</label><input type="text" name="anio"><br>
-					
-					<label>Profesor</label>
-					<select>
-						<option>Opción 1</option>
-						<option>Opción 2</option>
-						<option>Opción 3</option>
-						<option>Opción 4</option>
+				<label>Año</label>
+				<input type="text" id="tboxAnio" name="anio"><br>
+				<label>Profesor</label>
+					<select  id="cboxProfesores">
+					<option disabled selected>Seleccione un profesor</option>
+						<% ProfesorNegocio unProfesorNegocio = new ProfesorNegocio();
+						for(Profesor unProfesor : unProfesorNegocio.ListadoProfesores()){ %>
+						<option class="opciones" value="<%=unProfesor.getLegajo()%>"><%= unProfesor.getNombre()+" " +unProfesor.getApellido()%></option><%}%>
 					</select><br>
-			
+			<!---------------------------------------------------------------------------------------------------------------
+					FORM IZQUIERDA - ABAJO
+			<!-------------------------------------------------------------------------------------------------------------->
+		
 			<div class="form-cursos-encabezado-izquierda">		
 				<h2>2. SELECCIONA LOS ALUMNOS DEL CURSO</h2>	
 			</div>
@@ -65,135 +76,117 @@
 						</tr>
 					</thead>
 					<tbody>
-				<% 
-			
-					
-				for(Alumno unAlumno : Alumno.CargarAlumnos()){ 
-		
-					%>
+				<% AlumnosDAO unAlumnoDAO = new AlumnosDAO(); 
+				for(Alumno unAlumno : unAlumnoDAO.ListadoAlumnos()){ %>
 						<tr>  
 							  <td><input type="checkbox"></input></td>
 							  <td><%= unAlumno.getLegajo() %></td>
 							  <td><%= unAlumno.getNombre() %></td>
 							  <td><%= unAlumno.getApellido() %></td>
 						</tr>
-		
-							  <%	
-					}
-					
-					
-				%>
-				
-				</tbody>
+				<%}%>
+					</tbody>
 				</table>
-				<input type="button" id="btnAgregarAlumno" class="btnFormulario" value="AGREGAR">
+		</div>
+			
+			<!---------------------------------------------------------------------------------------------------------------
+					FORM DERECHA
+			<!-------------------------------------------------------------------------------------------------------------->
+			
+		<div id="form-curso-derecha">		
+				
+			<div class="form-cursos-encabezado-izquierda">		
+				<h2>3. PREVISUALIZACIÓN DE LA SELECCIÓN</h2>	
 			</div>
-			<div id="form-curso-derecha">		
-				
-				<div class="form-cursos-encabezado-izquierda">		
-					<h2>3. PREVISUALIZACIÓN DE LA SELECCIÓN</h2>	
-				</div>
-				
 				<label>Materia: </label><br>
-				<input type="text" value="Opcion 2" disabled><br>
+				<input type="text" id="tboxMateria-previsualizacion" readonly=true><br>
 				<label>Semestre: </label><br>
-				<input type="text" value="Segundo" disabled><br>
+				<input type="text" id="tboxSemestre-previsualizacion" readonly=true><br>
 				<label>Año: </label><br>
-				<input type="text" value="2019" disabled><br>
+				<input type="text" id="tboxAnio-previsualizacion" value="2019" readonly=true><br>
 				<label>Profesor: </label><br>
-				<input type="text" value="Opcion 3" disabled><br>
+				<input type="text" id="tboxProfesor-previsualizacion" readonly=true><br>
 				<label>Listado de Alumnos: </label><br>
-				
-				<ul id="listado-alumnos">
-					<li>NombreAlumno1</li>
-					<li>NombreAlumno2</li>
-					<li>NombreAlumno4</li>
-				</ul>
-					
-				
-				<input type="button" id="btnAgregarAlumno" class="btnFormulario" value="AGREGAR">	
-				<input type="button" id="btnAgregarAlumno" class="btnFormulario" value="RESETEAR">	
+				<ul id="listado-alumnos"></ul>
+				<input type="submit" id="btnAgregarCurso" class="btnFormulario" value="AGREGAR">	
 			</div>
-		
 	</form>
-
-			
-			
 </section>
 
-
 <script>
-
-	/*const flecha = document.getElementById('btn-flecha').addEventListener('click',mostarDiv);
-	
-	function mostarDiv(){
-	
-	    document.getElementById('form-agregar-usuario').style.display = 'block';
-	
-	}*/
 	
 	$(document).ready( function () {
 	    $('#table_id').DataTable();
 	} );
 	
-	const btnAbrir = document.getElementById('btnAgregarAlumno');
-	var btnEliminar = document.getElementsByClassName('btn-eliminar');
-	var btnModificar = document.getElementsByClassName('btn-modificar');
-	const fondo = document.getElementById('modal-fondo');
-	const ventanaEmergente = document.getElementById('modal-contenido');
-	const ventanaAdvertencia = document.getElementById('modal-advertencia');
-	const fondoAdvertencia = document.getElementById('modal-fondo-advertencia');
-	const btnCerrar = document.getElementById('btnCerrar');
-	const btnCerrarAdvertencia = document.getElementById('btnCancelar');btnCancelar
+	//AÑO POR DEFECTO
+	let fecha = new Date();
+	let anio = fecha.getFullYear();
+	document.getElementById('tboxAnio').value= anio;
 	
-	btnAbrir.addEventListener('click', function(){
+	//CAMBIO VALORES INPUTS
+	document.getElementById("tboxAnio").addEventListener('keyup', autoCompletar);
+	document.getElementById("cboxSemestre").addEventListener('change', autoCompletarSemestre);
+	document.getElementById("cboxMaterias").addEventListener('change', autoCompletarMateria);
+	document.getElementById("cboxProfesores").addEventListener('change', autoCompletarProfesor);
+	
+	function autoCompletar(){
 		
-		fondo.classList.add('active');
-		document.getElementById('form-datos-alumnos').reset();
+		$("#tboxAnio").keyup(autoCompletar); 
+		var valor = $(this).val();
+		$("#tboxAnio-previsualizacion").val(valor);
+	}
+	
+	function autoCompletarSemestre(){
 		
-	});
+		let combobox = document.getElementById("cboxSemestre");
+		let opcionSeleccionada = combobox.options[combobox.selectedIndex].text;
+		document.getElementById("tboxSemestre-previsualizacion").value = opcionSeleccionada;
+	}
 	
-	for (var i=0; i< btnModificar.length; i++) {
-        
-        btnModificar[i].addEventListener("click",function() {
-        	
-        	fondo.classList.add('active');
-        });
-    }
-	
-	for (var i=0; i< btnEliminar.length; i++) {
-        
-		btnEliminar[i].addEventListener("click",function() {
-        	
-        	fondoAdvertencia.classList.add('active');
-        });
-    }
-	
-	btnCerrar.addEventListener('click', function(){
-		
-		fondo.classList.remove('active');
-	});
-	
-	btnCerrarAdvertencia.addEventListener('click', function(){
-		
-		fondoAdvertencia.classList.remove('active');
+	function autoCompletarMateria(){
 
-	});
-			
-	$("td").click(function(){
-			
-			$('#tboxLegajo').val($(this).parents("tr").find("td").eq(0).text());
-			$('#tboxNombre').val($(this).parents("tr").find("td").eq(1).text());
-			$('#tboxApellido').val($(this).parents("tr").find("td").eq(2).text());
-			$('#tboxFechaNacimiento').val($(this).parents("tr").find("td").eq(3).text());
-			$('#tboxLocalidad').val($(this).parents("tr").find("td").eq(4).text());
-			$('#tboxProvincia').val($(this).parents("tr").find("td").eq(5).text());
-			$('#tboxEmail').val($(this).parents("tr").find("td").eq(6).text());
-			$('#tboxTelefono').val($(this).parents("tr").find("td").eq(7).text());
-			$("#registroEliminar").text($(this).parents("tr").find("td").eq(0).text());
-			
-	});
+		let combobox = document.getElementById("cboxMaterias");	
+		let opcionSeleccionada = combobox.options[combobox.selectedIndex].text;
+		let indiceSeleccionado = document.getElementById("cboxMaterias").value;
+		document.getElementById("tboxMateria-previsualizacion").value = indiceSeleccionado + "-" + opcionSeleccionada;
+	}
+	
+	function autoCompletarProfesor(){
+		
+		let combobox = document.getElementById("cboxProfesores");	
+		let opcionSeleccionada = combobox.options[combobox.selectedIndex].text;
+		let indiceSeleccionado = document.getElementById("cboxProfesores").value;
+		document.getElementById("tboxProfesor-previsualizacion").value = indiceSeleccionado + "-" + opcionSeleccionada;
+	}
+	
+	//RECORRE TABLA Y AGREGAR/ELIMINA VALORES EN LA LISTA DE ALUMNOS
+	let  listadoAlumnos=[];
+	$('input[type=checkbox]').click(function() {
 
+		 const legajo = $(this).parents("tr").find("td").eq(1).text();
+		 const nombre = $(this).parents("tr").find("td").eq(2).text();
+		 const apellido = $(this).parents("tr").find("td").eq(3).text();
+		 const itemSeleccionado = legajo+"-"+nombre+" "+apellido;
+		 const lista = document.getElementById("listado-alumnos");
+		 $('#listado-alumnos li').remove();
+		
+		if($(this).is(":checked"))listadoAlumnos.push(itemSeleccionado);
+		else {
+			 let posicion;
+			 for (let i = 0; i < listadoAlumnos.length; i++) {
+				 if(itemSeleccionado===listadoAlumnos[i]) posicion=i;
+			 }
+			 listadoAlumnos.splice(posicion,1);
+			 $('#listado-alumnos li').remove();
+		}
+		 for (let i = 0; i < listadoAlumnos.length; i++) {
+			 let item = document.createElement("li");
+			 item.appendChild(document.createTextNode(listadoAlumnos[i]));
+			 lista.appendChild(item);
+		 }
+	
+	});
 
 	</script>
 </body>

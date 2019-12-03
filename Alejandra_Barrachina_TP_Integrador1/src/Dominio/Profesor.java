@@ -9,10 +9,10 @@ public class Profesor {
 	private String Apellido;
 	private String FechaNacimiento;
 	private String Direccion;
-	private String Localidad;
-	private String Provincia;
+	private Localidad Localidad;
+	private Provincia Provincia;
 	private String Email;
-	private int Telefono;
+	private String Telefono;
 	
 	public int getLegajo() {
 		return Legajo;
@@ -44,16 +44,17 @@ public class Profesor {
 	public void setDireccion(String direccion) {
 		Direccion = direccion;
 	}
-	public String getLocalidad() {
+	
+	public Localidad getLocalidad() {
 		return Localidad;
 	}
-	public void setLocalidad(String localidad) {
+	public void setLocalidad(Localidad localidad) {
 		Localidad = localidad;
 	}
-	public String getProvincia() {
+	public Provincia getProvincia() {
 		return Provincia;
 	}
-	public void setProvincia(String provincia) {
+	public void setProvincia(Provincia provincia) {
 		Provincia = provincia;
 	}
 	public String getEmail() {
@@ -62,37 +63,11 @@ public class Profesor {
 	public void setEmail(String email) {
 		Email = email;
 	}
-	public int getTelefono() {
+	public String getTelefono() {
 		return Telefono;
 	}
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		Telefono = telefono;
-	}
-	
-	
-	public static ArrayList <Profesor> CargarProfesor() {
-		
-		 ArrayList<Profesor>ListadoProfesores = new ArrayList<Profesor>();
-		
-		 for (int i = 0; i<50; i++) {	 
-			
-			 Profesor profesor = new Profesor();
-					
-			 profesor.setLegajo(i+95);
-			 profesor.setNombre("NombreProfesor"+i);
-			 profesor.setApellido("Apellido"+i);
-			 profesor.setFechaNacimiento("Fecha"+i);
-			 profesor.setDireccion("Direccion"+i);
-			 profesor.setLocalidad("Localidad"+i);
-			 profesor.setProvincia("Provincia"+i);
-			 profesor.setEmail("Email"+i);
-			 profesor.setTelefono(Integer.parseInt("111111"+i));	
-				
-			 ListadoProfesores.add(profesor);
-		}	
-		
-		 return ListadoProfesores;	 
-		
 	}
 
 }

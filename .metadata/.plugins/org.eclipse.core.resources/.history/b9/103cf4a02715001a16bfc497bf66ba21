@@ -1,0 +1,11 @@
+package Negocio;
+
+import java.util.ArrayList;
+
+import Dominio.Materia;
+
+public class MateriaNegocio {
+
+	public ArrayList<Materia> ListadoMaterias();
+	
+}

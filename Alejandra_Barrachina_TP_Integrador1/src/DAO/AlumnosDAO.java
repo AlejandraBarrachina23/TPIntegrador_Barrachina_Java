@@ -123,16 +123,16 @@ public class AlumnosDAO {
 		}
 	}
 	
-	public void EliminarAlumo(Alumno eliminarAlumno) throws SQLException{
+	public void EliminarAlumo(int eliminarAlumno) throws SQLException{
 		
 		nuevaConexion = new ConexionDB();
 		
 		try {
 			
-			 System.out.println(eliminarAlumno.getLegajo());
+			 System.out.println(eliminarAlumno);
 			 
-			 CallableStatement SP_EliminarAlumno = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL ModificarAlumno(?)");
-			 SP_EliminarAlumno.setInt(1,eliminarAlumno.getLegajo());
+			 CallableStatement SP_EliminarAlumno = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL EliminarAlumno(?)");
+			 SP_EliminarAlumno.setInt(1,eliminarAlumno);
 			 SP_EliminarAlumno.execute();
 	
 		} 

@@ -109,9 +109,11 @@
 				<div class="modal-fondo" id="modal-fondo-advertencia">
 					<div class="modal-contenido" id="modal-advertencia">
 						<h3>ELIMINAR REGISTRO</h3><br>
-						 <p>¿Está seguro que desea eliminar el legajo<label id="registroEliminar" name="registroEliminar"></label> ?</p>
-						 <a href="ServeletAlumno?EliminarAlumno"><input type="button" class="btn-modal" id="btnBorrar" name="btnBorrar" value="Borrar"></a>
-						 <input type="button" class="btn-modal" id="btnCancelar" value="Cancelar">					
+						
+						 <a href="#" id="eliminar-alumno">Borrar</a>
+						  <input type="button" class="btn-modal" id="btnCancelar" value="Cancelar">	
+						  <p>¿Está seguro que desea eliminar el legajo<label id="registroEliminar" name="registroEliminar"></label> ?</p>
+										
 					</div>
 				</div>
 			
@@ -119,7 +121,37 @@
 </section>
 <script src="funciones.js"></script>
 <script>
+
 	
+	$("td").click(function(){
+			
+			$('#tboxLegajo').val($(this).parents("tr").find("td").eq(0).text());
+			$('#tboxNombre').val($(this).parents("tr").find("td").eq(1).text());
+			$('#tboxApellido').val($(this).parents("tr").find("td").eq(2).text());			
+			$('#tboxFechaNacimiento').val($(this).parents("tr").find("td").eq(3).text());
+			$('#tboxDireccion').val($(this).parents("tr").find("td").eq(4).text());
+			$('#tboxEmail').val($(this).parents("tr").find("td").eq(7).text());
+			$('#tboxTelefono').val($(this).parents("tr").find("td").eq(8).text());
+			
+			var registroEliminar =$(this).parents("tr").find("td").eq(0).text();
+			var link = "ServeletAlumno?EliminarAlumno="+registroEliminar;
+			$("#registroEliminar").text(registroEliminar);
+			$("#eliminar-alumno").attr("href", link);	
+			
+			var select=document.getElementById("cboxProvincias");
+			var provinciaSeleccionada=$(this).parents("tr").find("td").eq(6).text();
+			
+			for(var i=1;i<select.length;i++)
+			{
+				if(select.options[i].text==provinciaSeleccionada)
+				{
+					select.selectedIndex=i;
+				}
+			}
+			
+				
+	});
+
 	
 		$('#cboxProvincias').change(function(){
 			
@@ -128,23 +160,29 @@
 		
 		});
 		
-		function LocalidadSeleccionada(cboxProvincias, cboxLocalidades){
-			
-			const provinciaSeleccionada = document.getElementById("cboxProvincias").value;
-			const desplegableLocalidad = document.getElementById("cboxLocalidades");	
 	
-			 <%LocalidadesDAO Localidad = new LocalidadesDAO();
-			 for(Localidad unaLocalidad : Localidad.ListadoLocalidades()){%>	
-			
-			 if(provinciaSeleccionada==<%=unaLocalidad.getProvincia().getIdProvincia()%>){
-			 	var item = document.createElement('option');
-				item.value = '<%=unaLocalidad.getIdLocalidad()%>';
-				item.innerHTML = '<%=unaLocalidad.getNombre()%>';
-				desplegableLocalidad.appendChild(item);
-			 }		
-			 <%}%>
+
+			function LocalidadSeleccionada(cboxProvincias, cboxLocalidades){
+				
+				const provinciaSeleccionada = document.getElementById("cboxProvincias").value;
+				const desplegableLocalidad = document.getElementById("cboxLocalidades");
+			             
+		
+				 <%LocalidadesDAO Localidad = new LocalidadesDAO();
+				 for(Localidad unaLocalidad : Localidad.ListadoLocalidades()){%>	
+				
+				 if(provinciaSeleccionada==<%=unaLocalidad.getProvincia().getIdProvincia()%>){
+				 	
+					var item = document.createElement('option');
+					item.value = '<%=unaLocalidad.getIdLocalidad()%>';
+					item.innerHTML = '<%=unaLocalidad.getNombre()%>';
+					desplegableLocalidad.appendChild(item);
+				 }		
+				 <%}%>
 			
 		}
+			
+			
 </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package Negocio;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,11 +30,28 @@ public class ServeletAlumno extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if(request.getParameter("EliminarAlumno")!=null) {
 			
-			System.out.println(request.getParameter("tboxNombre"));
-						
+		if(request.getParameter("EliminarAlumno")!=null) {	
+			try {
+			int Legajo = Integer.parseInt(request.getParameter("EliminarAlumno"));
+			System.out.print(Legajo);
+			AlumnosDAO Alumno = new AlumnosDAO();
+			Alumno.EliminarAlumo(Legajo);
+			
+			} 
+			
+			catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			
+		
 		}
+		
+		RequestDispatcher Request = request.getRequestDispatcher("alumnos.jsp");
+		Request.forward(request, response);
+						
+
 	}
 
 
