@@ -23,7 +23,7 @@ public class CursoDAO {
 	nuevaConexion = new ConexionDB();
 		
 		try {
-		
+			
 			 CallableStatement SP_AgregarCurso = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL AgregarCurso(?,?,?,?,?)");
 			 SP_AgregarCurso.setInt(1,unNuevoCurso.getMateria().getIdMateria());
 			 SP_AgregarCurso.setString(2,unNuevoCurso.getSemestre());
@@ -55,7 +55,6 @@ public class CursoDAO {
 				
 				Curso unCurso = new Curso();
 				Materia unaMateria = new Materia();
-				
 				unaMateria.setNombre(TablaResultados.getString("nombre"));
 				unCurso.setAnio(TablaResultados.getInt("anio"));
 				unCurso.setSemestre(TablaResultados.getString("semestre"));
@@ -84,13 +83,12 @@ public ArrayList<Curso> AlumnosxCurso(Curso CursoSeleccionado) {
 			
 			Statement st= (Statement) nuevaConexion.EstablecerConexion().createStatement();
 			ResultSet TablaResultados= st.executeQuery("SELECT Alumnos.Legajo,Alumnos.Nombre, Alumnos.Apellido,NotaUno,NotaDos,RecuperatorioUno,RecuperatorioDos,alumnosxcurso.Estado FROM alumnosxcurso INNER JOIN "
-					+ "Alumnos ON Alumnos.Legajo = alumnosxcurso.legajo WHERE idMateria="+ CursoSeleccionado.getMateria().getIdMateria() + " AND Semestre= "+ CursoSeleccionado.getSemestre()
-					+ "AND Anio = " + CursoSeleccionado.getAnio() + "AND Idprofesor =" + CursoSeleccionado.getProfesorTitular().getLegajo());
+					+ "Alumnos ON Alumnos.Legajo = alumnosxcurso.legajo WHERE idMateria="+ CursoSeleccionado.getMateria().getIdMateria() + " AND Semestre= '"+ CursoSeleccionado.getSemestre()
+					+ "' AND Anio = " + CursoSeleccionado.getAnio() + " AND Idprofesor =" + CursoSeleccionado.getProfesorTitular().getLegajo());
 			
 			while(TablaResultados.next()) {
 				
 				
-				Curso unCurso = new Curso();
 				Alumno unAlumno = new Alumno();
 				Calificaciones notas = new Calificaciones();
 				
@@ -102,14 +100,18 @@ public ArrayList<Curso> AlumnosxCurso(Curso CursoSeleccionado) {
 				notas.setRecuperatorioUno(TablaResultados.getInt("RecuperatorioUno"));
 				notas.setRecuperatorioDos(TablaResultados.getInt("RecuperatorioDos"));				
 				notas.setEstado(TablaResultados.getString("alumnosxcurso.Estado"));
+				notas.setLegajoAlumno(TablaResultados.getInt("alumnos.legajo"));
 				
 				ListadoAlumnos.add(unAlumno);
 				ListadoNotas.add(notas);
-				unCurso.setListadoAlumnos(ListadoAlumnos);
-				unCurso.setListadoNotas(ListadoNotas);
-				ListadoAlumnosxCurso.add(unCurso);		
 
 			}
+			
+			Curso unCurso = new Curso();
+			unCurso.setListadoAlumnos(ListadoAlumnos);
+			unCurso.setListadoNotas(ListadoNotas);
+			ListadoAlumnosxCurso.add(unCurso);	
+			
 		}
 		catch (Exception e) {
 			

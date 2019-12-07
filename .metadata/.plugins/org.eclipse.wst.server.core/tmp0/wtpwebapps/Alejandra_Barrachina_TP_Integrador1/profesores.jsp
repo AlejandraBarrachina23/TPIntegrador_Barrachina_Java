@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="Dominio.Profesor"%>
+     <%@page import="Dominio.Usuario"%>
     <%@page import="java.util.ArrayList"%>    
 <!DOCTYPE html>
 <html>
@@ -18,6 +19,14 @@
 
 </head>
 <body>
+
+<% 
+	if((Usuario) request.getSession(true).getAttribute("usuario")!=null){
+		Usuario unUsuario = new Usuario();
+		unUsuario = (Usuario) request.getSession(true).getAttribute("usuario");
+		if(!unUsuario.getTipoUsuario().equals("administrador")){response.sendRedirect("error404.jsp");}
+		}
+%>
 
 <jsp:include page="menu-administrador.html"></jsp:include>
 
@@ -107,13 +116,6 @@
 
 <script>
 
-	/*const flecha = document.getElementById('btn-flecha').addEventListener('click',mostarDiv);
-	
-	function mostarDiv(){
-	
-	    document.getElementById('form-agregar-usuario').style.display = 'block';
-	
-	}*/
 	
 	$(document).ready( function () {
 	    $('#table_id').DataTable();

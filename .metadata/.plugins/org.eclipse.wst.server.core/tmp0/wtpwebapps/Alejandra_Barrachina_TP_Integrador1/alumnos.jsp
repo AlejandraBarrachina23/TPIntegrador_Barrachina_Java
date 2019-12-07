@@ -20,11 +20,30 @@
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="jquery.dataTables.min.js"></script>
-
-
 </head>
 <body>
+<% /*
+	if((Usuario) request.getSession(true).getAttribute("usuario")!=null){
+		
+		Usuario unUsuario = new Usuario();
+		unUsuario = (Usuario) request.getSession(true).getAttribute("usuario");
+		if(!unUsuario.getTipoUsuario().equals("administrador")){response.sendRedirect("error404.jsp");}
+	
+	}
+
+	else {
+		response.sendRedirect("error404.jsp");
+	}*/%>
+	
+<nav>
+<div id="user">
+		<a href="index.jsp"><img id="icon-usuario" src="iconos/usuario-admin.svg" alt="imagen-usuario"></a>
+		<h2>¡Bienvenido!</h2>
+		<p>${usuario.usuario}</p>
+		<a href="serveletUsuario">LogOut</a>
+	</div>
 <jsp:include page="menu-administrador.html"></jsp:include>
+</nav>
 <section class="section-principal">
 	<div class="encabezados"><h3>LISTADO DE ALUMNOS</h3></div>
 	<div id="form-listado-alumnos">
@@ -87,13 +106,14 @@
 						<label>Direccion<br><input type="text" id="tboxDireccion" name="tboxDireccion" required></label><br>
 						<label>Provincias</label><br>
 						<select name="cboxProvincias" id="cboxProvincias" required>
+							<option disabled selected>Seleccione una provincia</option>
 							<%
 							ProvinciasDAO Provincias = new ProvinciasDAO();
 							for(Provincia unaProvincia : Provincias.ListadoProvincias()){%>
 							<option class="opciones" value="<%=unaProvincia.getIdProvincia()%>"><%= unaProvincia.getNombre()%></option><%}%>
-						</select><br>											
+						</select><input type="text" id="provincia" name="" value=""><br>											
 						<label>Localidades</label><br>
-						<select name="cboxLocalidades" id="cboxLocalidades" required></select>
+						<select name="cboxLocalidades" id="cboxLocalidades" required></select><input type="text" id="localidad" name="" value="">
 						<br>
 						<label>E-mail<br><input type="email" id="tboxEmail" name="tboxEmail" required></label><br>
 						<label>Teléfono<br><input type="number" id="tboxTelefono" name="tboxTelefono" required></label><br>
@@ -116,11 +136,11 @@
 										
 					</div>
 				</div>
-			
-			
+
 </section>
 <script src="funciones.js"></script>
 <script>
+
 
 	
 	$("td").click(function(){
@@ -132,26 +152,46 @@
 			$('#tboxDireccion').val($(this).parents("tr").find("td").eq(4).text());
 			$('#tboxEmail').val($(this).parents("tr").find("td").eq(7).text());
 			$('#tboxTelefono').val($(this).parents("tr").find("td").eq(8).text());
-			
 			var registroEliminar =$(this).parents("tr").find("td").eq(0).text();
 			var link = "ServeletAlumno?EliminarAlumno="+registroEliminar;
 			$("#registroEliminar").text(registroEliminar);
-			$("#eliminar-alumno").attr("href", link);	
-			
-			var select=document.getElementById("cboxProvincias");
-			var provinciaSeleccionada=$(this).parents("tr").find("td").eq(6).text();
-			
-			for(var i=1;i<select.length;i++)
-			{
-				if(select.options[i].text==provinciaSeleccionada)
+			$("#eliminar-alumno").attr("href", link);
+
+			if(document.getElementById("tipoFormulario").value === 'modificar'){
+				
+				const provinciaSeleccionada = $(this).parents("tr").find("td").eq(6).text();
+				const localidadSeleccionada = $(this).parents("tr").find("td").eq(5).text();
+				const indexProvinciaSeleccionada = document.getElementById("cboxProvincias").value;
+				const desplegableLocalidad = document.getElementById("cboxLocalidades");
+				const desplegableProvincias = document.getElementById("cboxProvincias");
+				
+				for(var i=1;i<desplegableProvincias.length;i++)
 				{
-					select.selectedIndex=i;
+					if(desplegableProvincias.options[i].text==provinciaSeleccionada) desplegableProvincias.selectedIndex=i;
+				}
+				 $('#cboxLocalidades option').remove();			
+				 <%
+				 LocalidadesDAO Localidad = new LocalidadesDAO();
+							 
+				 for(Localidad unaLocalidad : Localidad.ListadoLocalidades()){%>	
+				 
+				 	if(desplegableProvincias.selectedIndex===<%=unaLocalidad.getProvincia().getIdProvincia()%>){
+						
+						var item = document.createElement('option');
+						item.value = '<%=unaLocalidad.getIdLocalidad()%>';
+						item.innerHTML = '<%=unaLocalidad.getNombre()%>';
+						desplegableLocalidad.appendChild(item);
+					 }		
+				<%}%>
+				
+				for(var i=1;i<desplegableLocalidad.length;i++)
+				{
+					if(desplegableLocalidad.options[i].text==localidadSeleccionada) desplegableLocalidad.selectedIndex=i;
 				}
 			}
-			
+					
 				
 	});
-
 	
 		$('#cboxProvincias').change(function(){
 			
@@ -159,30 +199,27 @@
 			LocalidadSeleccionada(this,'cboxLocalidades');
 		
 		});
-		
-	
 
-			function LocalidadSeleccionada(cboxProvincias, cboxLocalidades){
+	function LocalidadSeleccionada(cboxProvincias, cboxLocalidades){
 				
 				const provinciaSeleccionada = document.getElementById("cboxProvincias").value;
 				const desplegableLocalidad = document.getElementById("cboxLocalidades");
-			             
-		
-				 <%LocalidadesDAO Localidad = new LocalidadesDAO();
+			        		
+				 <%
 				 for(Localidad unaLocalidad : Localidad.ListadoLocalidades()){%>	
-				
-				 if(provinciaSeleccionada==<%=unaLocalidad.getProvincia().getIdProvincia()%>){
-				 	
-					var item = document.createElement('option');
-					item.value = '<%=unaLocalidad.getIdLocalidad()%>';
-					item.innerHTML = '<%=unaLocalidad.getNombre()%>';
-					desplegableLocalidad.appendChild(item);
-				 }		
-				 <%}%>
+					
+					 if(provinciaSeleccionada==<%=unaLocalidad.getProvincia().getIdProvincia()%>){
+					 	
+						var item = document.createElement('option');
+						item.value = '<%=unaLocalidad.getIdLocalidad()%>';
+						item.innerHTML = '<%=unaLocalidad.getNombre()%>';
+						desplegableLocalidad.appendChild(item);
+					 }		
+				<%}%>
 			
-		}
-			
-			
+	}
+
+	
 </script>
 </body>
 </html>

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\Users\Alejandra\Downloads\AppWeb_SESSION_APPLICATION (2)\AppWeb_SESSION_APPLICATION"/>
 		<item value="C:\Users\Alejandra\Downloads\AppWeb_ProgCapas\AppWeb_ProgCapas"/>
 		<item value="C:\Users\Alejandra\Downloads\CRUD-JSP\CRUD-JSP"/>
 	</list>
+	<section name="NewWizardAction">
+	</section>
 </section>

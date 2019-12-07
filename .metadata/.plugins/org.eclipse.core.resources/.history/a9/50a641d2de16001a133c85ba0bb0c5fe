@@ -1,0 +1,17 @@
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+
+<script src="https://kit.fontawesome.com/735f5623c2.js" crossorigin="anonymous"></script>
+<link href="estilos.css" type="text/css" rel=stylesheet>
+</head>
+<body id="error-404">
+
+
+
+</body>
+</html>

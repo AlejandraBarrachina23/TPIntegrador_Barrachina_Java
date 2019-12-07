@@ -13,7 +13,6 @@
 <body>
 
 <section id="section-index">
-	
 	<div id="index-descripcion">
 		<div id="index-descripcion-encabezado">
 			<img src="img/fondo-index.svg">
@@ -29,13 +28,13 @@
 			</div>
 			<div class="index-item-descripcion"><img src="img/estudiantes-big.png" alt="cursos">
 				<h3>Estudiantes</h3>
-				<p> Agregar, modifica, elimina y listado a cada unos de los estudiantes de la
+				<p> Agregar, modifica, elimina y lista a cada unos de los estudiantes de la
 				universidad. </p>
 				<a href="alumnos.jsp" class="btn-index">IR A ESTUDIANTES</a>	 		
 			</div>
 			<div class="index-item-descripcion"><img src="img/profesores-big.png" alt="cursos">
 				<h3>Profesores</h3>
-				<p> Agregar, modifica, elimina y listado a cada unos de los profesores de la
+				<p> Agregar, modifica, elimina y lista a cada unos de los profesores de la
 				universidad. </p>
 				<a href="profesores.jsp" class="btn-index">IR A PROFESORES</a>	 		
 			</div>

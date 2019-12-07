@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\Users\Alejandra\Desktop\Java\Trabajos\Alejandra_Barrachina_TP_Integrador1\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\Alejandra\Desktop\Java\Trabajos\Alejandra_Barrachina_TP_Integrador1\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Alejandra_Barrachina_TP_Integrador1" path="/Alejandra_Barrachina_TP_Integrador1" reloadable="true" source="org.eclipse.jst.jee.server:Alejandra_Barrachina_TP_Integrador1"/></Host>
+      <Context docBase="C:\Users\Alejandra\Desktop\Java\Trabajos\Alejandra_Barrachina_TP_Integrador1\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\Alejandra\Desktop\Java\Trabajos\Alejandra_Barrachina_TP_Integrador1\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Alejandra_Barrachina_TP_Integrador1" path="/Alejandra_Barrachina_TP_Integrador1" reloadable="true" source="org.eclipse.jst.jee.server:Alejandra_Barrachina_TP_Integrador1"/><Context docBase="C:\Users\Alejandra\Desktop\Java\Trabajos\Alejandra_Barrachina_TP_Integrador1\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\AppWeb_SESSION_APPLICATION" path="/AppWeb_SESSION_APPLICATION" reloadable="true" source="org.eclipse.jst.jee.server:AppWeb_SESSION_APPLICATION"/></Host>
     </Engine>
   </Service>
 </Server>

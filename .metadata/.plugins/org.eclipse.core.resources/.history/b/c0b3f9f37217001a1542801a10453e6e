@@ -1,0 +1,6 @@
+package Negocio;
+
+public class UsuarioNegocio {
+
+	public void VerificacionUsuario(Usuario UsuarioIngresado)
+}

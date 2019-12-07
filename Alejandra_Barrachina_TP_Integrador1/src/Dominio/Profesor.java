@@ -1,7 +1,4 @@
 package Dominio;
-
-import java.util.ArrayList;
-
 public class Profesor {
 	
 	private int Legajo;

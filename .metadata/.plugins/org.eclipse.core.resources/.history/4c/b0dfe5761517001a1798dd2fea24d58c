@@ -1,0 +1,23 @@
+package Negocio;
+import java.sql.SQLException;
+import java.util.Properties;
+import java.util.ArrayList;
+import DAO.CursoDAO;
+import DAO.UsuarioDAO;
+import Dominio.Curso;
+import Dominio.Usuario;
+
+public class UsuarioNegocio implements INegocioUsuario {
+	
+private UsuarioDAO unUsuarioDAO = new UsuarioDAO();
+
+
+public Usuario VerificarExistencia(Usuario unUsuario) {
+	return unUsuarioDAO.VerificarExistencia(unUsuario);
+}
+
+
+
+
+
+}

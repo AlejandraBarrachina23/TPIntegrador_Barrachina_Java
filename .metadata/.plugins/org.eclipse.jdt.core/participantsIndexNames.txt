@@ -5,6 +5,8 @@ C:\Users\Alejandra\Desktop\Java\Trabajos\Alejandra_Barrachina_TP_Integrador1\.me
 \CRUD-JSP\build\generated\src
 C:\Users\Alejandra\Desktop\Java\Trabajos\Alejandra_Barrachina_TP_Integrador1\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2088398737.index
 \CRUD-JSP\build\generated\src
+C:\Users\Alejandra\Desktop\Java\Trabajos\Alejandra_Barrachina_TP_Integrador1\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3026657562.index
+\AppWeb_SESSION_APPLICATION\src
 C:\Users\Alejandra\Desktop\Java\Trabajos\Alejandra_Barrachina_TP_Integrador1\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\907776151.index
 \Alejandra_Barrachina_TP_Integrador1\src
 C:\Users\Alejandra\Desktop\Java\Trabajos\Alejandra_Barrachina_TP_Integrador1\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1114191408.index

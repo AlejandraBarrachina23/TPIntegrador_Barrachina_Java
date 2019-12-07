@@ -15,9 +15,6 @@ import Dominio.Alumno;
 import Dominio.Localidad;
 import Dominio.Provincia;
 
-/**
- * Servlet implementation class ServeletAlumno
- */
 @WebServlet("/ServeletAlumno")
 public class ServeletAlumno extends HttpServlet {
 	private static final long serialVersionUID = 1L;

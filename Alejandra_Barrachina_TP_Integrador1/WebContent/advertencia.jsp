@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta http-equiv="Refresh" content="5;url=login.jsp">
 <title>Sistema Universitario</title>
 <link href="https://fonts.googleapis.com/css?family=Oswald:300,400&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Staatliches&display=swap" rel="stylesheet">
@@ -30,9 +31,6 @@
 					</div>
 			</div>
 		</div>
-		
-			
 	</form>
-
 </body>
 </html>

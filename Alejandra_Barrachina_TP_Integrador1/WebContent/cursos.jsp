@@ -23,8 +23,15 @@
 
 </head>
 <body>
-
+<nav>
+<div id="user">
+		<a href="index.jsp"><img id="icon-usuario" src="iconos/usuario-admin.svg" alt="imagen-usuario"></a>
+		<h2>¡Bienvenido!</h2>
+		<p>${usuario.usuario}</p>
+		<a href="ServeletUsuario">LogOut</a>
+	</div>
 <jsp:include page="menu-administrador.html"></jsp:include>
+</nav>
 
 <section class="section-principal">
 	<div class="encabezados"><h3>ALTA CURSOS</h3></div>

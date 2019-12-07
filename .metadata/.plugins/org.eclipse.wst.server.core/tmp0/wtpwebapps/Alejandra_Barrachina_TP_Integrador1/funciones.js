@@ -1,3 +1,5 @@
+
+
 $(document).ready( function () {
 	    $('#table_id').DataTable();
 		
@@ -11,7 +13,7 @@ function accionFormulario(accion) {
 		let tipoFormulario = document.getElementById('tipoFormulario');
 		tipoFormulario.value = accion;
 }
-	
+
 const btnAbrir = document.getElementById('btnAgregarAlumno');
 var btnEliminar = document.getElementsByClassName('btn-eliminar');
 var btnModificar = document.getElementsByClassName('btn-modificar');
@@ -27,7 +29,7 @@ btnAbrir.addEventListener('click', function(){
 	fondo.classList.add('active');
 	document.getElementById('form-datos-alumnos').reset();
 	accionFormulario('agregar');
-		
+	$('#cboxLocalidades option').remove();
 			
 });
 	

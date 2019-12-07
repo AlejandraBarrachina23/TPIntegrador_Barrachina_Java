@@ -1,0 +1,65 @@
+package DAO;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import com.mysql.cj.jdbc.CallableStatement;
+import Dominio.Usuario;
+
+public class UsuarioDAO {
+
+	private ConexionDB nuevaConexion;
+	
+	public Usuario VerificarUsuario(Usuario unUsuario) throws SQLException{
+		
+		nuevaConexion = new ConexionDB();
+		nuevaConexion.EstablecerConexion();
+		
+		try {  
+			
+			Statement st= (Statement) nuevaConexion.EstablecerConexion().createStatement();
+			ResultSet TablaResultados= st.executeQuery("SELECT * from Usuario WHERE Usuario='"+ unUsuario.getUsuario()+"' AND Contrasenia='"+ unUsuario.getContrasenia()+"'");
+			
+			while(TablaResultados.next()) {
+							
+				if(TablaResultados.getInt("Estado")==1) 
+				
+				{
+					Usuario UsuarioLogeado = new Usuario();
+					unAlumno.setLegajo(TablaResultados.getInt("Legajo"));
+					unAlumno.setNombre(TablaResultados.getString("Nombre"));
+					unAlumno.setApellido(TablaResultados.getString("Apellido"));
+					unAlumno.setFechaNacimiento(TablaResultados.getString("FechaNacimiento"));
+					unAlumno.setDireccion(TablaResultados.getString("Direccion"));
+					unAlumno.setEmail(TablaResultados.getString("Email"));
+					unAlumno.setTelefono(TablaResultados.getString("Telefono"));
+					
+					unaProvincia.setIdProvincia(TablaResultados.getInt("idProvincia"));
+					unaProvincia.setNombre(TablaResultados.getString("Provincias.Nombre"));
+					
+					unaLocalidad.setIdLocalidad(TablaResultados.getInt("Localidades.idLocalidad"));
+					unaLocalidad.setNombre(TablaResultados.getString("Localidades.Nombre"));
+					unaLocalidad.setProvincia(unaProvincia);
+					
+					unAlumno.setLocalidad(unaLocalidad);
+					
+					ListadoAlumnos.add(unAlumno);
+					
+				}
+				
+				
+						
+			}
+	
+		}
+		catch (Exception e) {
+			
+			System.out.print("No cargo "+ e);
+		}
+		
+		return ListadoAlumnos;
+	}
+
+	
+	
+}

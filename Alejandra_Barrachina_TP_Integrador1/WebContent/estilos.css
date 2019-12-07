@@ -14,12 +14,51 @@ body {
  		background-size: cover;
 		
 }
+
+
 /*=============================================================
       FORMULARIO LOGIN
  ============================================================== */
  
+ #error-404 {
  
- #form-login{
+ 	background-color:#fff;
+ 	width:65;
+ 	height:750px;;
+ 	margin	: 5% 17%;	
+ 	box-shadow: 0px 18px 10px -6px rgba(0,0,0,0.31);
+ 	text-align:center;
+ 	font-family: 'Francois One', sans-serif;
+ 	border-radius: 15px;
+ 	
+ }
+ 
+ #error-404 a{
+ 
+	color:black;
+		
+ }
+ 
+  #error-404 img {
+  
+  width:70%;
+ 
+  }
+  
+  #error-404 h2 {
+  
+  font-size:50px;
+  }
+  
+  
+  #login-avisos {
+  
+  	color:red;
+  	margin-left:25%;
+  	font-size:12px;
+  }
+ 
+ #form-login {
 	
 	width:65%;
  	margin	: 5% 17%;	
@@ -32,7 +71,6 @@ body {
 	height:750px;
 	float:left;
 	background-color:#F9FBFC;
-	
 	
 }
 

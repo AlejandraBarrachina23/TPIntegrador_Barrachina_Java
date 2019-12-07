@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Francois+One&display=swap');
+</style>
+
+<nav>
+	<div id="user">
+		<a href="index.jsp"><img id="icon-usuario" src="iconos/usuario-admin.svg" alt="imagen-usuario"></a>
+		<h2>¡Bienvenido!</h2>
+		<p>
+		
+		<%${usr.nombre}%>
+		
+		</p>
+		<a href="login.jsp">LogOut</a>
+	</div>
+	<ul>
+		<a href="alumnos.jsp"><li><img class="icon" alt="cursos" src="iconos/estudiantes.svg">ALUMNOS</li></a>
+		<a href="profesores.jsp"><li><img class="icon" alt="cursos" src="iconos/profesores.svg">PROFESORES</li></a>
+		<a href="cursos.jsp"><li><img class="icon" alt="profesores" src="iconos/cursos.svg">CURSOS</li></a>
+		<a href="reportes.jsp"><li><img class="icon" alt="cursos" src="iconos/reportes.svg">REPORTES</li></a>
+	</ul>
+</nav>
+
+

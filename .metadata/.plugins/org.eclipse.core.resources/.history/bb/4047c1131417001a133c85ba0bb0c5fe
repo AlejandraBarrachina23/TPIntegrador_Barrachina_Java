@@ -1,0 +1,28 @@
+package Negocio;
+import java.sql.SQLException;
+import java.util.Properties;
+import java.util.ArrayList;
+import DAO.CursoDAO;
+import DAO.UsuarioDAO;
+import Dominio.Curso;
+import Dominio.Usuario;
+
+public class UsuarioNegocio implements INegocioUsuario {
+	
+private UsuarioDAO unUsuarioDAO = new UsuarioDAO();
+
+@Override
+public boolean VerificarUsuario(Usuario unUsuario) throws SQLException {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public Usuario UsuarioLogeado(Usuario unUsuario) throws SQLException {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+}

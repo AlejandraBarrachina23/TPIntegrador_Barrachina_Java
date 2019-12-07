@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	<form id="form-login" method="post" action="index.jsp">
+	<form id="form-login" method="post" action="serveletUsuario">
 	<div id="form-login-left">				
 			<img src="img/fondo-seguridad.png" alt="fondo-universidad">
 		</div>	
@@ -26,13 +26,9 @@
 				<h1>Recuperación</h1>		
 				<p>Recuperaremos tu contraseña, ingresa <br>tu dirección corre electrónico.</p><br>
 				<div class="text-box"><i class="fas fa-at"></i><input type="text" name="tboxUsuario" placeholder="correoelectronico@gmail.com"></div><br>
-				<input class="restart-button" type="submit" name="btnLogin" value="ENVIAR"><br><br>
-		
+				<input class="restart-button" type="submit" name="btnEnviarMail" value="ENVIAR"><br><br>
 			</div>
 		</div>
-		
-			
 	</form>
-
 </body>
 </html>

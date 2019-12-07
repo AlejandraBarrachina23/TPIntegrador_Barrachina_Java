@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="Dominio.Alumno"%>
+    <%@page import="Dominio.Curso"%>
+    <%@page import="Dominio.Materia"%>
+    <%@page import="Dominio.Calificaciones"%>
+     <%@page import="Dominio.Profesor"%>
+    <%@page import="Negocio.CursoNegocio"%>
     <%@page import="java.util.ArrayList"%>    
 <!DOCTYPE html>
 <html>
@@ -43,34 +48,47 @@
 						<th>Recuperatorio Uno</th>
 						<th>Recuperatorio Dos</th>
 						<th>Estado</th>
+						<br>
 					</tr>
 				</thead>
 				<tbody>
 			<% 
+						
+			CursoNegocio unCursoNegocio = new CursoNegocio();
+			Curso cursoSeleccionado = new Curso();
+			Materia unaMateria = new Materia();
+			Profesor unProfesor = new Profesor();
 			
-			for(Alumno unAlumno : Alumno.CargarAlumnos()){ 
+			cursoSeleccionado.setAnio(2019);
+			unaMateria.setIdMateria(12);
+			unProfesor.setLegajo(5);			
+			cursoSeleccionado.setMateria(unaMateria);
+			cursoSeleccionado.setProfesorTitular(unProfesor);
+			cursoSeleccionado.setSemestre("primero");
 			
-				%>
-					<tr>  
-						  <td><%= unAlumno.getLegajo() %></td>
-						  <td><%= unAlumno.getNombre() %></td>
-						  <td><%= unAlumno.getApellido() %></td>
-						  <td><input type="number"></td>
-						  <td><input type="number"></td>
-						  <td><input type="number"></td>
-						  <td><input type="number"></td>
-						  <td><select>
-						  	<option>Regular</option>
-						  	<option>Libre</option>
-						  </select></td>
-					</tr>
-	
-						  <%	
-				}
-				
-				
-			%>
-			
+			for(Curso unCurso : unCursoNegocio.AlumnosxCurso(cursoSeleccionado)){	%>
+							
+					<tr>
+					<% for(Alumno alumnosxcurso : unCurso.getListadoAlumnos()){
+							
+						%>
+						  <td><%= alumnosxcurso.getLegajo()%></td>
+						  <td><%= alumnosxcurso.getNombre()%></td>
+						  <td><%= alumnosxcurso.getApellido() %></td>
+						
+						<%for(Calificaciones calificacionxalumno : unCurso.getListadoNotas()){
+							
+							if(alumnosxcurso.getLegajo()==calificacionxalumno.getLegajoAlumno()){%>
+        						  <td><input type="number" value="<%calificacionxalumno.getParcialUno(); %>"></td>
+								  <td><input type="number" value="<%calificacionxalumno.getParcialDos(); %>"></td>
+								  <td><input type="number" value="<%calificacionxalumno.getRecuperatorioUno(); %>"></td>
+								  <td><input type="number" value="<%calificacionxalumno.getRecuperatorioDos(); %>"></td>
+								  <td><input type="text" value="vacio"></td>
+							<%}
+						}
+					}%> 
+					</tr> 
+				<%}%>
 			</tbody>
 			</table>
 				<input type="button" id="btnAgregarCalificacion" class="btnFormulario" value="CARGAR CALIFICACIONES">			
@@ -87,81 +105,13 @@
 			</div>
 			
 </section>
-
-
 <script>
-
-	/*const flecha = document.getElementById('btn-flecha').addEventListener('click',mostarDiv);
-	
-	function mostarDiv(){
-	
-	    document.getElementById('form-agregar-usuario').style.display = 'block';
-	
-	}*/
 	
 	$(document).ready( function () {
 	    $('#table_id').DataTable();
 	} );
-	
-	const btnAbrir = document.getElementById('btnAgregarAlumno');
-	var btnEliminar = document.getElementsByClassName('btn-eliminar');
-	var btnModificar = document.getElementsByClassName('btn-modificar');
-	const fondo = document.getElementById('modal-fondo');
-	const ventanaEmergente = document.getElementById('modal-contenido');
-	const ventanaAdvertencia = document.getElementById('modal-advertencia');
-	const fondoAdvertencia = document.getElementById('modal-fondo-advertencia');
-	const btnCerrar = document.getElementById('btnCerrar');
-	const btnCerrarAdvertencia = document.getElementById('btnCancelar');btnCancelar
-	
-	btnAbrir.addEventListener('click', function(){
-		
-		fondo.classList.add('active');
-		document.getElementById('form-datos-alumnos').reset();
-		
-	});
-	
-	for (var i=0; i< btnModificar.length; i++) {
-        
-        btnModificar[i].addEventListener("click",function() {
-        	
-        	fondo.classList.add('active');
-        });
-    }
-	
-	for (var i=0; i< btnEliminar.length; i++) {
-        
-		btnEliminar[i].addEventListener("click",function() {
-        	
-        	fondoAdvertencia.classList.add('active');
-        });
-    }
-	
-	btnCerrar.addEventListener('click', function(){
-		
-		fondo.classList.remove('active');
-	});
-	
-	btnCerrarAdvertencia.addEventListener('click', function(){
-		
-		fondoAdvertencia.classList.remove('active');
-
-	});
-			
-	$("td").click(function(){
-			
-			$('#tboxLegajo').val($(this).parents("tr").find("td").eq(0).text());
-			$('#tboxNombre').val($(this).parents("tr").find("td").eq(1).text());
-			$('#tboxApellido').val($(this).parents("tr").find("td").eq(2).text());
-			$('#tboxFechaNacimiento').val($(this).parents("tr").find("td").eq(3).text());
-			$('#tboxLocalidad').val($(this).parents("tr").find("td").eq(4).text());
-			$('#tboxProvincia').val($(this).parents("tr").find("td").eq(5).text());
-			$('#tboxEmail').val($(this).parents("tr").find("td").eq(6).text());
-			$('#tboxTelefono').val($(this).parents("tr").find("td").eq(7).text());
-			$("#registroEliminar").text($(this).parents("tr").find("td").eq(0).text());
-			
-	});
 
 
-	</script>
+</script>
 </body>
 </html>

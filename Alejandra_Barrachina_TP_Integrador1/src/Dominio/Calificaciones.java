@@ -7,7 +7,14 @@ public class Calificaciones {
 	private int recuperatorioUno;
 	private int recuperatorioDos;
 	private String Estado;
+	private int LegajoAlumno;
 	
+	public int getLegajoAlumno() {
+		return LegajoAlumno;
+	}
+	public void setLegajoAlumno(int legajoAlumno) {
+		LegajoAlumno = legajoAlumno;
+	}
 	public String getEstado() {
 		return Estado;
 	}

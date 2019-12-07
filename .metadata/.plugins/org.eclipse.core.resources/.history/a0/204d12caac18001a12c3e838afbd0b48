@@ -1,0 +1,67 @@
+
+$(document).ready( function () {
+	    $('#table_id').DataTable();
+		
+});
+	
+$( function() {
+	    $( "#datepicker" ).datepicker();
+});
+	
+function accionFormulario(accion) {
+		let tipoFormulario = document.getElementById('tipoFormulario');
+		tipoFormulario.value = accion;
+}
+
+const btnAbrir = document.getElementById('btnAgregarAlumno');
+var btnEliminar = document.getElementsByClassName('btn-eliminar');
+var btnModificar = document.getElementsByClassName('btn-modificar');
+const fondo = document.getElementById('modal-fondo');
+const ventanaEmergente = document.getElementById('modal-contenido');
+const ventanaAdvertencia = document.getElementById('modal-advertencia');
+const fondoAdvertencia = document.getElementById('modal-fondo-advertencia');
+const btnCerrar = document.getElementById('btnCerrar');
+const btnCerrarAdvertencia = document.getElementById('btnCancelar');
+	
+btnAbrir.addEventListener('click', function(){
+		
+	fondo.classList.add('active');
+	document.getElementById('form-datos-alumnos').reset();
+	accionFormulario('agregar');
+	$('#cboxLocalidades option').remove();
+			
+});
+	
+for (var i=0; i< btnModificar.length; i++) {
+        
+	btnModificar[i].addEventListener("click",function() {
+        	
+		fondo.classList.add('active');
+        accionFormulario('modificar');
+        LocalidadProvinciaSeleccionada();
+        	
+    });
+}
+	
+for (var i=0; i< btnEliminar.length; i++) {
+        
+	btnEliminar[i].addEventListener("click",function() {
+        	
+		fondoAdvertencia.classList.add('active');
+			
+    });
+}
+	
+	btnCerrar.addEventListener('click', function(){
+		
+		fondo.classList.remove('active');
+	});
+	
+	btnCerrarAdvertencia.addEventListener('click', function(){
+		
+		fondoAdvertencia.classList.remove('active');
+
+	});
+	
+
+

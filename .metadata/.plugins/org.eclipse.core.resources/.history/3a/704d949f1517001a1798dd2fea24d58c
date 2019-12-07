@@ -1,0 +1,7 @@
+package Negocio;
+import Dominio.Usuario;
+
+public interface INegocioUsuario {
+
+	public Usuario VerificarExistencia(Usuario unUsuario);
+}
