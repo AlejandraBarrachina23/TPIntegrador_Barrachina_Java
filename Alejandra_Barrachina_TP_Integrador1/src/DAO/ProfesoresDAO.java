@@ -5,6 +5,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import com.mysql.cj.jdbc.CallableStatement;
 import Dominio.Profesor;
+import Dominio.Alumno;
 import Dominio.Localidad;
 import Dominio.Provincia;
 
@@ -24,7 +25,6 @@ public class ProfesoresDAO {
 			ResultSet TablaResultados= st.executeQuery("SELECT * FROM Profesores INNER JOIN Localidades ON Profesores.IdLocalidad = Localidades.IdLocalidad INNER JOIN Provincias ON Provincias.IdProvincia = Profesores.IdProvincia");
 			
 			while(TablaResultados.next()) {
-				
 				
 				Profesor unProfesor = new Profesor();
 				Localidad unaLocalidad = new Localidad();
@@ -53,7 +53,9 @@ public class ProfesoresDAO {
 					ListadoProfesores.add(unProfesor);
 					
 				}
-	
+				
+				
+						
 			}
 	
 		}
@@ -65,23 +67,22 @@ public class ProfesoresDAO {
 		return ListadoProfesores;
 	}
 	
-	/*
-	public void AgregarAlumno(Alumno unNuevoAlumno) throws SQLException{
+	public void AgregarProfesor(Profesor unNuevoProfesor) throws SQLException{
 		
 		nuevaConexion = new ConexionDB();
 		
 		try {
 
-			 CallableStatement SP_AgregarAlumno = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL AgregarAlumno(?,?,?,?,?,?,?,?)");
-			 SP_AgregarAlumno.setString(1,unNuevoAlumno.getNombre());
-			 SP_AgregarAlumno.setString(2,unNuevoAlumno.getApellido());
-			 SP_AgregarAlumno.setString(3,unNuevoAlumno.getFechaNacimiento());
-			 SP_AgregarAlumno.setString(4,unNuevoAlumno.getDireccion());
-			 SP_AgregarAlumno.setInt(5,unNuevoAlumno.getProvincia().getIdProvincia());
-			 SP_AgregarAlumno.setInt(6,unNuevoAlumno.getLocalidad().getIdLocalidad());
-			 SP_AgregarAlumno.setString(7,unNuevoAlumno.getEmail());
-			 SP_AgregarAlumno.setString(8,unNuevoAlumno.getTelefono());
-			 SP_AgregarAlumno.execute();
+			 CallableStatement SP_AgregarProfesor = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL AgregarProfesor(?,?,?,?,?,?,?,?)");
+			 SP_AgregarProfesor.setString(1,unNuevoProfesor.getNombre());
+			 SP_AgregarProfesor.setString(2,unNuevoProfesor.getApellido());
+			 SP_AgregarProfesor.setString(3,unNuevoProfesor.getFechaNacimiento());
+			 SP_AgregarProfesor.setString(4,unNuevoProfesor.getDireccion());
+			 SP_AgregarProfesor.setInt(5,unNuevoProfesor.getProvincia().getIdProvincia());
+			 SP_AgregarProfesor.setInt(6,unNuevoProfesor.getLocalidad().getIdLocalidad());
+			 SP_AgregarProfesor.setString(7,unNuevoProfesor.getEmail());
+			 SP_AgregarProfesor.setString(8,unNuevoProfesor.getTelefono());
+			 SP_AgregarProfesor.execute();
 			
 		} 
 		
@@ -91,26 +92,24 @@ public class ProfesoresDAO {
 		}
 	}
 	
-	public void ModificarAlumno(Alumno modificarAlumno) throws SQLException{
+	public void ModificarProfesor(Profesor modificarProfesor) throws SQLException{
 		
 		nuevaConexion = new ConexionDB();
 		
 		try {
+						 
+			 CallableStatement SP_ModificarProfesor = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL ModificarProfesor(?,?,?,?,?,?,?,?,?)");
 			
-			 System.out.println(modificarAlumno.getLegajo());
-			 
-			 CallableStatement SP_ModificarAlumno = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL ModificarAlumno(?,?,?,?,?,?,?,?,?)");
-			
-			 SP_ModificarAlumno.setInt(1,modificarAlumno.getLegajo());
-			 SP_ModificarAlumno.setString(2,modificarAlumno.getNombre());
-			 SP_ModificarAlumno.setString(3,modificarAlumno.getApellido());
-			 SP_ModificarAlumno.setString(4,modificarAlumno.getFechaNacimiento());
-			 SP_ModificarAlumno.setString(5,modificarAlumno.getDireccion());
-			 SP_ModificarAlumno.setInt(6,modificarAlumno.getProvincia().getIdProvincia());
-			 SP_ModificarAlumno.setInt(7,modificarAlumno.getLocalidad().getIdLocalidad());
-			 SP_ModificarAlumno.setString(8,modificarAlumno.getEmail());
-			 SP_ModificarAlumno.setString(9,modificarAlumno.getTelefono());
-			 SP_ModificarAlumno.execute();
+			 SP_ModificarProfesor.setInt(1,modificarProfesor.getLegajo());
+			 SP_ModificarProfesor.setString(2,modificarProfesor.getNombre());
+			 SP_ModificarProfesor.setString(3,modificarProfesor.getApellido());
+			 SP_ModificarProfesor.setString(4,modificarProfesor.getFechaNacimiento());
+			 SP_ModificarProfesor.setString(5,modificarProfesor.getDireccion());
+			 SP_ModificarProfesor.setInt(6,modificarProfesor.getProvincia().getIdProvincia());
+			 SP_ModificarProfesor.setInt(7,modificarProfesor.getLocalidad().getIdLocalidad());
+			 SP_ModificarProfesor.setString(8,modificarProfesor.getEmail());
+			 SP_ModificarProfesor.setString(9,modificarProfesor.getTelefono());
+			 SP_ModificarProfesor.execute();
 	
 		} 
 		
@@ -120,17 +119,15 @@ public class ProfesoresDAO {
 		}
 	}
 	
-	public void EliminarAlumo(int eliminarAlumno) throws SQLException{
+	public void EliminarProfesor(int eliminarProfesor) throws SQLException{
 		
 		nuevaConexion = new ConexionDB();
 		
 		try {
-			
-			 System.out.println(eliminarAlumno);
 			 
-			 CallableStatement SP_EliminarAlumno = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL EliminarAlumno(?)");
-			 SP_EliminarAlumno.setInt(1,eliminarAlumno);
-			 SP_EliminarAlumno.execute();
+			 CallableStatement SP_EliminarProfesor = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL EliminarProfesor(?)");
+			 SP_EliminarProfesor.setInt(1,eliminarProfesor);
+			 SP_EliminarProfesor.execute();
 	
 		} 
 		
@@ -140,5 +137,4 @@ public class ProfesoresDAO {
 		}
 	}
 	
-	*/
 }

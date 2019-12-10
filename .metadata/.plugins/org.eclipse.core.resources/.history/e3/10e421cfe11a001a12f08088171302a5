@@ -1,0 +1,98 @@
+package Negocio;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import DAO.AlumnosDAO;
+import DAO.ProfesoresDAO;
+import Dominio.Alumno;
+import Dominio.Localidad;
+import Dominio.Profesor;
+import Dominio.Provincia;
+
+@WebServlet("/ServeletAlumno")
+public class ServeletProfesor extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    public ServeletProfesor() {
+        super();
+        
+    }
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+			
+		if(request.getParameter("EliminarProfesor")!=null) {	
+			try {
+			int Legajo = Integer.parseInt(request.getParameter("EliminarProfesor"));
+			System.out.print(Legajo);
+			ProfesoresDAO Profesor = new ProfesoresDAO();
+			Profesor.EliminarProfesor(Legajo);
+			
+			} 
+			
+			catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			
+		
+		}
+		
+		RequestDispatcher Request = request.getRequestDispatcher("profesores.jsp");
+		Request.forward(request, response);
+						
+
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String TipoFormulario = request.getParameter("tipoFormulario");
+		
+		try {
+			
+			if(request.getParameter("btnAceptar")!=null) {
+					
+				Profesor unNuevoProfesor = new Profesor();
+				Localidad LocalidadSeleccionada = new Localidad();
+				Provincia ProvinciaSeleccionada = new Provincia();
+				unNuevoProfesor.setNombre(request.getParameter("tboxNombre"));
+				unNuevoProfesor.setApellido(request.getParameter("tboxApellido"));
+				unNuevoProfesor.setFechaNacimiento(request.getParameter("tboxFechaNacimiento"));
+				unNuevoProfesor.setDireccion(request.getParameter("tboxDireccion"));
+				LocalidadSeleccionada.setIdLocalidad(Integer.parseInt(request.getParameter("cboxLocalidades")));
+				ProvinciaSeleccionada.setIdProvincia(Integer.parseInt(request.getParameter("cboxProvincias")));
+				unNuevoProfesor.setEmail(request.getParameter("tboxEmail"));
+				unNuevoProfesor.setTelefono(request.getParameter("tboxTelefono"));
+				unNuevoProfesor.setProvincia(ProvinciaSeleccionada);
+				unNuevoProfesor.setLocalidad(LocalidadSeleccionada);
+				
+				ProfesoresDAO Profesor = new ProfesoresDAO();
+					
+					if(TipoFormulario.equals("agregar")) {Alumno.AgregarAlumno(unNuevoAlumno);}
+					else if(TipoFormulario.equals("modificar")) {
+						unNuevoAlumno.setLegajo(Integer.parseInt(request.getParameter("tboxLegajo")));
+						Alumno.ModificarAlumno(unNuevoAlumno);}							
+			}
+	
+		} 
+		
+		catch (Exception e) {
+			
+			System.out.print("Error al cargar "+ e);
+		}
+		
+		RequestDispatcher Request = request.getRequestDispatcher("alumnos.jsp");
+		Request.forward(request, response);
+	}
+
+}

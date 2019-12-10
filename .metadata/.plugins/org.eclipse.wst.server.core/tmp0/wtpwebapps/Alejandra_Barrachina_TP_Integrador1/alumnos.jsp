@@ -47,7 +47,7 @@
 <section class="section-principal">
 	<div class="encabezados"><h3>LISTADO DE ALUMNOS</h3></div>
 	<div id="form-listado-alumnos">
-			<input type="button" id="btnAgregarAlumno" class="btnFormulario" value="AGREGAR ALUMNO">		
+			<input type="button" id="btnAgregar" class="btnFormulario" value="AGREGAR ALUMNO">		
 			<!---------------------------------------------------------------------------------------------------------------
 					TABLA - LISTADO ALUMNOS
 			<!-------------------------------------------------------------------------------------------------------------->	
@@ -97,7 +97,7 @@
 			<div class="modal-fondo" id="modal-fondo">
 				<div class="modal-contenido" id="modal-contenido">
 					<h3>DATOS ALUMNO</h3><br>
-					<form method="post" action="ServeletAlumno" id="form-datos-alumnos">
+					<form method="post" action="ServeletAlumno" id="form-datos">
 						<input type="hidden" id="tipoFormulario" name="tipoFormulario" value="">
 						<label>Legajo<br><input type="text" id="tboxLegajo" name="tboxLegajo" readonly="true" required></label><br>
 						<label>Nombre<br><input type="text" id="tboxNombre" name="tboxNombre" required  ></label><br>
@@ -111,9 +111,9 @@
 							ProvinciasDAO Provincias = new ProvinciasDAO();
 							for(Provincia unaProvincia : Provincias.ListadoProvincias()){%>
 							<option class="opciones" value="<%=unaProvincia.getIdProvincia()%>"><%= unaProvincia.getNombre()%></option><%}%>
-						</select><input type="text" id="provincia" name="" value=""><br>											
+						</select><br>
 						<label>Localidades</label><br>
-						<select name="cboxLocalidades" id="cboxLocalidades" required></select><input type="text" id="localidad" name="" value="">
+						<select name="cboxLocalidades" id="cboxLocalidades" required></select>
 						<br>
 						<label>E-mail<br><input type="email" id="tboxEmail" name="tboxEmail" required></label><br>
 						<label>Teléfono<br><input type="number" id="tboxTelefono" name="tboxTelefono" required></label><br>
@@ -141,8 +141,6 @@
 <script src="funciones.js"></script>
 <script>
 
-
-	
 	$("td").click(function(){
 			
 			$('#tboxLegajo').val($(this).parents("tr").find("td").eq(0).text());
@@ -156,6 +154,7 @@
 			var link = "ServeletAlumno?EliminarAlumno="+registroEliminar;
 			$("#registroEliminar").text(registroEliminar);
 			$("#eliminar-alumno").attr("href", link);
+			
 
 			if(document.getElementById("tipoFormulario").value === 'modificar'){
 				

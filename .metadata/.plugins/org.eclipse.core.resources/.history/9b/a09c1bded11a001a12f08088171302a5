@@ -1,0 +1,21 @@
+package Negoci;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import DAO.MateriaDAO;
+import Dominio.Localidad;
+
+public class LocalidadesNegocio implements ILocalidades {
+	
+	private LocalidadesDAO unaLocalidad = new LocalidadDAO();
+	
+	public ArrayList<Localidad> ListadoLocalidadesSegunProvincia(int CodigoProvincia) throws SQLException {
+		return 
+	}
+
+	public ArrayList<Localidad> ListadoLocalidades() throws SQLException {
+		
+	}
+
+}

@@ -2,6 +2,11 @@
     pageEncoding="ISO-8859-1"%>
     <%@page import="Dominio.Profesor"%>
      <%@page import="Dominio.Usuario"%>
+     <%@page import="Negocio.ProfesorNegocio"%>
+     <%@page import="Negocio.ProvinciasNegocio"%>
+     <%@page import="Negocio.LocalidadesNegocio"%>
+     <%@page import="Dominio.Localidad"%>
+     <%@page import="Dominio.Provincia"%>
     <%@page import="java.util.ArrayList"%>    
 <!DOCTYPE html>
 <html>
@@ -15,26 +20,41 @@
 <link href="https://fonts.googleapis.com/css?family=Francois+One&display=swap" rel="stylesheet">
 <link href="jquery.dataTables.min.css" type="text/css" rel=sytlesheet>
 <script src="jquery-3.4.1.min.js"></script>
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="jquery.dataTables.min.js"></script>
-
 </head>
 <body>
 
-<% 
+<%/*
 	if((Usuario) request.getSession(true).getAttribute("usuario")!=null){
+		
 		Usuario unUsuario = new Usuario();
 		unUsuario = (Usuario) request.getSession(true).getAttribute("usuario");
 		if(!unUsuario.getTipoUsuario().equals("administrador")){response.sendRedirect("error404.jsp");}
-		}
-%>
+	
+	}
 
+	else {
+		response.sendRedirect("error404.jsp");
+	}*/%>
+	
+
+<nav>
+<div id="user">
+		<a href="index.jsp"><img id="icon-usuario" src="iconos/usuario-admin.svg" alt="imagen-usuario"></a>
+		<h2>¡Bienvenido!</h2>
+		<p>${usuario.usuario}</p>
+		<a href="serveletUsuario">LogOut</a>
+	</div>
 <jsp:include page="menu-administrador.html"></jsp:include>
+</nav>
 
 <section class="section-principal">
 	<div class="encabezados"><h3>LISTADO DE PROFESORES</h3></div>
 	
-	<div id="form-listado-alumnos">
-			<input type="button" id="btnAgregarAlumno" class="btnFormulario" value="AGREGAR PROFESOR">		
+	<div id="form-listado-profesores">
+			<input type="button" id="btnAgregar" class="btnFormulario" value="AGREGAR PROFESOR">		
 			<table id="table_id" class="content-table">
 				<thead>
 					<tr>
@@ -51,10 +71,8 @@
 					</tr>
 				</thead>
 				<tbody>
-			<% 
-		
-				
-			for(Profesor unProfesor : Profesor.CargarProfesor()){ 
+			<% ProfesorNegocio unProfesorNegocio = new ProfesorNegocio();
+			for(Profesor unProfesor : unProfesorNegocio.ListadoProfesores()){ 
 			
 				%>
 					<tr>  
@@ -64,7 +82,7 @@
 						  <td><%= unProfesor.getFechaNacimiento() %></td>
 						  <td><%= unProfesor.getDireccion() %></td>
 						  <td><%= unProfesor.getLocalidad() %></td>
-						  <td><%= unProfesor.getProvincia() %></td>
+						  <td><%= unProfesor.getLocalidad().getProvincia() %></td>
 						  <td><%= unProfesor.getEmail() %></td>
 						  <td><%= unProfesor.getTelefono() %></td>
 						  <td>
@@ -72,31 +90,35 @@
 						  	  <input type="button" class="btn-eliminar" value="">
 						  </td>
 					</tr>
-	
-						  <%	
-				}
-				
-				
-			%>
-			
-			</tbody>
-			</table>
-					
+			<%}%>
+				</tbody>
+			</table>	
 			</div>
 			<div class="modal-fondo" id="modal-fondo">
 				<div class="modal-contenido" id="modal-contenido">
 					<h3>DATOS PROFESOR</h3><br>
-					<form method="post" action="" id="form-datos-alumnos">
-						<label>Legajo<br><input type="text" id="tboxLegajo" name="Legajo"></label><br>
-						<label>Nombre<br><input type="text" id="tboxNombre" ></label><br>
-						<label>Apellido<br><input type="text" id="tboxApellido" ></label><br>
-						<label>Fecha de Nacimiento<br><input type="text" id="tboxFechaNacimiento" ></label><br>
-						<label>Localidad<br><input type="text" id="tboxLocalidad"></label><br>
-						<label>Provincia<br><input type="text" id="tboxProvincia"></label><br>
-						<label>E-mail<br><input type="text" id="tboxEmail"></label><br>
-						<label>Teléfono<br><input type="text" id="tboxTelefono" ></label><br>
-						<input type="button" class="btn-modal" id="btnAceptar" value="Aceptar">
-						<input type="button" class="btn-modal" id="btnCerrar" value="Cancelar">		
+					<form method="post" action="ServeletProfesor" id="form-datos">
+					<input type="hidden" id="tipoFormulario" name="tipoFormulario" value="">
+						<label>Legajo<br><input type="text" id="tboxLegajo" name="tboxLegajo" readonly="true" required></label><br>
+						<label>Nombre<br><input type="text" id="tboxNombre" name="tboxNombre" required  ></label><br>
+						<label>Apellido<br><input type="text" id="tboxApellido" name="tboxApellido" required></label><br>
+						<label>Fecha de Nacimiento</label><br><input type="date" id="tboxFechaNacimiento" name="tboxFechaNacimiento" required><br>
+						<label>Direccion<br><input type="text" id="tboxDireccion" name="tboxDireccion" required></label><br>
+						<label>Provincias</label><br>
+						<select name="cboxProvincias" id="cboxProvincias" required>
+							<option disabled selected>Seleccione una provincia</option>
+							<%
+							ProvinciasNegocio Provincias = new ProvinciasNegocio();
+							for(Provincia unaProvincia : Provincias.ListadoProvincias()){%>
+							<option class="opciones" value="<%=unaProvincia.getIdProvincia()%>"><%= unaProvincia.getNombre()%></option><%}%>
+						</select><br>
+						<label>Localidades</label><br>
+						<select name="cboxLocalidades" id="cboxLocalidades" required></select>
+						<br>
+						<label>E-mail<br><input type="email" id="tboxEmail" name="tboxEmail" required></label><br>
+						<label>Teléfono<br><input type="number" id="tboxTelefono" name="tboxTelefono" required></label><br>
+						<input type="submit" class="btn-modal" id="btnAceptar" name="btnAceptar" value="Aceptar">
+						<input type="button" class="btn-modal" id="btnCerrar" value="Cancelar">			
 					</form>			
 				</div>
 			</div>
@@ -105,81 +127,93 @@
 			
 				<div class="modal-contenido" id="modal-advertencia">
 					<h3>ELIMINAR REGISTRO</h3><br>
+					 
 					 <p>¿Está seguro que desea eliminar el legajo<label id="registroEliminar"></label>?</p>
-					 <input type="button" class="btn-modal" id="btnBorrar" value="Borrar">
+					 <a href="#" id="eliminar-alumno">Borrar</a>
 					 <input type="button" class="btn-modal" id="btnCancelar" value="Cancelar">					
 				</div>
-			</div>
-			
+			</div>	
 </section>
-
-
+<script src="funciones.js"></script>
 <script>
 
-	
-	$(document).ready( function () {
-	    $('#table_id').DataTable();
-	} );
-	
-	const btnAbrir = document.getElementById('btnAgregarAlumno');
-	var btnEliminar = document.getElementsByClassName('btn-eliminar');
-	var btnModificar = document.getElementsByClassName('btn-modificar');
-	const fondo = document.getElementById('modal-fondo');
-	const ventanaEmergente = document.getElementById('modal-contenido');
-	const ventanaAdvertencia = document.getElementById('modal-advertencia');
-	const fondoAdvertencia = document.getElementById('modal-fondo-advertencia');
-	const btnCerrar = document.getElementById('btnCerrar');
-	const btnCerrarAdvertencia = document.getElementById('btnCancelar');btnCancelar
-	
-	btnAbrir.addEventListener('click', function(){
-		
-		fondo.classList.add('active');
-		document.getElementById('form-datos-alumnos').reset();
-		
-	});
-	
-	for (var i=0; i< btnModificar.length; i++) {
-        
-        btnModificar[i].addEventListener("click",function() {
-        	
-        	fondo.classList.add('active');
-        });
-    }
-	
-	for (var i=0; i< btnEliminar.length; i++) {
-        
-		btnEliminar[i].addEventListener("click",function() {
-        	
-        	fondoAdvertencia.classList.add('active');
-        });
-    }
-	
-	btnCerrar.addEventListener('click', function(){
-		
-		fondo.classList.remove('active');
-	});
-	
-	btnCerrarAdvertencia.addEventListener('click', function(){
-		
-		fondoAdvertencia.classList.remove('active');
-
-	});
-			
-	$("td").click(function(){
+$("td").click(function(){
 			
 			$('#tboxLegajo').val($(this).parents("tr").find("td").eq(0).text());
 			$('#tboxNombre').val($(this).parents("tr").find("td").eq(1).text());
-			$('#tboxApellido').val($(this).parents("tr").find("td").eq(2).text());
+			$('#tboxApellido').val($(this).parents("tr").find("td").eq(2).text());			
 			$('#tboxFechaNacimiento').val($(this).parents("tr").find("td").eq(3).text());
-			$('#tboxLocalidad').val($(this).parents("tr").find("td").eq(4).text());
-			$('#tboxProvincia').val($(this).parents("tr").find("td").eq(5).text());
-			$('#tboxEmail').val($(this).parents("tr").find("td").eq(6).text());
-			$('#tboxTelefono').val($(this).parents("tr").find("td").eq(7).text());
-			$("#registroEliminar").text($(this).parents("tr").find("td").eq(0).text());
+			$('#tboxDireccion').val($(this).parents("tr").find("td").eq(4).text());
+			$('#tboxEmail').val($(this).parents("tr").find("td").eq(7).text());
+			$('#tboxTelefono').val($(this).parents("tr").find("td").eq(8).text());
+			var registroEliminar =$(this).parents("tr").find("td").eq(0).text();
+			var link = "ServeletProfesor?EliminarProfesor="+registroEliminar;
+			$("#registroEliminar").text(registroEliminar);
+			$("#eliminar-alumno").attr("href", link);
 			
+
+			if(document.getElementById("tipoFormulario").value === 'modificar'){
+				
+				const provinciaSeleccionada = $(this).parents("tr").find("td").eq(6).text();
+				const localidadSeleccionada = $(this).parents("tr").find("td").eq(5).text();
+				const indexProvinciaSeleccionada = document.getElementById("cboxProvincias").value;
+				const desplegableLocalidad = document.getElementById("cboxLocalidades");
+				const desplegableProvincias = document.getElementById("cboxProvincias");
+				
+				for(var i=1;i<desplegableProvincias.length;i++)
+				{
+					if(desplegableProvincias.options[i].text==provinciaSeleccionada) desplegableProvincias.selectedIndex=i;
+				}
+				 $('#cboxLocalidades option').remove();			
+				 <%
+				
+				 LocalidadesNegocio unaLocalidadNegocio = new LocalidadesNegocio();
+							 
+				 for(Localidad unaLocalidad : unaLocalidadNegocio.ListadoLocalidades()){%>
+				 
+				 	if(desplegableProvincias.selectedIndex===<%=unaLocalidad.getProvincia().getIdProvincia()%>){
+						
+						var item = document.createElement('option');
+						item.value = '<%=unaLocalidad.getIdLocalidad()%>';
+						item.innerHTML = '<%=unaLocalidad.getNombre()%>';
+						desplegableLocalidad.appendChild(item);
+					 }		
+				<%}%>
+				
+				for(var i=1;i<desplegableLocalidad.length;i++)
+				{
+					if(desplegableLocalidad.options[i].text==localidadSeleccionada) desplegableLocalidad.selectedIndex=i;
+				}
+			}				
 	});
+	
+$('#cboxProvincias').change(function(){
+	
+	$('#cboxLocalidades option').remove();
+	LocalidadSeleccionada(this,'cboxLocalidades');
+
+});
+
+function LocalidadSeleccionada(cboxProvincias, cboxLocalidades){
+		
+		const provinciaSeleccionada = document.getElementById("cboxProvincias").value;
+		const desplegableLocalidad = document.getElementById("cboxLocalidades");
+	        		
+		 <%
+		 for(Localidad unaLocalidad : unaLocalidadNegocio.ListadoLocalidades()){%>	
+			
+			 if(provinciaSeleccionada==<%=unaLocalidad.getProvincia().getIdProvincia()%>){
+			 	
+				var item = document.createElement('option');
+				item.value = '<%=unaLocalidad.getIdLocalidad()%>';
+				item.innerHTML = '<%=unaLocalidad.getNombre()%>';
+				desplegableLocalidad.appendChild(item);
+			 }		
+		<%}%>
+	
+}
 
 
-	</script>
+</script>
 </body>
 </html>

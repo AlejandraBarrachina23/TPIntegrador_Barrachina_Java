@@ -1,0 +1,13 @@
+package Negocio;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import DAO.MateriaDAO;
+import Dominio.Materia;
+
+public class ProvinciasNegocio implements INegocioProfesores {
+
+	private ProvinciaDAO unaProvinciaDAO = new ProvinciaDAO();
+	
+
+	
+}

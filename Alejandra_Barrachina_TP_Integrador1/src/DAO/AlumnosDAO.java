@@ -100,8 +100,10 @@ public class AlumnosDAO {
 		
 		try {
 			
-			 System.out.println(modificarAlumno.getLegajo());
-			 
+			System.out.println("PROVINCIA " + modificarAlumno.getProvincia().getIdProvincia());
+			System.out.println("LOCALIDAD " + modificarAlumno.getLocalidad().getIdLocalidad());
+			System.out.println("LEGAJO " + modificarAlumno.getLegajo());
+						 
 			 CallableStatement SP_ModificarAlumno = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL ModificarAlumno(?,?,?,?,?,?,?,?,?)");
 			
 			 SP_ModificarAlumno.setInt(1,modificarAlumno.getLegajo());
@@ -128,8 +130,6 @@ public class AlumnosDAO {
 		nuevaConexion = new ConexionDB();
 		
 		try {
-			
-			 System.out.println(eliminarAlumno);
 			 
 			 CallableStatement SP_EliminarAlumno = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL EliminarAlumno(?)");
 			 SP_EliminarAlumno.setInt(1,eliminarAlumno);
