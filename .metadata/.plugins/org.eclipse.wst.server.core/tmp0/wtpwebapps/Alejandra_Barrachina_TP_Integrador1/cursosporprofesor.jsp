@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="Dominio.Alumno"%>
+    <%@page import="Dominio.Usuario"%>
     <%@page import="Negocio.CursoNegocio"%>
     <%@page import="java.util.ArrayList"%>    
 <!DOCTYPE html>
@@ -19,7 +20,15 @@
 <script src="jquery.dataTables.min.js"></script>
 </head>
 <body>
+<nav>
+<div id="user">
+		<a href="index.jsp"><img id="icon-usuario" src="iconos/usuario-admin.svg" alt="imagen-usuario"></a>
+		<h2>¡Bienvenido!</h2>
+		<p>${usuario.usuario}</p>
+		<a href="serveletUsuario">LogOut</a>
+	</div>
 <jsp:include page="menu-profesores.html"></jsp:include>
+</nav>
 <section class="section-principal">
 	<div class="encabezados"><h3>CURSOS ASOCIADOS</h3></div>	
 	<div id="form-listado-calificaciones">
@@ -34,15 +43,19 @@
 					</tr>
 				</thead>
 				<tbody>
+				
 					<%CursoNegocio unCursoNegocio = new CursoNegocio();
-					for(Curso unCurso : unCursoNegocio.CursosxProfesor(5)){	%>
+					HttpSession sesion = request.getSession();
+					Usuario usuarioLogeado = (Usuario)sesion.getAttribute("usuario");
+					
+					for(Curso unCurso : unCursoNegocio.CursosxProfesor(usuarioLogeado.getUnProfesor().getLegajo())){	%>
 				<tr>  
-					<td><%= unCurso.getMateria().getNombre() %></td>
+					<td><%= unCurso.getMateria().getIdMateria() +"-" + unCurso.getMateria().getNombre() %></td>
 					<td><%= unCurso.getSemestre() %></td>
 					<td><%= unCurso.getAnio() %></td>
 				    <td>
-				    	<a href="calificaciones.jsp"><input type="button" class="btn-mostrar" value=""></a>
-				        <a href="calificaciones.jsp"><input type="button" class="btn-calificaciones" value=""></a>
+				    	<a href="#" ><input type="button" class="btn-mostrar" value=""></a>
+				        <a href="" class ="codigo-curso"><input type="button" class="btn-calificaciones" value=""></a>
 				    </td>
 				</tr><%}%>
 			</tbody>
@@ -56,6 +69,20 @@
 	    $('#table_id').DataTable();
 	} );
 	
-	</script>
+	$("td").click(function(){
+		
+		let Materia = ($(this).parents("tr").find("td").eq(0).text()).split("-");
+		let Semestre = $(this).parents("tr").find("td").eq(1).text();
+		let anio = $(this).parents("tr").find("td").eq(2).text();			
+		var link = "ServeletCurso?Materia="+Materia[0]+"&NombreMateria="+Materia[1]+"&Semestre="+Semestre+"&anio="+anio;
+
+		$('.codigo-curso').each(function(){
+		    $(this).attr("href", link);
+		 });
+		
+	});
+	
+	
+</script>
 </body>
 </html>

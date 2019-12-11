@@ -214,8 +214,7 @@
 						item.innerHTML = '<%=unaLocalidad.getNombre()%>';
 						desplegableLocalidad.appendChild(item);
 					 }		
-				<%}%>
-			
+				<%}%>	
 	}
 
 	

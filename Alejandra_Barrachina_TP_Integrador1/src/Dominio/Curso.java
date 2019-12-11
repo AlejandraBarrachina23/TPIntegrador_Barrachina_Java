@@ -49,27 +49,5 @@ public class Curso {
 		ListadoNotas = listadoNotas;
 	}
 	
-	public static ArrayList <Curso> CargarCurso() {
-		
-		 ArrayList<Curso>ListadoCursos = new ArrayList<Curso>();
-		
-		 for (int i = 0; i<10; i++) {	 
-			
-			 Curso curso = new Curso();
-					
-				
-			 	curso.Materia = new Materia();
-			 	curso.ProfesorTitular = new Profesor();
-			 	curso.Materia.setIdMateria(i+20);
-			 	curso.Materia.setNombre("Programacion"+i);
-			 	curso.ProfesorTitular.setNombre("NombreProfesor");
-				curso.setSemestre("Segundo");
-				curso.setAnio(2019);
-				ListadoCursos.add(curso);
-		}	
-		
-		 return ListadoCursos;	 
-		
-	}
-	
+
 }

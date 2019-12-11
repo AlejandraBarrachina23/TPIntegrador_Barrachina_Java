@@ -7,8 +7,8 @@ public class Usuario {
 	private String TipoUsuario;
 	private boolean Estado;
 	private int IntentosIncio;
+	private Profesor unProfesor;
 	
-
 	public String getUsuario() {
 		return Usuario;
 	}
@@ -79,5 +79,12 @@ public class Usuario {
 	}
 	public void setIntentosIncio(int intentosIncio) {
 		IntentosIncio = intentosIncio;
+	}
+	
+	public Profesor getUnProfesor() {
+		return unProfesor;
+	}
+	public void setUnProfesor(Profesor unProfesor) {
+		this.unProfesor = unProfesor;
 	}
 }

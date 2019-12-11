@@ -48,13 +48,14 @@ public class CursoDAO {
 		try {  
 			
 			Statement st= (Statement) nuevaConexion.EstablecerConexion().createStatement();
-			ResultSet TablaResultados= st.executeQuery("SELECT DISTINCT materia.nombre, alumnosxcurso.semestre, alumnosxcurso.anio FROM alumnosxcurso INNER JOIN materia ON alumnosxcurso.idMateria = materia.idMateria\r\n" + 
+			ResultSet TablaResultados= st.executeQuery("SELECT DISTINCT materia.IdMateria,materia.nombre, alumnosxcurso.semestre, alumnosxcurso.anio FROM alumnosxcurso INNER JOIN materia ON alumnosxcurso.idMateria = materia.idMateria\r\n" + 
 					"WHERE IdProfesor = " + IdProfesor);
 			
 			while(TablaResultados.next()) {
 				
 				Curso unCurso = new Curso();
 				Materia unaMateria = new Materia();
+				unaMateria.setIdMateria(TablaResultados.getInt("IdMateria"));
 				unaMateria.setNombre(TablaResultados.getString("nombre"));
 				unCurso.setAnio(TablaResultados.getInt("anio"));
 				unCurso.setSemestre(TablaResultados.getString("semestre"));
@@ -85,10 +86,10 @@ public ArrayList<Curso> AlumnosxCurso(Curso CursoSeleccionado) {
 			ResultSet TablaResultados= st.executeQuery("SELECT Alumnos.Legajo,Alumnos.Nombre, Alumnos.Apellido,NotaUno,NotaDos,RecuperatorioUno,RecuperatorioDos,alumnosxcurso.Estado FROM alumnosxcurso INNER JOIN "
 					+ "Alumnos ON Alumnos.Legajo = alumnosxcurso.legajo WHERE idMateria="+ CursoSeleccionado.getMateria().getIdMateria() + " AND Semestre= '"+ CursoSeleccionado.getSemestre()
 					+ "' AND Anio = " + CursoSeleccionado.getAnio() + " AND Idprofesor =" + CursoSeleccionado.getProfesorTitular().getLegajo());
-			
+		
 			while(TablaResultados.next()) {
 				
-				
+
 				Alumno unAlumno = new Alumno();
 				Calificaciones notas = new Calificaciones();
 				
@@ -101,10 +102,9 @@ public ArrayList<Curso> AlumnosxCurso(Curso CursoSeleccionado) {
 				notas.setRecuperatorioDos(TablaResultados.getInt("RecuperatorioDos"));				
 				notas.setEstado(TablaResultados.getString("alumnosxcurso.Estado"));
 				notas.setLegajoAlumno(TablaResultados.getInt("alumnos.legajo"));
-				
 				ListadoAlumnos.add(unAlumno);
 				ListadoNotas.add(notas);
-
+				
 			}
 			
 			Curso unCurso = new Curso();
@@ -120,7 +120,6 @@ public ArrayList<Curso> AlumnosxCurso(Curso CursoSeleccionado) {
 		
 		return ListadoAlumnosxCurso;
 	}
-	
 	
 	
 	

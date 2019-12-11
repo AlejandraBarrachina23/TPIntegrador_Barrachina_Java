@@ -45,7 +45,6 @@ let Aviso = document.getElementById("login-avisos");
 	if (EstadoUsuario === 'No existe') Aviso.textContent= "EL USUARIO INGRESADO ES INCORRECTO";	
 	else if(EstadoUsuario ==="Contrasenia Incorrecta")Aviso.textContent= "LA CONTRASEÑA INGRESADA ES INCORRECTA";
 
-
 </script>
 </body>
 </html>

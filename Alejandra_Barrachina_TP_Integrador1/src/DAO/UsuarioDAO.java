@@ -5,6 +5,7 @@ import java.sql.Statement;
 
 import com.mysql.cj.jdbc.CallableStatement;
 
+import Dominio.Profesor;
 import Dominio.Usuario;
 
 public class UsuarioDAO {
@@ -23,10 +24,13 @@ public class UsuarioDAO {
 				
 			while(TablaResultados.next()) {
 				
+				Profesor unProfesor = new Profesor();
 				usuarioDB.setUsuario(TablaResultados.getString("Usuario"));
 				usuarioDB.setContrasenia(TablaResultados.getString("Contrasenia"));
 				usuarioDB.setTipoUsuario(TablaResultados.getString("TipoUsuario"));
 				usuarioDB.setEstado(TablaResultados.getBoolean("Estado"));
+				unProfesor.setLegajo(TablaResultados.getInt("IdProfesor"));
+				usuarioDB.setUnProfesor(unProfesor);
 				return usuarioDB;
 			}
 		}
