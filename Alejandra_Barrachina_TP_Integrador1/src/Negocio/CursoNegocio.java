@@ -18,4 +18,11 @@ private CursoDAO unCursoDAO = new CursoDAO();
 		return unCursoDAO.AlumnosxCurso(CursoSeleccionado);
 	}
 
+	public void CargarNotas(Curso cursoModificar, int notaUno, int notaDos, int notaTres, int notaCuatro, int Legajo,
+			String Estado) {
+		
+		unCursoDAO.CargarNotas(cursoModificar, notaUno, notaDos, notaTres, notaCuatro, Legajo, Estado);
+
+	}
+
 }

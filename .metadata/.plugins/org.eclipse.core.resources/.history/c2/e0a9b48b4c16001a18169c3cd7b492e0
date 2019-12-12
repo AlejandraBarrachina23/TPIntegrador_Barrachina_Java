@@ -1,9 +1,0 @@
-package Dominio;
-
-public class Usuario {
-	
-	private String Usuario;
-	private String Contrasenia;
-	private String TipoUsuario;
-	private boolean Estado;
-}

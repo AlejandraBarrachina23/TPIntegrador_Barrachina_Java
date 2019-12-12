@@ -121,6 +121,31 @@ public ArrayList<Curso> AlumnosxCurso(Curso CursoSeleccionado) {
 		return ListadoAlumnosxCurso;
 	}
 	
-	
+	public void CargarNotas(Curso cursoModificar, int notaUno, int notaDos, int notaTres, int notaCuatro, int Legajo, String Estado) {
+		
+		nuevaConexion = new ConexionDB();
+		
+		try {
+
+			 CallableStatement SP_ModificarNotas = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL ModificarNotas(?,?,?,?,?,?,?,?,?,?)");
+			 SP_ModificarNotas.setInt(1,cursoModificar.getMateria().getIdMateria());
+			 SP_ModificarNotas.setString(2,cursoModificar.getSemestre());
+			 SP_ModificarNotas.setInt(3,cursoModificar.getAnio());
+			 SP_ModificarNotas.setInt(4,cursoModificar.getProfesorTitular().getLegajo());
+			 SP_ModificarNotas.setInt(5,Legajo);
+			 SP_ModificarNotas.setInt(6,notaUno);
+			 SP_ModificarNotas.setInt(7,notaDos);
+			 SP_ModificarNotas.setInt(8,notaTres);
+			 SP_ModificarNotas.setInt(9,notaCuatro);
+			 SP_ModificarNotas.setString(10,Estado);
+			 SP_ModificarNotas.execute(); 
+		} 
+		
+		catch (Exception e) {
+			
+			System.out.print("Error al modificar "+ e);
+		}
+		
+	}
 	
 }

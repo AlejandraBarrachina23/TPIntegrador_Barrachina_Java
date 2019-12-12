@@ -87,16 +87,17 @@
 						<%for(Calificaciones calificacionxalumno : unCurso.getListadoNotas()){
 							
 							if(alumnosxcurso.getLegajo()==calificacionxalumno.getLegajoAlumno()){							
-									%>
+							
+							%>
         						  <td><input type="number" name="notas" value="<%=calificacionxalumno.getParcialUno() %>" max="10" min="0"></td>
 								  <td><input type="number" name="notas" value="<%=calificacionxalumno.getParcialDos() %>" max="10" min="0"></td>
 								  <td><input type="number" name="notas" value="<%=calificacionxalumno.getRecuperatorioUno() %>" max="10" min="0"></td>
-								  <td><input type="number" name="notas" value="<%=calificacionxalumno.getRecuperatorioDos() %>" max="10" min="0"></td>
+								  <td><input type="number" name="notas" value="<%=calificacionxalumno.getRecuperatorioDos() %>" max="10" min="0"><input type="hidden" class="Estado-oculto" value="<%= calificacionxalumno.getEstado() %>"></td>
 								  <td>
-								  	<select>
-								  		<option>Libre</option>
-								  		<option>Regular</option>
-								  	</select>
+								  <select class="cboxEstado" name="cboxEstado">
+									  <option value="Libre">Libre</option>
+									  <option value="Regular">Regular</option>
+								  </select>
 								  </td>
 							<%}
 						}%> 
@@ -105,7 +106,7 @@
 				}%>
 			</tbody>
 			</table>
-				<input type="hidden" value="" name="listado-legajos">
+				<input type="text" id="listado-legajos" value="" name="listado-legajos">
 				<input type="submit" id="btnAgregarCalificacion" name="btnAgregarCalificacion" class="btnFormulario" value="CARGAR CALIFICACIONES">			
 			</div>
 			</form>		
@@ -114,8 +115,48 @@
 	
 	$(document).ready( function () {
 	    $('#table_id').DataTable();
-	} );
+	    
+		let estadosAlumnos = document.getElementsByClassName('Estado-oculto');
+		let selectEstado = document.getElementsByClassName('cboxEstado');
+		
+		for(let i=0; i<estadosAlumnos.length;i++){
 
+			for(let j=0; j<selectEstado.length;j++){
+				
+				if(i===j){
+
+					selectEstado[i].value = estadosAlumnos[j].value;
+				}
+			}
+			
+
+			
+		}
+		
+		
+	   
+	} );
+	
+	const AgregarCalificacion = document.getElementById('btnAgregarCalificacion');
+	
+	AgregarCalificacion.addEventListener('click', function(){
+		
+		ListadoLegajos();
+		
+	});
+		
+	function ListadoLegajos(){
+		$('#table_id tr').each(function () {
+	
+			var legajo = $(this).find("td").eq(0).html();
+			if(typeof(legajo)!=='undefined') {
+				document.getElementById("listado-legajos").value += legajo+"-";
+			}
+		});
+	}
+	
+	
+	
 </script>
 </body>
 </html>

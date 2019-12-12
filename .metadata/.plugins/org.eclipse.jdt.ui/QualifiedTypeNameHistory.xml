@@ -16,11 +16,9 @@
 <fullyQualifiedTypeName name="DAO.AlumnosDAO"/>
 <fullyQualifiedTypeName name="Negocio.INegocioMateria"/>
 <fullyQualifiedTypeName name="DAO.MateriaDAO"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="Dominio.Materia"/>
 <fullyQualifiedTypeName name="Dominio.Curso"/>
 <fullyQualifiedTypeName name="Dominio.Alumno"/>
-<fullyQualifiedTypeName name="Dominio.Calificaciones"/>
 <fullyQualifiedTypeName name="DAO.CursoDAO"/>
 <fullyQualifiedTypeName name="com.mysql.cj.Session"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
@@ -29,9 +27,11 @@
 <fullyQualifiedTypeName name="Negocio.UsuarioNegocio"/>
 <fullyQualifiedTypeName name="Negocio.INegocioProfesores"/>
 <fullyQualifiedTypeName name="Negocio.IProvinciasNegocio"/>
-<fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="DAO.LocalidadesDAO"/>
 <fullyQualifiedTypeName name="DAO.ProfesoresDAO"/>
-<fullyQualifiedTypeName name="Dominio.Profesor"/>
 <fullyQualifiedTypeName name="Dominio.Localidad"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="Dominio.Calificaciones"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="Dominio.Profesor"/>
 </qualifiedTypeNameHistroy>
