@@ -1,0 +1,15 @@
+package Negocio;
+
+import java.sql.SQLException;
+
+public class ReportesNegocio implements IReportes{
+
+	ReportesDAO unReporteDAO = new ReportesDAO();
+	
+	public int CantidadAlumnosAnio() throws SQLException {
+		return 
+	}
+	
+	
+
+}

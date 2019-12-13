@@ -1,6 +1,10 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="Dominio.Alumno"%>
+    <%@page import="Negocio.ReportesNegocio"%>
+    <%@page import="Dominio.Curso"%>
+    <%@page import="Dominio.Reporte"%>
     <%@page import="java.util.ArrayList"%>    
 <!DOCTYPE html>
 <html>
@@ -20,7 +24,15 @@
 </head>
 <body>
 
+<nav>
+<div id="user">
+		<a href="index.jsp"><img id="icon-usuario" src="iconos/usuario-admin.svg" alt="imagen-usuario"></a>
+		<h2>¡Bienvenido!</h2>
+		<p>${usuario.usuario}</p>
+		<a href="serveletUsuario">LogOut</a>
+	</div>
 <jsp:include page="menu-administrador.html"></jsp:include>
+</nav>
 
 <section class="section-principal">
 	<div class="encabezados"><h3>REPORTES GENERALES</h3></div>
@@ -31,16 +43,17 @@
 			<div id="form-reportes-fila-uno">
 				<div class="fila-uno-items">
 					<h2>TOTAL ALUMNOS</h2>
-					<p>500</p>
+					<p><% ReportesNegocio reporte = new ReportesNegocio();%>
+					<%=reporte.CantidadAlumnosAnio() %></p>
 					<img alt="total-alumnos" src="img/total.svg">					
 					<div class="fila-uno-items-pie">
 						<img src="iconos/baja.svg" alt="subida">
-						<p>2.5%</p>
+						<p></p>
 					</div>
 				</div>
 				<div class="fila-uno-items">
 					<h2>ALUMNOS REGULARES</h2>					
-					<p>250</p>
+					<p><%=reporte.CantidadAlumnosRegulares() %></p>
 					<img alt="alumno-regular" src="img/regular.svg">
 					<div class="fila-uno-items-pie">
 						<img src="iconos/alta.svg" alt="subida">
@@ -49,7 +62,7 @@
 				</div>
 				<div class="fila-uno-items">
 					<h2>ALUMNOS LIBRES</h2>
-					<p>250</p>
+					<p><%= reporte.CantidadAlumnosLibres() %></p>
 					<img alt="alumno-libre" src="img/libre.svg">
 					<div class="fila-uno-items-pie">
 						<img src="iconos/baja.svg" alt="subida">
@@ -58,7 +71,7 @@
 				</div>
 				<div class="fila-uno-items">
 					<h2>TOTAL PROFESORES</h2>
-					<p>25</p>
+					<p><%= reporte.CantidadProfesoresActivos() %></p>
 					<img alt="alumno-libre" src="img/maestros.svg">
 					<div class="fila-uno-items-pie">
 						<img src="iconos/alta.svg" alt="subida">
@@ -85,6 +98,7 @@
 				<h2>CARRERAS-MATERIAS</h2>
 				<div class="reporte-fila-tres-promedio">
 					<h3>MEJORES PROMEDIOS DE LA CARRERA</h3>
+				
 					<table class="content-table">
 						<thead>
 							<tr>
@@ -95,14 +109,12 @@
 							</tr>
 						</thead>
 						<tbody>
-							<% for(Alumno unAlumno : Alumno.CargarAlumnos()){%>
 							<tr>  
-								  <td><%= unAlumno.getLegajo() %></td>
-								  <td><%= unAlumno.getNombre() %></td>
-								  <td><%= unAlumno.getApellido() %></td>
+								  <td></td>
+								  <td></td>
+								  <td></td>
 								  <td>9.8</td>
 							</tr>
-							 <%}%>
 						</tbody>
 					</table>
 			</div>
@@ -118,13 +130,13 @@
 						</tr>
 					</thead>
 					<tbody>
-				<% for(Alumno unAlumno : Alumno.CargarAlumnos()){%>
+				
 						<tr>  
-							  <td><%= unAlumno.getLegajo() %></td>
-							  <td><%= unAlumno.getNombre() %></td>
-							  <td><%= unAlumno.getApellido() %></td>
+							  <td></td>
+							  <td></td>
+							  <td></td>
 							  <td>6.5</td>
-						</tr><%}%>			
+						</tr>			
 					</tbody>
 				</table>
 			</div>	
@@ -141,14 +153,16 @@
 						</tr>
 					</thead>
 					<tbody>
-				<% for(Alumno unAlumno : Alumno.CargarAlumnos()){%>
+				
 						<tr>  
-							  <td><%= unAlumno.getLegajo() %></td>
-							  <td>Nombre Materia</td>
-							  <td>Semestre</td>
-							  <td>Profesor</td>
-							  <td>150</td>
-						</tr><%}%>			
+						<% for(Curso unCurso : reporte.MateriasConMasInscriptos()){%>
+							 <td><%= unCurso.getMateria().getIdMateria() %></td>
+							 <td><%= unCurso.getMateria().getNombre() %></td>
+							 <td><%= unCurso.getSemestre() %></td>
+							 <td><%= unCurso.getProfesorTitular().getNombre() + " " + unCurso.getProfesorTitular().getApellido() %></td>
+							 <td><%= unCurso.getAnio() %></td>
+						</tr>			
+						<%}%>
 					</tbody>
 				</table>
 			</div>
@@ -165,14 +179,15 @@
 						</tr>
 					</thead>
 					<tbody>
-				<% for(Alumno unAlumno : Alumno.CargarAlumnos()){%>
 						<tr>  
-							  <td><%= unAlumno.getLegajo() %></td>
-							  <td>Nombre Materia</td>
-							  <td>Semestre</td>
-							  <td>Profesor</td>
-							  <td>20</td>
-						</tr><%}%>			
+							<% for(Curso unCurso : reporte.MateriasConMasAbandono()){%>
+							<td><%= unCurso.getMateria().getIdMateria() %></td>
+							<td><%= unCurso.getMateria().getNombre() %></td>
+							<td><%= unCurso.getSemestre() %></td>
+							<td><%= unCurso.getProfesorTitular().getNombre() + " " + unCurso.getProfesorTitular().getApellido() %></td>
+							<td><%= unCurso.getAnio() %></td>
+						</tr>			
+						<%}%>			
 					</tbody>
 				</table>
 			</div>		
@@ -183,12 +198,17 @@
 
 
 <script>
+
+<% ArrayList<Reporte>ListadoAlumnosInscripto = reporte.ComparativaAlumnosInscriptos();%>
+<% ArrayList<Reporte>ListadoMateriaMasInscriptos = reporte.MateriasMasInscripciones();%>
+<% ArrayList<Reporte>ListadoRegulares = reporte.EstadosAlumnosxAnio();%>
+<% ArrayList<Reporte>ListadoLibres = reporte.EstadosAlumnosxAnioLibres();%>
 	
 	$(document).ready( function () {
 	    $('#table_id').DataTable();
 	} );
 	
-	
+
 	var ctx = document.getElementById('comparativa-alumnos').getContext('2d');
 	var myChart = new Chart(ctx, {
 	    type: 'line',
@@ -198,7 +218,7 @@
 	        	
 	        	{
 		        	label:"Libres",
-		            data: [250, 200, 100, 150, 300],
+		            data: [<%= ListadoLibres.get(0).getCantidad()%>, <%= ListadoLibres.get(1).getCantidad()%>, <%= ListadoLibres.get(2).getCantidad()%>, <%= ListadoLibres.get(3).getCantidad()%>, <%= ListadoLibres.get(4).getCantidad()%>],
 		            fill: false,
 		            backgroundColor:"rgba(54, 162, 235, 0.2)",
 		            lineTension: 0.1,
@@ -207,7 +227,7 @@
 	        	},
 	        	{
 		        	label: "Regular",
-		            data: [250, 100, 100, 300, 300],
+		            data: [<%= ListadoRegulares.get(0).getCantidad()%>, <%= ListadoRegulares.get(1).getCantidad()%>, <%= ListadoRegulares.get(2).getCantidad()%>, <%= ListadoRegulares.get(3).getCantidad()%>, <%= ListadoRegulares.get(4).getCantidad()%>],
 		            fill: false,
 		            lineTension: 0.1,
 		            borderColor: "rgba(225,108,96,0.5)",
@@ -240,7 +260,7 @@
 	        labels: ['2015', '2016', '2017', '2018', '2019'],
 	        datasets: [{
 	            label: 'Cantidad Alumnos',
-	            data: [250, 150, 300, 500, 200],
+	            data: [<%= ListadoAlumnosInscripto.get(0).getCantidad()%>, <%= ListadoAlumnosInscripto.get(1).getCantidad()%>, <%= ListadoAlumnosInscripto.get(2).getCantidad()%>, <%= ListadoAlumnosInscripto.get(3).getCantidad()%>, <%= ListadoAlumnosInscripto.get(4).getCantidad()%>],
 	            borderWidth: 1,
 	            backgroundColor: [
 	                'rgba(255, 99, 132, 0.2)',
@@ -275,10 +295,10 @@
 	var myChart = new Chart(ctx, {
 	    type: 'bar',
 	    data: {
-	        labels: ['ARSO', 'Lab II', 'Prog II', 'Lab I', 'Mate'],
+	        labels: ['<%=ListadoMateriaMasInscriptos.get(0).getMateria()%>', '<%=ListadoMateriaMasInscriptos.get(1).getMateria()%>', '<%=ListadoMateriaMasInscriptos.get(2).getMateria()%>', '<%=ListadoMateriaMasInscriptos.get(3).getMateria()%>', '<%=ListadoMateriaMasInscriptos.get(4).getMateria()%>'],
 	        datasets: [{
 	            label: 'Cantidad Inscriptos',
-	            data: [250, 370, 300, 350, 230],
+	            data: [<%=ListadoMateriaMasInscriptos.get(0).getCantidad()%>,<%=ListadoMateriaMasInscriptos.get(1).getCantidad()%>,<%=ListadoMateriaMasInscriptos.get(2).getCantidad()%>,<%=ListadoMateriaMasInscriptos.get(3).getCantidad()%>,<%=ListadoMateriaMasInscriptos.get(4).getCantidad()%>],
 	            borderWidth: 1,
 	            backgroundColor: [
 	                'rgba(255, 99, 132, 0.2)',

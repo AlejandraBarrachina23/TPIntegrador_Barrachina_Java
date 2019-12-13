@@ -77,18 +77,14 @@
 			
 			for(Curso unCurso : unCursoNegocio.AlumnosxCurso(cursoSeleccionado)){%>	
 							
-					<% for(Alumno alumnosxcurso : unCurso.getListadoAlumnos()){
-						
-						%><tr>
+					<% for(Alumno alumnosxcurso : unCurso.getListadoAlumnos()){%><tr>
 						  <td><%= alumnosxcurso.getLegajo()%></td>
 						  <td><%= alumnosxcurso.getNombre()%></td>
 						  <td><%= alumnosxcurso.getApellido() %></td>
 						
 						<%for(Calificaciones calificacionxalumno : unCurso.getListadoNotas()){
 							
-							if(alumnosxcurso.getLegajo()==calificacionxalumno.getLegajoAlumno()){							
-							
-							%>
+							if(alumnosxcurso.getLegajo()==calificacionxalumno.getLegajoAlumno()){%>
         						  <td><input type="number" name="notas" value="<%=calificacionxalumno.getParcialUno() %>" max="10" min="0"></td>
 								  <td><input type="number" name="notas" value="<%=calificacionxalumno.getParcialDos() %>" max="10" min="0"></td>
 								  <td><input type="number" name="notas" value="<%=calificacionxalumno.getRecuperatorioUno() %>" max="10" min="0"></td>

@@ -1,0 +1,14 @@
+package Negocio;
+
+public class AlumnoNegocio implements IAlumno {
+
+	
+	public int calcularNota(int parcial, int recuperatorio) {
+		
+		if(parcial>recuperatorio) return parcial;
+		else notafinaluno=calificacionxalumno.getRecuperatorioUno();
+	}
+	
+	
+
+}

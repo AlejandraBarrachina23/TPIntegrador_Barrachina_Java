@@ -1,0 +1,8 @@
+package Negocio;
+
+public interface IAlumno {
+	
+	public int calcularNota(int parcial, int recuperatorio);
+	public int calcularPromedio(int notaUno, int recuperatorio);
+
+}

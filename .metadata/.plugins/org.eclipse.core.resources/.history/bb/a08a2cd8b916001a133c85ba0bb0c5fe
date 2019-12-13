@@ -1,9 +1,0 @@
-package Negocio;
-
-import Dominio.Usuario;
-
-public interface INegocioUsuario {
-
-	public boolean VerificarUsuario(Usuario unUsuario);
-	public Usuario UsuarioLogeado(Usuario unUsuario) 
-}

@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="Dominio.Alumno"%>
+    <%@page import="Dominio.Materia"%>
+    <%@page import="Dominio.Curso"%>
+    <%@page import="Dominio.Profesor"%>
+    <%@page import="Negocio.AlumnoNegocio"%>
+    <%@page import="Dominio.Calificaciones"%>
+    <%@page import="Negocio.MateriaNegocio"%>
+    <%@page import="Negocio.ProfesorNegocio"%>
     <%@page import="java.util.ArrayList"%>    
 <!DOCTYPE html>
 <html>
@@ -20,20 +27,48 @@
 </head>
 <body>
 
+<nav>
+<div id="user">
+		<a href="index.jsp"><img id="icon-usuario" src="iconos/usuario-admin.svg" alt="imagen-usuario"></a>
+		<h2>¡Bienvenido!</h2>
+		<p>${usuario.usuario}</p>
+		<a href="serveletUsuario">LogOut</a>
+	</div>
 <jsp:include page="menu-administrador.html"></jsp:include>
+</nav>
 
 <section class="section-principal">
 	<div class="encabezados">
 		<h3>REPORTES AVANZADOS</h3>
 	</div>
+	
 	<div id="form-reportes-avanzados">
+			<form method="post" action="serveletReportes">
 			<div class="busqueda-califaciones">
 				<h2>SELECCIONE CURSO</h2>
-				<input type="text" placeholder="Materia">
-				<input type="text" placeholder="Semestre">
-				<input type="number" placeholder="Año">
-				<input type="button" value="Buscar">
+				<select name="cboxMaterias" id="cboxMaterias" required>
+					<option disabled selected>Seleccione Materia</option>
+					<%
+							MateriaNegocio Materias = new MateriaNegocio();
+							for(Materia unaMateria : Materias.ListadoMaterias()){%>
+							<option class="opciones" value="<%=unaMateria.getIdMateria()%>"><%= unaMateria.getNombre()%></option><%}%>
+				</select>
+				<select name="cboxSemestre" required>
+					<option disabled selected>Seleccione Semestre</option>
+					<option value="Primero">Primero</option>
+					<option value="Segundo">Segundo</option>
+				</select>
+				<select name="cboxProfesores" id="cboxProfesores" required>
+					<option disabled selected>Seleccione Profesor</option>
+					<%
+							ProfesorNegocio ProfesorNegocio = new ProfesorNegocio();
+							for(Profesor unProfesor : ProfesorNegocio.ListadoProfesores()){%>
+							<option class="opciones" value="<%=unProfesor.getLegajo()%>"><%= unProfesor.getNombre() + " " + unProfesor.getApellido()%></option><%}%>
+				</select>
+				<input name="anio" type="number" placeholder="Seleccione año" max=2030 min=2000>
+				<input type="submit" value="Buscar" name="btnBuscar">
 			</div>
+		</form>
 			<div class="resultado-busqueda">
 			<h2 class="titulos">ESTADO DE CALIFICACIONES DE LOS ALUMNOS</h2>
 				<div class="tabla-resultado-busqueda">				
@@ -50,17 +85,39 @@
 							</tr>
 						</thead>
 						<tbody>
-							<% for(Alumno unAlumno : Alumno.CargarAlumnos()){%>
 							<tr>  
-								  <td><%= unAlumno.getLegajo() %></td>
-								  <td><%= unAlumno.getNombre() %></td>
-								  <td><%= unAlumno.getApellido() %></td>
-								  <td>9</td>
-								  <td>7</td>
-								  <td>8</td>
-								  <td>Promoción</td>
-							</tr>
-						    <%}%>
+		<% 
+		
+		if(request.getAttribute("ListadoAlumnoxCursoSeleccionado")!=null){
+			
+			ArrayList<Curso>ListadoAlumnosxCurso = (ArrayList<Curso>)request.getAttribute("ListadoAlumnoxCursoSeleccionado");
+			AlumnoNegocio AlumnoNegocio = new AlumnoNegocio();
+			
+			for(Curso unCurso : ListadoAlumnosxCurso){	
+
+				for(Alumno alumnosxcurso : unCurso.getListadoAlumnos()){			
+				
+				%><tr>
+				  <td><%= alumnosxcurso.getLegajo()%></td>
+				  <td><%= alumnosxcurso.getNombre()%></td>
+				  <td><%= alumnosxcurso.getApellido() %></td>
+				
+				<%for(Calificaciones calificacionxalumno : unCurso.getListadoNotas()){
+					
+					if(alumnosxcurso.getLegajo()==calificacionxalumno.getLegajoAlumno()){
+						int notaUno,notaDos=0;
+						float promedio=0;%>
+						
+						<td><%=notaUno = AlumnoNegocio.calcularNota(calificacionxalumno.getParcialUno(), calificacionxalumno.getRecuperatorioUno()) %></td>
+						<td><%=notaDos = AlumnoNegocio.calcularNota(calificacionxalumno.getParcialDos(), calificacionxalumno.getRecuperatorioDos()) %></td>
+						<td><%=promedio=AlumnoNegocio.calcularPromedio(notaUno, notaDos)%></td>
+						<td><%=AlumnoNegocio.EstadoAlumno(promedio)%></td>
+					<%}
+						
+				}
+			}%> 
+				</tr> 
+	<%}}%>
 						</tbody>
 					</table>
 				</div>	
@@ -99,15 +156,13 @@
 							</tr>
 						</thead>
 						<tbody>
-							<% for(Alumno unAlumno : Alumno.CargarAlumnos()){%>
 							<tr>  
-								  <td><%= unAlumno.getLegajo() %></td>
-								  <td><%= unAlumno.getNombre() %></td>
-								  <td><%= unAlumno.getApellido() %></td>
+								  <td></td>
+								  <td></td>
+								  <td></td>
 								  <td>5</td>
 								  <td>Regular</td>
 							</tr>
-						    <%}%>
 						</tbody>
 					</table>
 				</div>
@@ -184,7 +239,7 @@ var myChart = new Chart(ctx, {
         	
         	{
 	        	label:"Alumnos",
-	            data: [1, 10, 1],
+	            data: [4, 10, 1],
 	            fill: false,            
 	            borderWidth: 1, 
 	            backgroundColor: [

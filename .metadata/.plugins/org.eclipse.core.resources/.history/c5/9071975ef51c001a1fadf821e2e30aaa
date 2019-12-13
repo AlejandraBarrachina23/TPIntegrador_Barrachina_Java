@@ -1,0 +1,10 @@
+package Negocio;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import Dominio.Curso;
+
+public interface IReportes {
+
+	public int CantidadAlumnosAnio() throws SQLException;
+	public int CantidadAlumnosRegulares() throws SQLException;
+}
