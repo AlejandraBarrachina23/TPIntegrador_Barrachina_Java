@@ -8,6 +8,7 @@
     <%@page import="Dominio.Calificaciones"%>
     <%@page import="Negocio.MateriaNegocio"%>
     <%@page import="Negocio.ProfesorNegocio"%>
+    <%@page import="Negocio.ReportesNegocio"%>
     <%@page import="java.util.ArrayList"%>    
 <!DOCTYPE html>
 <html>
@@ -72,7 +73,7 @@
 			<div class="resultado-busqueda">
 			<h2 class="titulos">ESTADO DE CALIFICACIONES DE LOS ALUMNOS</h2>
 				<div class="tabla-resultado-busqueda">				
-					<table class="content-table" id="table_id">
+					<table class="content-table" id="tabla-primera">
 						<thead>
 							<tr>
 								<th>Legajo</th>
@@ -81,6 +82,7 @@
 								<th>Parcial 1</th>
 								<th>Parcial 2</th>
 								<th>Nota Final</th>
+								<th>Asistencia</th>
 								<th>Estado</th>
 							</tr>
 						</thead>
@@ -106,12 +108,13 @@
 					
 					if(alumnosxcurso.getLegajo()==calificacionxalumno.getLegajoAlumno()){
 						int notaUno,notaDos=0;
-						float promedio=0;%>
-						
+						float promedio=0;
+						String estado="";%>
 						<td><%=notaUno = AlumnoNegocio.calcularNota(calificacionxalumno.getParcialUno(), calificacionxalumno.getRecuperatorioUno()) %></td>
 						<td><%=notaDos = AlumnoNegocio.calcularNota(calificacionxalumno.getParcialDos(), calificacionxalumno.getRecuperatorioDos()) %></td>
-						<td><%=promedio=AlumnoNegocio.calcularPromedio(notaUno, notaDos)%></td>
-						<td><%=AlumnoNegocio.EstadoAlumno(promedio)%></td>
+						<td><%=promedio = AlumnoNegocio.calcularPromedio(notaUno, notaDos)%></td>
+						<td><%=estado = calificacionxalumno.getEstado() %>
+						<td><%=AlumnoNegocio.EstadoAlumno(promedio, estado, notaUno, notaDos)%></td>
 					<%}
 						
 				}
@@ -145,24 +148,27 @@
 					</div>				
 				</div>	
 					<div class="tabla-resultado-busqueda">				
-					<table class="content-table">
+					<table class="content-table" id="tabla-segunda">
 						<thead>
 							<tr>
 								<th>Legajo</th>
 								<th>Nombre</th>
 								<th>Apellido</th>
-								<th>Cantidad de Faltas</th>
 								<th>Estado</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>  
-								  <td></td>
-								  <td></td>
-								  <td></td>
-								  <td>5</td>
-								  <td>Regular</td>
-							</tr>
+							<%if(request.getAttribute("ListadoAsistencia")!=null){
+								
+								for(Alumno unAlumno : (ArrayList<Alumno>)request.getAttribute("ListadoAsistencia")){%>
+								<tr>
+									<td><%= unAlumno.getLegajo() %></td>
+									<td><%= unAlumno.getNombre() %></td>
+									<td><%= unAlumno.getApellido() %></td>
+									<td><%= unAlumno.getTelefono() %></td>
+								</tr>
+							<%}%>		
+						<%}%>			
 						</tbody>
 					</table>
 				</div>
@@ -170,16 +176,96 @@
 	</div>		
 </section>
 <script>
+
+function ListadoEstados(){
+	
+	let cuentaPromocion=0;
+	let cuentaReguralizacion=0;
+	let cuentaDesaprobados =0;
+	
+	$('#tabla-primera tr').each(function () {
+
+		var estado = $(this).find("td").eq(7).html();
+		if(typeof(estado)!=='undefined') {
+			
+			if(estado==="Promociona") cuentaPromocion++;
+			else if(estado==="Regulariza") cuentaReguralizacion++;
+			else cuentaDesaprobados++;
+		}		
+	});
+	
+	let ListadoEstado=[cuentaDesaprobados,cuentaReguralizacion,cuentaPromocion];
+	
+	return ListadoEstado;
+}
+
+function ListadoEstadoParcialUno(){
+	
+	let cuentaAprobados=0;
+	let cuentaDesaprobados=0;
+	
+	$('#tabla-primera tr').each(function () {
+
+		var nota = $(this).find("td").eq(3).html();
+		if(typeof(nota)!=='undefined') {
+
+			if(nota>=6) cuentaAprobados++;
+			else cuentaDesaprobados++;
+		}		
+	});
+	
+	let ListadoNotasParcialUno=[cuentaAprobados,cuentaDesaprobados];
+	return ListadoNotasParcialUno;	
+}
+
+function ListadoEstadoParcialDos(){
+	
+	let cuentaAprobados=0;
+	let cuentaDesaprobados=0;
+	
+	$('#tabla-primera tr').each(function () {
+
+		var nota = $(this).find("td").eq(4).html();
+		if(typeof(nota)!=='undefined') {
+
+			if(nota>=6) cuentaAprobados++;
+			else cuentaDesaprobados++;
+		}		
+	});
+	
+	let ListadoEstadoParcialDos=[cuentaAprobados,cuentaDesaprobados];
+	return ListadoEstadoParcialDos;	
+}
+
+function ListadoAsistencia(){
+	
+	let cuentaRegulares=0;
+	let cuentaLibres=0;
+	
+	$('#tabla-segunda tr').each(function () {
+
+		var estado = $(this).find("td").eq(3).html();
+		if(typeof(estado)!=='undefined') {
+
+			if(estado=="Regular") cuentaRegulares++;
+			else cuentaLibres++;
+		}		
+	});
+	
+	let ListadoAsistencias=[cuentaRegulares,cuentaLibres];
+	return ListadoAsistencias;	
+}
+ 
 var ctx = document.getElementById('estado-alumnos').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ['Aprobados','Desaprobados', 'Promocionados'],
+        labels: ['Recursantes','Regularizados', 'Promocionados'],
         datasets: [
         	
         	{
 	        	label:"Alumnos",
-	            data: [5, 2, 1],
+	            data: ListadoEstados() ,
 	            fill: false,            
 	            borderWidth: 1, 
 	            backgroundColor: [
@@ -204,12 +290,12 @@ var ctx = document.getElementById('notas-segundo-parcial').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ['Aprobados','Desaprobados', 'Ausentes'],
+        labels: ['Aprobados','Desaprobados'],
         datasets: [
         	
         	{
 	        	label:"Alumnos",
-	            data: [10, 3, 1],
+	            data: ListadoEstadoParcialDos(),
 	            fill: false,            
 	            borderWidth: 1, 
 	            backgroundColor: [
@@ -234,12 +320,12 @@ var ctx = document.getElementById('notas-primer-parcial').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ['Aprobados','Desaprobados', 'Ausentes'],
+        labels: ['Aprobados','Desaprobados'],
         datasets: [
         	
         	{
 	        	label:"Alumnos",
-	            data: [4, 10, 1],
+	            data: ListadoEstadoParcialUno(),
 	            fill: false,            
 	            borderWidth: 1, 
 	            backgroundColor: [
@@ -269,7 +355,7 @@ var myChart = new Chart(ctx, {
         	
         	{
 	        	label:"Alumnos",
-	            data: [5, 2],
+	            data: ListadoAsistencia(),
 	            fill: false,            
 	            borderWidth: 1, 
 	            backgroundColor: [

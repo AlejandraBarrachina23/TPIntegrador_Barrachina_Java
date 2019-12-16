@@ -19,11 +19,21 @@ const btnAbrir = document.getElementById('btnAgregar');
 var btnEliminar = document.getElementsByClassName('btn-eliminar');
 var btnModificar = document.getElementsByClassName('btn-modificar');
 const fondo = document.getElementById('modal-fondo');
+const fondoAccion = document.getElementById('modal-fondo-accion');
+
 const ventanaEmergente = document.getElementById('modal-contenido');
 const ventanaAdvertencia = document.getElementById('modal-advertencia');
 const fondoAdvertencia = document.getElementById('modal-fondo-advertencia');
 const btnCerrar = document.getElementById('btnCerrar');
 const btnCerrarAdvertencia = document.getElementById('btnCancelar');
+const btnAceptar = document.getElementById('btnAceptar');
+
+btnAceptar.addEventListener('click',function(){
+	
+
+	
+});
+
 	
 btnAbrir.addEventListener('click', function(){
 		

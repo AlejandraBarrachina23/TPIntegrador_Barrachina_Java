@@ -44,11 +44,11 @@
 				<div class="fila-uno-items">
 					<h2>TOTAL ALUMNOS</h2>
 					<p><% ReportesNegocio reporte = new ReportesNegocio();%>
-					<%=reporte.CantidadAlumnosAnio() %></p>
+					<%=reporte.CantidadAlumnosAnio(2019)%></p>
 					<img alt="total-alumnos" src="img/total.svg">					
 					<div class="fila-uno-items-pie">
-						<img src="iconos/baja.svg" alt="subida">
-						<p></p>
+						<img id="img-total-alumnos" src="iconos/baja.svg" alt="subida">
+						<p id="total-alumnos"></p>
 					</div>
 				</div>
 				<div class="fila-uno-items">
@@ -56,8 +56,8 @@
 					<p><%=reporte.CantidadAlumnosRegulares() %></p>
 					<img alt="alumno-regular" src="img/regular.svg">
 					<div class="fila-uno-items-pie">
-						<img src="iconos/alta.svg" alt="subida">
-						<p>10.2%</p>
+						<img id="img-alumno-regular" src="iconos/alta.svg" alt="subida">
+						<p id="alumno-regular"></p>
 					</div>
 				</div>
 				<div class="fila-uno-items">
@@ -65,17 +65,17 @@
 					<p><%= reporte.CantidadAlumnosLibres() %></p>
 					<img alt="alumno-libre" src="img/libre.svg">
 					<div class="fila-uno-items-pie">
-						<img src="iconos/baja.svg" alt="subida">
-						<p>25.5%</p>
+						<img id="img-alumno-libre" src="iconos/baja.svg" alt="subida">
+						<p id="alumno-libre"></p>
 					</div>
 				</div>
 				<div class="fila-uno-items">
 					<h2>TOTAL PROFESORES</h2>
 					<p><%= reporte.CantidadProfesoresActivos() %></p>
-					<img alt="alumno-libre" src="img/maestros.svg">
+					<img alt="profesores" src="img/maestros.svg">
 					<div class="fila-uno-items-pie">
 						<img src="iconos/alta.svg" alt="subida">
-						<p>0.01%</p>
+						<p id="profesores">0.00</p>
 					</div>
 				</div>		
 			</div>	
@@ -109,12 +109,15 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>  
-								  <td></td>
-								  <td></td>
-								  <td></td>
-								  <td>9.8</td>
+						<%for(Reporte unReporte : reporte.MejoresPromedios(2019)){ %>
+							<tr> 
+							 
+								  <td><%= unReporte.getUnAlumno().getLegajo() %></td>
+								  <td><%= unReporte.getUnAlumno().getNombre() %></td>
+								  <td><%= unReporte.getUnAlumno().getApellido() %></td>
+								  <td><%= unReporte.getPromedio() %></td>
 							</tr>
+						<%} %>
 						</tbody>
 					</table>
 			</div>
@@ -130,14 +133,16 @@
 						</tr>
 					</thead>
 					<tbody>
-				
-						<tr>  
-							  <td></td>
-							  <td></td>
-							  <td></td>
-							  <td>6.5</td>
-						</tr>			
-					</tbody>
+						<%for(Reporte unReporte : reporte.PeoresPromedios(2019)){ %>
+							<tr> 
+							 
+								  <td><%= unReporte.getUnAlumno().getLegajo() %></td>
+								  <td><%= unReporte.getUnAlumno().getNombre() %></td>
+								  <td><%= unReporte.getUnAlumno().getApellido() %></td>
+								  <td><%= unReporte.getPromedio() %></td>
+							</tr>
+						<%} %>
+						</tbody>
 				</table>
 			</div>	
 				<div class="reporte-fila-tres-promedio">
@@ -155,7 +160,7 @@
 					<tbody>
 				
 						<tr>  
-						<% for(Curso unCurso : reporte.MateriasConMasInscriptos()){%>
+						<% for(Curso unCurso : reporte.MateriasConMasEgresos()){%>
 							 <td><%= unCurso.getMateria().getIdMateria() %></td>
 							 <td><%= unCurso.getMateria().getNombre() %></td>
 							 <td><%= unCurso.getSemestre() %></td>
@@ -195,20 +200,114 @@
 	</div>	
 	<a href="reportes-avanzados.jsp"><input type="button" id="btnAgregarAlumno" class="btnFormulario" value="REPORTES AVANZADOS"></a>		
 </section>
-
-
 <script>
 
-<% ArrayList<Reporte>ListadoAlumnosInscripto = reporte.ComparativaAlumnosInscriptos();%>
-<% ArrayList<Reporte>ListadoMateriaMasInscriptos = reporte.MateriasMasInscripciones();%>
-<% ArrayList<Reporte>ListadoRegulares = reporte.EstadosAlumnosxAnio();%>
-<% ArrayList<Reporte>ListadoLibres = reporte.EstadosAlumnosxAnioLibres();%>
+
+CalcularDiferencia();
+ComparativaAlumnosInscriptos();
 	
 	$(document).ready( function () {
 	    $('#table_id').DataTable();
 	} );
 	
+	function CalcularDiferencia(cantidadAlumnosActual,cantidadAlumnosAnterior){
+		
+		let totalAlumnos = <%=reporte.DiferenciaAlumnosxAnio(2019, 2018) %> ;
+		let totalAlumnosRegulares = <%=reporte.DiferenciaAlumnosRegularesxAnio(2019, 2018) %>;
+		let totalAlumnosLibres = <%=reporte.DiferenciaAlumnosRegularesxAnio(2018, 2019) %>;
+		
+		document.getElementById("total-alumnos").innerText= totalAlumnos+ "%";
+		document.getElementById("alumno-regular").innerText= totalAlumnosRegulares+ "%";
+		document.getElementById("alumno-libre").innerText= totalAlumnosLibres+ "%";
+		
+		if(totalAlumnos>0) document.getElementById("img-total-alumnos").src= "iconos/alta.svg";
+		else document.getElementById("img-total-alumnos").src= "iconos/baja.svg";
+		
+		if(totalAlumnosRegulares>0) document.getElementById("img-alumno-regular").src= "iconos/alta.svg";
+		else document.getElementById("img-alumno-regular").src= "iconos/baja.svg";
+		
+		if(totalAlumnosLibres>0) document.getElementById("img-alumno-libre").src= "iconos/alta.svg";
+		else document.getElementById("img-alumno-libre").src= "iconos/baja.svg";
 
+	}
+	
+	function ComparativaAlumnosInscriptos(){
+	
+		Listado = [];
+		
+		<%ArrayList<Reporte>ListadoComparativaInscriptos = reporte.ComparativaAlumnosInscriptos(2019);%>
+		
+		<%for(Reporte unReporte : ListadoComparativaInscriptos){ %>
+		
+			Listado.push(<%=unReporte.getCantidad()%>);
+		
+			 <%}%>
+			 
+		return Listado; 
+	}
+	
+	function MateriaConMasInscriptosMateriasCantidad(){
+		
+		Listado = [];
+		<% ArrayList<Reporte>ListadoMateriaMasInscriptos = reporte.MateriasMasInscripciones(2019);%>
+		
+		<%for(Reporte unReporte : ListadoMateriaMasInscriptos){ %>
+		
+			Listado.push(<%=unReporte.getCantidad()%>);
+	
+		 <%}%>
+		
+		 return Listado;
+		
+	}
+	
+	function MateriaConMasInscriptosMateriasNombre(){
+		
+		Listado = [];
+			
+		<%for(Reporte unReporte : ListadoMateriaMasInscriptos){ %>
+		
+			Listado.push('<%=unReporte.getMateria()%>');
+	
+		 <%}%>
+		
+		 return Listado;
+		
+	}
+	
+	
+	function EstadosAlumnosxAnioRegulares(){
+		
+		Listado = [];
+		<% ArrayList<Reporte>EstadosAlumnosxAnioRegulares = reporte.EstadosAlumnosxAnio(2019);%>
+		
+		<%for(Reporte unReporte : EstadosAlumnosxAnioRegulares){ %>
+		
+			Listado.push(<%=unReporte.getCantidad()%>);
+	
+		 <%}%>
+		
+		 return Listado;
+		
+	}
+	
+	
+	function EstadosAlumnosxAnioLibres(){
+		
+		Listado = [];
+		
+		<% ArrayList<Reporte>ListadoLibres = reporte.EstadosAlumnosxAnioLibres(2019);%>
+		
+		<%for(Reporte unReporte : ListadoLibres){ %>
+		
+			Listado.push(<%=unReporte.getCantidad()%>);
+	
+		 <%}%>
+		
+		 return Listado;
+		
+	}
+		
 	var ctx = document.getElementById('comparativa-alumnos').getContext('2d');
 	var myChart = new Chart(ctx, {
 	    type: 'line',
@@ -218,7 +317,7 @@
 	        	
 	        	{
 		        	label:"Libres",
-		            data: [<%= ListadoLibres.get(0).getCantidad()%>, <%= ListadoLibres.get(1).getCantidad()%>, <%= ListadoLibres.get(2).getCantidad()%>, <%= ListadoLibres.get(3).getCantidad()%>, <%= ListadoLibres.get(4).getCantidad()%>],
+		            data: EstadosAlumnosxAnioLibres(),
 		            fill: false,
 		            backgroundColor:"rgba(54, 162, 235, 0.2)",
 		            lineTension: 0.1,
@@ -227,7 +326,7 @@
 	        	},
 	        	{
 		        	label: "Regular",
-		            data: [<%= ListadoRegulares.get(0).getCantidad()%>, <%= ListadoRegulares.get(1).getCantidad()%>, <%= ListadoRegulares.get(2).getCantidad()%>, <%= ListadoRegulares.get(3).getCantidad()%>, <%= ListadoRegulares.get(4).getCantidad()%>],
+		            data: EstadosAlumnosxAnioRegulares(),
 		            fill: false,
 		            lineTension: 0.1,
 		            borderColor: "rgba(225,108,96,0.5)",
@@ -260,7 +359,7 @@
 	        labels: ['2015', '2016', '2017', '2018', '2019'],
 	        datasets: [{
 	            label: 'Cantidad Alumnos',
-	            data: [<%= ListadoAlumnosInscripto.get(0).getCantidad()%>, <%= ListadoAlumnosInscripto.get(1).getCantidad()%>, <%= ListadoAlumnosInscripto.get(2).getCantidad()%>, <%= ListadoAlumnosInscripto.get(3).getCantidad()%>, <%= ListadoAlumnosInscripto.get(4).getCantidad()%>],
+	            data: ComparativaAlumnosInscriptos(),
 	            borderWidth: 1,
 	            backgroundColor: [
 	                'rgba(255, 99, 132, 0.2)',
@@ -295,10 +394,10 @@
 	var myChart = new Chart(ctx, {
 	    type: 'bar',
 	    data: {
-	        labels: ['<%=ListadoMateriaMasInscriptos.get(0).getMateria()%>', '<%=ListadoMateriaMasInscriptos.get(1).getMateria()%>', '<%=ListadoMateriaMasInscriptos.get(2).getMateria()%>', '<%=ListadoMateriaMasInscriptos.get(3).getMateria()%>', '<%=ListadoMateriaMasInscriptos.get(4).getMateria()%>'],
+	        labels: MateriaConMasInscriptosMateriasNombre(),
 	        datasets: [{
 	            label: 'Cantidad Inscriptos',
-	            data: [<%=ListadoMateriaMasInscriptos.get(0).getCantidad()%>,<%=ListadoMateriaMasInscriptos.get(1).getCantidad()%>,<%=ListadoMateriaMasInscriptos.get(2).getCantidad()%>,<%=ListadoMateriaMasInscriptos.get(3).getCantidad()%>,<%=ListadoMateriaMasInscriptos.get(4).getCantidad()%>],
+	            data: MateriaConMasInscriptosMateriasCantidad(),
 	            borderWidth: 1,
 	            backgroundColor: [
 	                'rgba(255, 99, 132, 0.2)',

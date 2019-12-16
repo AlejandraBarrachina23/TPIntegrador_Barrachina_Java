@@ -3,6 +3,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import DAO.ReportesDAO;
+import Dominio.Alumno;
 import Dominio.Curso;
 import Dominio.Reporte;
 
@@ -10,9 +11,8 @@ public class ReportesNegocio implements IReportes{
 
 	ReportesDAO unReporteDAO = new ReportesDAO();
 	
-	public int CantidadAlumnosAnio() throws SQLException {
-		
-		return unReporteDAO.CantidadAlumnosAnio();
+	public int CantidadAlumnosAnio(int anio) throws SQLException {
+		return unReporteDAO.CantidadAlumnosAnio(anio);
 	}
 
 	public int CantidadAlumnosRegulares() throws SQLException {
@@ -30,29 +30,29 @@ public class ReportesNegocio implements IReportes{
 		return unReporteDAO.CantidadProfesoresActivos();
 	}
 
-	public ArrayList<Reporte> ComparativaAlumnosInscriptos() throws SQLException {
+	public ArrayList<Reporte> ComparativaAlumnosInscriptos(int AnioActual) throws SQLException {
 		
-		return unReporteDAO.ComparativaAlumnosInscriptos();
+		return unReporteDAO.ComparativaAlumnosInscriptos(AnioActual);
+	}
+	
+	public ArrayList<Reporte> MateriasMasInscripciones(int AnioActual) throws SQLException {
+	
+		return unReporteDAO.MateriasMasInscripciones(AnioActual);
 	}
 
-	public ArrayList<Reporte> MateriasMasInscripciones() throws SQLException {
+	public ArrayList<Reporte> EstadosAlumnosxAnio(int AnioActual) throws SQLException{
 		
-		return unReporteDAO.MateriasMasInscripciones();
+		return unReporteDAO.EstadosAlumnosxAnio(AnioActual);
 	}
 
-	public ArrayList<Reporte> EstadosAlumnosxAnio() throws SQLException {
+	public ArrayList<Reporte> EstadosAlumnosxAnioLibres(int AnioActual) throws SQLException {
 		
-		return unReporteDAO.EstadosAlumnosxAnio();
+		return unReporteDAO.EstadosAlumnosxAnioLibres(AnioActual);
 	}
 
-	public ArrayList<Reporte> EstadosAlumnosxAnioLibres() throws SQLException {
+	public ArrayList<Curso> MateriasConMasEgresos() {
 		
-		return unReporteDAO.EstadosAlumnosxAnioLibres();
-	}
-
-	public ArrayList<Curso> MateriasConMasInscriptos() {
-		
-		return unReporteDAO.MateriasConMasInscriptos();
+		return unReporteDAO.MateriasConMasEgresos();
 	}
 
 	public ArrayList<Curso> MateriasConMasAbandono() {
@@ -64,6 +64,44 @@ public class ReportesNegocio implements IReportes{
 		
 		return unReporteDAO.NotasPrimerParcial(CursoSeleccionado);
 	}
+
+	public ArrayList<Alumno> EstadoAsistenciasxCurso(Curso CursoSeleccionado) {
+		
+		return unReporteDAO.EstadoAsistenciasxCurso(CursoSeleccionado);
+	}
+
+	public int[] EstadoAsistenciasxCursoGrafico() {
+		
+		unReporteDAO.EstadoAsistenciasxCursoGrafico();
+		
+		
+		return null;
+	}
+
+	public ArrayList<Reporte> MejoresPromedios(int anio) {
+		
+		return unReporteDAO.MejoresPromedios(anio);
+	}
+
+	public ArrayList<Reporte> PeoresPromedios(int anio) {
+		
+		return unReporteDAO.PeoresPromedios(anio);
+	}
+
+	public int DiferenciaAlumnosxAnio(int anioSolicitado, int anioAnterior) throws SQLException {
+		
+		return unReporteDAO.DiferenciaAlumnosxAnio(anioSolicitado, anioAnterior);
+	}
+
+	public int DiferenciaAlumnosRegularesxAnio(int anioSolicitado, int anioAnterior) throws SQLException {
 	
+		return unReporteDAO.DiferenciaAlumnosRegularesxAnio(anioSolicitado, anioAnterior);
+	}
+
+	public int DiferenciaAlumnosLibresxAnio(int anioSolicitado, int anioAnterior) throws SQLException {
+		
+		return unReporteDAO.DiferenciaAlumnosLibresxAnio(anioSolicitado, anioAnterior);
+	}
+
 
 }

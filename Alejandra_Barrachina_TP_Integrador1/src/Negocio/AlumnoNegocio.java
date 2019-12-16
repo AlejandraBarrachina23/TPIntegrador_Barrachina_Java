@@ -14,9 +14,10 @@ public class AlumnoNegocio implements IAlumno {
 		return (notaUno+notaDos)/2;
 	}
 
-	public String EstadoAlumno(float promedio) {
+	public String EstadoAlumno(float promedio, String estado, int notauno, int notados) {
 		
-		if(promedio>=8) return "Promociona";
+		if(notauno <6 || notados<6 || estado =="Libre") return "Recursa";
+		else if(promedio>=8) return "Promociona";
 		else if(promedio>=6 && promedio<8) return "Regulariza";
 		else return "Recursa";
 	}

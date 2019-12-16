@@ -28,19 +28,19 @@
 			</div>
 			<div class="index-item-descripcion"><img src="img/estudiantes-big.png" alt="cursos">
 				<h3>Estudiantes</h3>
-				<p> Agregar, modifica, elimina y lista a cada unos de los estudiantes de la
+				<p> Agrega, modifica, elimina y lista a cada unos de los estudiantes de la
 				universidad. </p>
 				<a href="alumnos.jsp" class="btn-index">IR A ESTUDIANTES</a>	 		
 			</div>
 			<div class="index-item-descripcion"><img src="img/profesores-big.png" alt="cursos">
 				<h3>Profesores</h3>
-				<p> Agregar, modifica, elimina y lista a cada unos de los profesores de la
+				<p> Agrega, modifica, elimina y lista a cada unos de los profesores de la
 				universidad. </p>
 				<a href="profesores.jsp" class="btn-index">IR A PROFESORES</a>	 		
 			</div>
 			<div class="index-item-descripcion"><img src="img/reportes-big.png" alt="cursos">
 				<h3>Reportes</h3>
-				<p> Accede a los informes más reciente de actividad de la universidad. </p> 	
+				<p> Accedé a los informes más reciente de actividad de la universidad. </p> 	
 				<a href="reportes.jsp" class="btn-index">IR A REPORTES</a>	
 			</div>
 		</div>

@@ -129,17 +129,41 @@
 				<div class="modal-fondo" id="modal-fondo-advertencia">
 					<div class="modal-contenido" id="modal-advertencia">
 						<h3>ELIMINAR REGISTRO</h3><br>
-						
-						 <a href="#" id="eliminar-alumno">Borrar</a>
+						 <p>¿Está seguro que desea eliminar el legajo <label id="registroEliminar" name="registroEliminar"></label> ?</p>
+						 <a href="#" id="eliminar-alumno" class="btn-modal">Borrar</a>
 						  <input type="button" class="btn-modal" id="btnCancelar" value="Cancelar">	
-						  <p>¿Está seguro que desea eliminar el legajo<label id="registroEliminar" name="registroEliminar"></label> ?</p>
-										
+					</div>
+				</div>
+				
+				<!---------------------------------------------------------------------------------------------------------------
+					FORMULARIO EMERGENTE - ACCION
+			<!-------------------------------------------------------------------------------------------------------------->	
+			
+				<div class="modal-fondo-accion" id="modal-fondo-accion">
+					<div class="modal-contenido-accion">
+						<div class="accion-arriba">
+							<img src="iconos/cargado.svg" alt="tick">
+						</div>
+						<div class="accion-abajo">
+							<h3>CARGADO CON ÉXITO</h3><br>
+							<a>Salir</a>
+						</div>
 					</div>
 				</div>
 
 </section>
 <script src="funciones.js"></script>
 <script>
+
+	<%if(request.getAttribute("Servidor")!=null){
+	
+	
+	if(request.getAttribute("Servidor") == "agregar"){%>
+		alert("El registro ha sido cargado con éxito");	
+		<%}
+	if(request.getAttribute("Servidor") == "modificar"){%> alert("El registro ha sido modificado con éxito");
+	<%}else{%> alert("El registro ha sido eliminado con éxito");
+	<%}}%>
 
 	$("td").click(function(){
 			

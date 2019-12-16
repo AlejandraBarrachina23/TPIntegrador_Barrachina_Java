@@ -1,0 +1,49 @@
+package Dominio;
+
+public class Reporte {
+
+	private int Anios;
+	private int Cantidad;
+	private String Materia;
+	private String Nombre;
+	private String Apellido;
+	
+	public String getNombre() {
+		return Nombre;
+	}
+	public void setNombre(String nombre) {
+		Nombre = nombre;
+	}
+	public String getApellido() {
+		return Apellido;
+	}
+	public void setApellido(String apellido) {
+		Apellido = apellido;
+	}
+	public float getPromedio() {
+		return Promedio;
+	}
+	public void setPromedio(float promedio) {
+		Promedio = promedio;
+	}
+	private float Promedio;
+	
+	public String getMateria() {
+		return Materia;
+	}
+	public void setMateria(String materia) {
+		Materia = materia;
+	}
+	public int getAnios() {
+		return Anios;
+	}
+	public void setAnios(int anios) {
+		Anios = anios;
+	}
+	public int getCantidad() {
+		return Cantidad;
+	}
+	public void setCantidad(int cantidad) {
+		Cantidad = cantidad;
+	}
+}

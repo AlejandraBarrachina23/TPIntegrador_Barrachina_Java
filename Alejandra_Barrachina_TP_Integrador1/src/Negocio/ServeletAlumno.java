@@ -34,6 +34,7 @@ public class ServeletAlumno extends HttpServlet {
 			System.out.print(Legajo);
 			AlumnosDAO Alumno = new AlumnosDAO();
 			Alumno.EliminarAlumo(Legajo);
+			request.setAttribute("Servidor", "eliminar");
 			
 			} 
 			
@@ -41,8 +42,7 @@ public class ServeletAlumno extends HttpServlet {
 				
 				e.printStackTrace();
 			}
-			
-		
+
 		}
 		
 		RequestDispatcher Request = request.getRequestDispatcher("alumnos.jsp");
@@ -76,10 +76,12 @@ public class ServeletAlumno extends HttpServlet {
 				
 				AlumnosDAO Alumno = new AlumnosDAO();
 					
-					if(TipoFormulario.equals("agregar")) {Alumno.AgregarAlumno(unNuevoAlumno);}
+					if(TipoFormulario.equals("agregar")) {Alumno.AgregarAlumno(unNuevoAlumno); request.setAttribute("Servidor", "agregar");}
 					else if(TipoFormulario.equals("modificar")) {
 						unNuevoAlumno.setLegajo(Integer.parseInt(request.getParameter("tboxLegajo")));
-						Alumno.ModificarAlumno(unNuevoAlumno);}							
+						Alumno.ModificarAlumno(unNuevoAlumno);
+						request.setAttribute("Servidor", "modificar");
+					}							
 			}
 	
 		} 
@@ -88,6 +90,7 @@ public class ServeletAlumno extends HttpServlet {
 			
 			System.out.print("Error al cargar "+ e);
 		}
+		
 		
 		RequestDispatcher Request = request.getRequestDispatcher("alumnos.jsp");
 		Request.forward(request, response);

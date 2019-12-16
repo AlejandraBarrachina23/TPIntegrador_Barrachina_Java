@@ -30,7 +30,7 @@ public class serveletUsuario extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
-		try {
+		/*try {
 			
 			if(request.getParameter("btnLogin")!=null) {
 				
@@ -129,7 +129,7 @@ public class serveletUsuario extends HttpServlet {
 			System.out.println(e.getMessage());
 			
 		}
-	
+*/	
 	}
 
 }
