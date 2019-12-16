@@ -2,8 +2,6 @@ package Negocio;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import Dominio.Materia;
 import Dominio.Profesor;
 
 public interface INegocioProfesores {
@@ -12,5 +10,6 @@ public interface INegocioProfesores {
 	public void AgregarProfesor(Profesor unNuevoProfesor) throws SQLException;
 	public void ModificarProfesor(Profesor modificarProfesor) throws SQLException;
 	public void EliminarProfesor(int eliminarProfesor) throws SQLException;
+	public int NuevoLegajo();
 	
 }

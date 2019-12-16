@@ -1,9 +1,7 @@
 package Negocio;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import DAO.MateriaDAO;
 import DAO.ProvinciasDAO;
-import Dominio.Materia;
 import Dominio.Provincia;
 
 public class ProvinciasNegocio implements IProvinciasNegocio {

@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 
-<script src="https://kit.fontawesome.com/735f5623c2.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/735f5623c2.js"></script>
 <link href="estilos.css" type="text/css" rel=stylesheet>
 </head>
 <body>

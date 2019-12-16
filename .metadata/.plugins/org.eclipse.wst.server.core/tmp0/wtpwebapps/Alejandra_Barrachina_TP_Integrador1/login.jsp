@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
-<script src="https://kit.fontawesome.com/735f5623c2.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/735f5623c2.js"></script>
 <link href="estilos.css" type="text/css" rel=stylesheet>
 </head>
 <body>

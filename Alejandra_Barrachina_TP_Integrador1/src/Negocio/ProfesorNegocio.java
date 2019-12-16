@@ -3,7 +3,6 @@ package Negocio;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import DAO.ProfesoresDAO;
-import Dominio.Materia;
 import Dominio.Profesor;
 
 public class ProfesorNegocio implements INegocioProfesores {
@@ -33,6 +32,9 @@ public class ProfesorNegocio implements INegocioProfesores {
 		unProfesorDAO.EliminarProfesor(eliminarProfesor);
 		
 	}
-	
 
+	public int NuevoLegajo() {
+		
+		return unProfesorDAO.NuevoLegajo();
+	}
 }

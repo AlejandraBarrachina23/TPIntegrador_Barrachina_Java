@@ -1,18 +1,13 @@
 package DAO;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import com.mysql.cj.jdbc.CallableStatement;
-
 import Dominio.Alumno;
 import Dominio.Calificaciones;
 import Dominio.Curso;
-import Dominio.Localidad;
 import Dominio.Materia;
-import Dominio.Profesor;
-import Dominio.Provincia;
+
 
 public class CursoDAO {
 

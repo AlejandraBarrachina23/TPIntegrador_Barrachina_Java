@@ -52,9 +52,7 @@ public class ProfesoresDAO {
 					ListadoProfesores.add(unProfesor);
 					
 				}
-				
-				
-						
+	
 			}
 	
 		}
@@ -134,6 +132,32 @@ public class ProfesoresDAO {
 			
 			System.out.print("Error al borrar "+ e);
 		}
+	}
+	
+	public int NuevoLegajo() {
+		
+		nuevaConexion = new ConexionDB();
+		int Legajo=0;
+		
+		try {
+			
+			Statement st= (Statement) nuevaConexion.EstablecerConexion().createStatement();
+			ResultSet TablaResultados= st.executeQuery("select idProfesor from profesores as legajo order by idProfesor desc limit 1");
+					
+			while(TablaResultados.next()) {
+				
+					Legajo=TablaResultados.getInt("idProfesor");
+			}
+
+		} 
+		
+		catch (Exception e) {
+			
+			System.out.print("Error al buscar "+ e);
+		}
+			
+		return Legajo+1;
+
 	}
 	
 }

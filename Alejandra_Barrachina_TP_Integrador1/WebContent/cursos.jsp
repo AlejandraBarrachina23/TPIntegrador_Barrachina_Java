@@ -52,15 +52,15 @@
 						<option class="opciones" value="<%=unaMateria.getIdMateria()%>"><%= unaMateria.getNombre()%></option><%}%>
 					</select><br>
 				<label>Semestre</label>
-					<select id="cboxSemestre">
+					<select id="cboxSemestre" required>
 					 	<option disabled selected>Seleccione un Semestre</option>
 						<option>Primero</option>
 						<option>Segundo</option>
 					</select><br>
 				<label>Año</label>
-				<input type="text" id="tboxAnio" name="anio"><br>
+				<input type="text" id="tboxAnio" name="anio" required><br>
 				<label>Profesor</label>
-					<select  id="cboxProfesores">
+					<select  id="cboxProfesores" required>
 					<option disabled selected>Seleccione un profesor</option>
 						<% ProfesorNegocio unProfesorNegocio = new ProfesorNegocio();
 						for(Profesor unProfesor : unProfesorNegocio.ListadoProfesores()){ %>
@@ -107,9 +107,9 @@
 			</div>
 			
 				<label>Materia: </label><br>
-				<input type="text" id="tboxMateria-previsualizacion" name="tboxMateria-previsualizacion" readonly=true><br>
+				<input type="text" id="tboxMateria-previsualizacion" name="tboxMateria-previsualizacion" required readonly=true><br>
 				<label>Semestre: </label><br>
-				<input type="text" id="tboxSemestre-previsualizacion" name="tboxSemestre-previsualizacion"  readonly=true><br>
+				<input type="text" id="tboxSemestre-previsualizacion" name="tboxSemestre-previsualizacion" required readonly=true><br>
 				<label>Año: </label><br>
 				<input type="text" id="tboxAnio-previsualizacion" value="2019" name="tboxAnio-previsualizacion" required readonly=true><br>
 				<label>Profesor: </label><br>
@@ -117,7 +117,7 @@
 				<label>Listado de Alumnos: </label><br>
 				<input type="hidden" id="listado-alumnos-oculto" name="listado-alumnos-oculto" required/>
 				<ul id="listado-alumnos"></ul>
-				<input type="submit" id="btnAgregarCurso" name="btnAgregarCurso" class="btnFormulario" onsubmit="return validacionesFormulario()" value="AGREGAR">	
+				<input type="submit" id="btnAgregarCurso" name="btnAgregarCurso" class="btnFormulario" value="AGREGAR">	
 			</div>
 	</form>
 </section>

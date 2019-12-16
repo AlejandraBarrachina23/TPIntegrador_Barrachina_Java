@@ -4,15 +4,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import com.mysql.cj.jdbc.CallableStatement;
-
 import Dominio.Alumno;
 import Dominio.Curso;
-import Dominio.Localidad;
 import Dominio.Materia;
 import Dominio.Profesor;
-import Dominio.Provincia;
 import Dominio.Reporte;
 
 public class ReportesDAO {

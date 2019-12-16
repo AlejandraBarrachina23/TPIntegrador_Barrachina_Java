@@ -41,8 +41,10 @@ public class ServeletProfesor extends HttpServlet {
 		
 		}
 		
+		request.setAttribute("ServidorProfesores", "eliminar");
 		RequestDispatcher Request = request.getRequestDispatcher("profesores.jsp");
 		Request.forward(request, response);
+		
 						
 
 	}
@@ -73,10 +75,10 @@ public class ServeletProfesor extends HttpServlet {
 			
 				ProfesoresDAO Profesor = new ProfesoresDAO();
 					
-					if(TipoFormulario.equals("agregar")) {Profesor.AgregarProfesor(unNuevoProfesor);}
+					if(TipoFormulario.equals("agregar")) {Profesor.AgregarProfesor(unNuevoProfesor);request.setAttribute("ServidorProfesores", "agregar");}
 					else if(TipoFormulario.equals("modificar")) {
 						unNuevoProfesor.setLegajo(Integer.parseInt(request.getParameter("tboxLegajo")));
-						Profesor.ModificarProfesor(unNuevoProfesor);}							
+						Profesor.ModificarProfesor(unNuevoProfesor);request.setAttribute("ServidorProfesores", "modificar");}							
 			}
 	
 		} 
