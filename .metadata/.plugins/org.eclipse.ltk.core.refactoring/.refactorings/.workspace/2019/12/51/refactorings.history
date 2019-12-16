@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;AppWeb_SESSION_APPLICATION&apos;" deleteContents="false" description="Delete resource &apos;AppWeb_SESSION_APPLICATION&apos;" element1="/AppWeb_SESSION_APPLICATION" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1576506006606"/>
+</session>

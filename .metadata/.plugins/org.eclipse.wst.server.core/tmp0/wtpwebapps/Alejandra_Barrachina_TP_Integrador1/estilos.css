@@ -833,6 +833,24 @@ label {
 	
 }
 
+.modal-contenido a {
+	color:#fff;
+	
+}
+
+.btn-modal-eliminar{
+	
+	width:30%;
+	
+	background-color: #2C5060;
+	font-size:20px;
+	padding:5px 25px;
+	font-family: 'Oswald', sans-serif;
+	margin:5px;
+	border:1px solid black;
+
+}
+
 .modal-contenido [type="text"] {
 	
 	width:70%;

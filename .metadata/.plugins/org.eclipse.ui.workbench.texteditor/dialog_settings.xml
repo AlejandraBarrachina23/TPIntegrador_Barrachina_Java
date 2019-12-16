@@ -8,21 +8,21 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="2019"/>
-			<item value="table"/>
-			<item value="cursose"/>
-			<item value="unCurso"/>
-			<item value="form"/>
-			<item value="ListadoAlumnosInscripto"/>
-			<item value="option"/>
-			<item value="http"/>
-			<item value="negocio"/>
-			<item value="curso se"/>
-			<item value="slice"/>
-			<item value="slicwe"/>
-			<item value="geta"/>
-			<item value="dao"/>
-			<item value="legajo"/>
+			<item value="ListadoAsistencia"/>
+			<item value="request"/>
+			<item value="btnAceptar"/>
+			<item value="btnAcep"/>
+			<item value="NAV"/>
+			<item value="radius"/>
+			<item value="oswa"/>
+			<item value="modal"/>
+			<item value="adverten"/>
+			<item value="modal-fo"/>
+			<item value="btncerra"/>
+			<item value="ventanaadver"/>
+			<item value="ventanaemerg"/>
+			<item value="ventana"/>
+			<item value="modal-cont"/>
 		</list>
 		<list key="replacehistory">
 		</list>
@@ -30,9 +30,9 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="1009"/>
 		<item key="DIALOG_Y_ORIGIN" value="163"/>
-		<item key="DIALOG_WIDTH" value="284"/>
-		<item key="DIALOG_HEIGHT" value="391"/>
-		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<item key="DIALOG_WIDTH" value="385"/>
+		<item key="DIALOG_HEIGHT" value="523"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="729"/>

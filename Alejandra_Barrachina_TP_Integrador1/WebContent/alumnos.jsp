@@ -2,8 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="Dominio.*"%>
-        <%@page import="Dominio.Provincia"%>
-        <%@page import="DAO.*"%>
+    <%@page import="Negocio.AlumnoNegocio"%>
+    <%@page import="Negocio.ProvinciasNegocio"%>
+    <%@page import="Negocio.LocalidadesNegocio"%>
     <%@page import="java.util.ArrayList"%>    
 <!DOCTYPE html>
 <html>
@@ -70,8 +71,8 @@
 				<tbody>
 			
 			<% 
-			AlumnosDAO unAlumnoDAO = new AlumnosDAO(); 
-			for(Alumno unAlumno : unAlumnoDAO.ListadoAlumnos()){%>
+			AlumnoNegocio unAlumnoNegocio = new AlumnoNegocio(); 
+			for(Alumno unAlumno : unAlumnoNegocio.ListadoAlumnos()){%>
 					<tr>  
 						  <td><%= unAlumno.getLegajo() %></td>
 						  <td><%= unAlumno.getNombre() %></td>
@@ -99,7 +100,7 @@
 					<h3>DATOS ALUMNO</h3><br>
 					<form method="post" action="ServeletAlumno" id="form-datos">
 						<input type="hidden" id="tipoFormulario" name="tipoFormulario" value="">
-						<label>Legajo<br><input type="text" id="tboxLegajo" name="tboxLegajo" readonly="true" required></label><br>
+						<label>Legajo<br><input type="text" id="tboxLegajo" name="tboxLegajo" readonly="true" value="<%=unAlumnoNegocio.NuevoLegajo()%>"></label><br>
 						<label>Nombre<br><input type="text" id="tboxNombre" name="tboxNombre" required  ></label><br>
 						<label>Apellido<br><input type="text" id="tboxApellido" name="tboxApellido" required></label><br>
 						<label>Fecha de Nacimiento</label><br><input type="date" id="tboxFechaNacimiento" name="tboxFechaNacimiento" required><br>
@@ -108,7 +109,7 @@
 						<select name="cboxProvincias" id="cboxProvincias" required>
 							<option disabled selected>Seleccione una provincia</option>
 							<%
-							ProvinciasDAO Provincias = new ProvinciasDAO();
+							ProvinciasNegocio Provincias = new ProvinciasNegocio();
 							for(Provincia unaProvincia : Provincias.ListadoProvincias()){%>
 							<option class="opciones" value="<%=unaProvincia.getIdProvincia()%>"><%= unaProvincia.getNombre()%></option><%}%>
 						</select><br>
@@ -130,41 +131,23 @@
 					<div class="modal-contenido" id="modal-advertencia">
 						<h3>ELIMINAR REGISTRO</h3><br>
 						 <p>¿Está seguro que desea eliminar el legajo <label id="registroEliminar" name="registroEliminar"></label> ?</p>
-						 <a href="#" id="eliminar-alumno" class="btn-modal">Borrar</a>
+						 <a href="#" id="eliminar-alumno" class="btn-modal-eliminar">Borrar</a>
 						  <input type="button" class="btn-modal" id="btnCancelar" value="Cancelar">	
 					</div>
 				</div>
-				
-				<!---------------------------------------------------------------------------------------------------------------
-					FORMULARIO EMERGENTE - ACCION
-			<!-------------------------------------------------------------------------------------------------------------->	
-			
-				<div class="modal-fondo-accion" id="modal-fondo-accion">
-					<div class="modal-contenido-accion">
-						<div class="accion-arriba">
-							<img src="iconos/cargado.svg" alt="tick">
-						</div>
-						<div class="accion-abajo">
-							<h3>CARGADO CON ÉXITO</h3><br>
-							<a>Salir</a>
-						</div>
-					</div>
-				</div>
-
 </section>
 <script src="funciones.js"></script>
 <script>
 
 	<%if(request.getAttribute("Servidor")!=null){
-	
-	
-	if(request.getAttribute("Servidor") == "agregar"){%>
-		alert("El registro ha sido cargado con éxito");	
+		if(request.getAttribute("Servidor") == "agregar"){%>
+			alert("El registro ha sido cargado con éxito");	
 		<%}
-	if(request.getAttribute("Servidor") == "modificar"){%> alert("El registro ha sido modificado con éxito");
-	<%}else{%> alert("El registro ha sido eliminado con éxito");
-	<%}}%>
-
+		else if(request.getAttribute("Servidor") == "modificar"){%> alert("El registro ha sido modificado con éxito");
+		<%}else{%> alert("El registro ha sido eliminado con éxito");
+		<%}
+	}%>
+	
 	$("td").click(function(){
 			
 			$('#tboxLegajo').val($(this).parents("tr").find("td").eq(0).text());
@@ -194,7 +177,7 @@
 				}
 				 $('#cboxLocalidades option').remove();			
 				 <%
-				 LocalidadesDAO Localidad = new LocalidadesDAO();
+				 LocalidadesNegocio Localidad = new LocalidadesNegocio();
 							 
 				 for(Localidad unaLocalidad : Localidad.ListadoLocalidades()){%>	
 				 

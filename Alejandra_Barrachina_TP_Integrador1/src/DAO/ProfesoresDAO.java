@@ -5,7 +5,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import com.mysql.cj.jdbc.CallableStatement;
 import Dominio.Profesor;
-import Dominio.Alumno;
 import Dominio.Localidad;
 import Dominio.Provincia;
 

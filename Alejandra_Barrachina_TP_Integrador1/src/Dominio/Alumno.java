@@ -1,4 +1,7 @@
 package Dominio;
+
+import java.util.Date;
+
 public class Alumno {
 	
 	private int Legajo;
@@ -39,8 +42,8 @@ public class Alumno {
 	public String getFechaNacimiento() {
 		return FechaNacimiento;
 	}
-	public void setFechaNacimiento(String fechaNacimiento) {
-		FechaNacimiento = fechaNacimiento;
+	public void setFechaNacimiento(String fecha) {
+		FechaNacimiento = fecha;
 	}
 	
 	public String getDireccion() {

@@ -55,9 +55,7 @@ public class AlumnosDAO {
 					ListadoAlumnos.add(unAlumno);
 					
 				}
-				
-				
-						
+		
 			}
 	
 		}
@@ -72,9 +70,8 @@ public class AlumnosDAO {
 	public void AgregarAlumno(Alumno unNuevoAlumno) throws SQLException{
 		
 		nuevaConexion = new ConexionDB();
-		
 		try {
-
+			
 			 CallableStatement SP_AgregarAlumno = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL AgregarAlumno(?,?,?,?,?,?,?,?)");
 			 SP_AgregarAlumno.setString(1,unNuevoAlumno.getNombre());
 			 SP_AgregarAlumno.setString(2,unNuevoAlumno.getApellido());
@@ -99,10 +96,6 @@ public class AlumnosDAO {
 		nuevaConexion = new ConexionDB();
 		
 		try {
-			
-			System.out.println("PROVINCIA " + modificarAlumno.getProvincia().getIdProvincia());
-			System.out.println("LOCALIDAD " + modificarAlumno.getLocalidad().getIdLocalidad());
-			System.out.println("LEGAJO " + modificarAlumno.getLegajo());
 						 
 			 CallableStatement SP_ModificarAlumno = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL ModificarAlumno(?,?,?,?,?,?,?,?,?)");
 			
@@ -143,5 +136,30 @@ public class AlumnosDAO {
 		}
 	}
 	
+	public int NuevoLegajo() {
+		
+		nuevaConexion = new ConexionDB();
+		int Legajo=0;
+		
+		try {
+			
+			Statement st= (Statement) nuevaConexion.EstablecerConexion().createStatement();
+			ResultSet TablaResultados= st.executeQuery("select legajo from alumnos order by legajo desc limit 1");
+					
+			while(TablaResultados.next()) {
+				
+					Legajo=TablaResultados.getInt("legajo");
+			}
+
+		} 
+		
+		catch (Exception e) {
+			
+			System.out.print("Error al borrar "+ e);
+		}
+			
+		return Legajo+1;
+
+	}
 	
 }

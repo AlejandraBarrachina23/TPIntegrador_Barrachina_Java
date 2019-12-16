@@ -7,13 +7,32 @@ $(document).ready( function () {
 	
 $( function() {
 	    $( "#datepicker" ).datepicker();
+	   
+	    $(function () {
+			$( "#datepicker" ).datepicker({
+				dateFormat: 'dd-mm-aaaa',
+				changeMonth:true,
+				changeYear:true,	
+				firstDay: 1,
+				monthNames: ['Enero', 'Febreo', 'Marzo',
+				'Abril', 'Mayo', 'Junio',
+				'Julio', 'Agosto', 'Septiembre',
+				'Octubre', 'Noviembre', 'Diciembre'],
+				monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
+				'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+				dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab']
+			}).datepicker("setDate", new Date());
+		});
 });
+
+
 	
 function accionFormulario(accion) {
 		let tipoFormulario = document.getElementById('tipoFormulario');
 		tipoFormulario.value = accion;
-		alert(accion);
+
 }
+
 
 const btnAbrir = document.getElementById('btnAgregar');
 var btnEliminar = document.getElementsByClassName('btn-eliminar');
