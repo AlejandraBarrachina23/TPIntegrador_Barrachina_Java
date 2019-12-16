@@ -51,10 +51,10 @@ public class ServeletCurso extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		if(request.getParameter("btnAgregarCurso")!=null) {
 			
-			//ArrayList <Alumno> ListadoAlumnos = new ArrayList<Alumno>();
+			ArrayList <Alumno> ListadoAlumnos = new ArrayList<Alumno>();
 			CursoDAO unCursoDAO = new CursoDAO();
 			Curso unNuevoCurso = new Curso();
 			Materia materiaDictada = new Materia();
@@ -69,16 +69,33 @@ public class ServeletCurso extends HttpServlet {
 			unNuevoCurso.setAnio(Integer.parseInt(request.getParameter("tboxAnio-previsualizacion")));
 			unNuevoCurso.setMateria(materiaDictada);
 			unNuevoCurso.setProfesorTitular(profesorTitular);
-						
-			for (String legajo : listadoLegajos) {
-
-				unCursoDAO.AgregarCuros(unNuevoCurso, Integer.parseInt(legajo));			
 			
+			if(!unCursoDAO.CursoExistente(unNuevoCurso)) {
+				
+				for (String legajo : listadoLegajos) {
+
+					unCursoDAO.AgregarCuros(unNuevoCurso, Integer.parseInt(legajo));			
+				
+				}
+				
+				request.setAttribute("ServidorCursos", "AgregarCurso");
+				RequestDispatcher Request = request.getRequestDispatcher("cursos.jsp");
+				Request.forward(request, response);
+				
+			}
+			
+			else {
+				
+				request.setAttribute("ServidorCursos", "CursoRepetido");
+				RequestDispatcher Request = request.getRequestDispatcher("cursos.jsp");
+				Request.forward(request, response);
 			}
 
 		}
 		
 		if(request.getParameter("btnAgregarCalificacion")!=null) {
+			
+			System.out.print("entro");
 					
 			String[] ListadoNotasxCurso = request.getParameterValues("notas");
 			String [] ListadoLegajos = request.getParameter("listado-legajos").split("-");
@@ -123,8 +140,7 @@ public class ServeletCurso extends HttpServlet {
 				}
 				
 			}
-			
-			
+
 			ArrayList<Calificaciones> ListadoFinal = new ArrayList<Calificaciones>();
 
 			for(int i=0; i<ListadoAlumnos.size(); i++) {

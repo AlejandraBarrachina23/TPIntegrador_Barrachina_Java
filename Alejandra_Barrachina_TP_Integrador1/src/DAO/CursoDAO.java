@@ -142,4 +142,35 @@ public ArrayList<Curso> AlumnosxCurso(Curso CursoSeleccionado) {
 		
 	}
 	
+	public boolean CursoExistente(Curso unCurso) {
+		
+		nuevaConexion = new ConexionDB();
+		nuevaConexion.EstablecerConexion();
+		boolean valor=false;
+		
+		try {  
+		
+		
+			Statement st= (Statement) nuevaConexion.EstablecerConexion().createStatement();
+			ResultSet TablaResultados= st.executeQuery("select distinct IdMateria,Semestre,Anio,IdProfesor from alumnosxcurso where IdMateria= " + unCurso.getMateria().getIdMateria()+ " AND Semestre='" 
+			+ unCurso.getSemestre() + "' AND Anio=" + unCurso.getAnio() + " AND IdProfesor=" + unCurso.getProfesorTitular().getLegajo());
+			
+			
+			
+			while(TablaResultados.next()) {
+				
+				valor=true;
+			}
+	
+		}
+		catch (Exception e) {
+			
+			System.out.println("No consulto "+ e);
+		}
+		
+		System.out.println(valor);
+			
+		return valor;
+	}
+	
 }

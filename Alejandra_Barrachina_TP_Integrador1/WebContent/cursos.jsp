@@ -35,7 +35,7 @@
 
 <section class="section-principal">
 	<div class="encabezados"><h3>ALTA CURSOS</h3></div>
-		<form method="post" action="ServeletCurso" id="form-cursos">
+		<form method="post" action="ServeletCurso" id="form-cursos" onsubmit='return validarFormulario();'>
 			<!---------------------------------------------------------------------------------------------------------------
 					FORM IZQUIERDA - ARRIBA
 			<!-------------------------------------------------------------------------------------------------------------->
@@ -58,7 +58,7 @@
 						<option>Segundo</option>
 					</select><br>
 				<label>Año</label>
-				<input type="text" id="tboxAnio" name="anio" required><br>
+				<input type="number" id="tboxAnio" name="anio" required><br>
 				<label>Profesor</label>
 					<select  id="cboxProfesores" required>
 					<option disabled selected>Seleccione un profesor</option>
@@ -107,15 +107,15 @@
 			</div>
 			
 				<label>Materia: </label><br>
-				<input type="text" id="tboxMateria-previsualizacion" name="tboxMateria-previsualizacion" required readonly=true><br>
+				<input type="text" id="tboxMateria-previsualizacion" name="tboxMateria-previsualizacion" readonly=true required><br>
 				<label>Semestre: </label><br>
-				<input type="text" id="tboxSemestre-previsualizacion" name="tboxSemestre-previsualizacion" required readonly=true><br>
+				<input type="text" id="tboxSemestre-previsualizacion" name="tboxSemestre-previsualizacion"readonly=true><br>
 				<label>Año: </label><br>
 				<input type="text" id="tboxAnio-previsualizacion" value="2019" name="tboxAnio-previsualizacion" required readonly=true><br>
 				<label>Profesor: </label><br>
 				<input type="text" id="tboxProfesor-previsualizacion" name="tboxProfesor-previsualizacion" required readonly=true><br>
 				<label>Listado de Alumnos: </label><br>
-				<input type="hidden" id="listado-alumnos-oculto" name="listado-alumnos-oculto" required/>
+				<input type="hidden" id="listado-alumnos-oculto" name="listado-alumnos-oculto"/>
 				<ul id="listado-alumnos"></ul>
 				<input type="submit" id="btnAgregarCurso" name="btnAgregarCurso" class="btnFormulario" value="AGREGAR">	
 			</div>
@@ -128,7 +128,52 @@
 	    $('#table_id').DataTable();
 	    
 	} );
+	
+	<%if(request.getAttribute("ServidorCursos")!=null){
+		if(request.getAttribute("ServidorCursos") == "AgregarCurso"){%>
+			alert("El registro ha sido cargado con éxito");	
+	<%}
 		
+		else if(request.getAttribute("ServidorCursos") == "CursoRepetido"){%>
+			alert("El curso ingresado ya existe");	
+			<%}
+		
+	}%>	
+	
+	function validarFormulario(){
+		
+		const formulario = document.getElementById('form-cursos');
+		const cboxMaterias = document.getElementById('cboxMaterias');
+		const cboxSemestre = document.getElementById('cboxSemestre');
+		const cboxProfesores = document.getElementById('cboxProfesores');
+		const ListadoAlumnos = document.getElementById('listado-alumnos-oculto');
+		let contador=0;
+		
+		for(i=0;i<formulario.length;i++){
+			
+			if(formulario[i].type==='text'|| formulario[i].type==='hidden'){
+				
+				 if (formulario[i].value == null || formulario[i].value.length == 0 || /^\s*$/.test(formulario[i].value)){
+					 
+					 contador++;
+
+				 }
+			}
+		}		
+		
+
+		if(contador>0){
+			
+			alert('Complete todos los campos de la previsualización para continuar');
+			return false;
+		}
+		
+		else {
+			
+			return true;
+		}
+	};
+	
 	//AÑO POR DEFECTO
 	let fecha = new Date();
 	let anio = fecha.getFullYear();
