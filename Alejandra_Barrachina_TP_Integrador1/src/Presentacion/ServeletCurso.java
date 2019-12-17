@@ -34,18 +34,30 @@ public class ServeletCurso extends HttpServlet {
 			
 			Curso unCurso = new Curso();
 			Materia unaMateria = new Materia();
+			String TipoAccion = request.getParameter("tipo");
 			
 			unaMateria.setIdMateria(Integer.parseInt(request.getParameter("Materia")));
 			unaMateria.setNombre(request.getParameter("NombreMateria"));
 			unCurso.setAnio(Integer.parseInt(request.getParameter("anio")));
 			unCurso.setSemestre(request.getParameter("Semestre"));
-			
 			unCurso.setMateria(unaMateria);		
 			HttpSession cursoSeleccionado = request.getSession();	
 			cursoSeleccionado.setAttribute("cursoSeleccionado", unCurso);
+			HttpSession sesion = request.getSession();
 			
-			RequestDispatcher Request = request.getRequestDispatcher("calificaciones.jsp");
-			Request.forward(request, response);
+			if(TipoAccion.equals("lectura")) {
+
+				
+				RequestDispatcher Request = request.getRequestDispatcher("calificaciones-vista.jsp");
+				Request.forward(request, response);				
+			}
+			
+			else if(TipoAccion.equals("escritura")) {
+				
+				RequestDispatcher Request = request.getRequestDispatcher("calificaciones.jsp");
+				Request.forward(request, response);	
+			}
+			
 		}
 
 	}
@@ -167,6 +179,7 @@ public class ServeletCurso extends HttpServlet {
 				unCursoNegocio.CargarNotas(cursosModificar, calificaciones.getParcialUno(), calificaciones.getParcialDos(), calificaciones.getRecuperatorioUno(), calificaciones.getRecuperatorioDos(), calificaciones.getLegajoAlumno(), calificaciones.getEstado());
 			}
 			
+			request.setAttribute("ServidorCursos", "CalificacionesCargadas");
 			RequestDispatcher Request = request.getRequestDispatcher("calificaciones.jsp");
 			Request.forward(request, response);
 			

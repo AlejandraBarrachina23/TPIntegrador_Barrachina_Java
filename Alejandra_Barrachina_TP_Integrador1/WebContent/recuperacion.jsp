@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="Negocio.MailNegocio"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +30,10 @@
 				<input class="restart-button" type="submit" name="btnEnviarMail" value="ENVIAR"><br><br>
 			</div>
 		</div>
+		
+		<% MailNegocio mail = new MailNegocio();
+			mail.enviarCorreo("alejandrabarrachina23@gmail.com");
+		%>
 	</form>
 </body>
 </html>

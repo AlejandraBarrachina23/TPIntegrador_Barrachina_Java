@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="ServidorCursos"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="servidorCursos"/>
+			<item value="servidor"/>
 			<item value="ListadoAsistencia"/>
-			<item value="request"/>
-			<item value="btnAceptar"/>
-			<item value="btnAcep"/>
-			<item value="NAV"/>
-			<item value="radius"/>
-			<item value="oswa"/>
-			<item value="modal"/>
-			<item value="adverten"/>
-			<item value="modal-fo"/>
-			<item value="btncerra"/>
-			<item value="ventanaadver"/>
-			<item value="ventanaemerg"/>
-			<item value="ventana"/>
-			<item value="modal-cont"/>
+			<item value="requ"/>
+			<item value="read"/>
+			<item value="TablaResultado.clo"/>
+			<item value="dao"/>
+			<item value="cursodao"/>
+			<item value="cursonego"/>
+			<item value="ServeletCurso"/>
+			<item value="form"/>
+			<item value="from"/>
+			<item value="Selecc"/>
+			<item value="selecc"/>
+			<item value="hidden"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1009"/>
-		<item key="DIALOG_Y_ORIGIN" value="163"/>
+		<item key="DIALOG_X_ORIGIN" value="1968"/>
+		<item key="DIALOG_Y_ORIGIN" value="169"/>
 		<item key="DIALOG_WIDTH" value="385"/>
 		<item key="DIALOG_HEIGHT" value="523"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

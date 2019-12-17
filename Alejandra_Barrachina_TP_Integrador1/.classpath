@@ -19,5 +19,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Alejandra/Desktop/Java/Trabajos/javax.mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Alejandra/Desktop/Java/Trabajos/Alejandra_Barrachina_TP_Integrador1/activation-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Alejandra/Desktop/Java/Trabajos/Alejandra_Barrachina_TP_Integrador1/mail-1.4.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

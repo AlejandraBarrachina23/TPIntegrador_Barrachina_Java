@@ -55,7 +55,7 @@
 					<td><%= unCurso.getAnio() %></td>
 				    <td>
 				    	<a href="" class ="codigo-curso"><input type="button" class="btn-mostrar" value=""></a>
-				        <a href="" class ="codigo-curso"><input type="button" class="btn-calificaciones" value=""></a>
+				        <a href="" class ="codigo-curso-vista"><input type="button" class="btn-calificaciones" value=""></a>
 				    </td>
 				</tr><%}%>
 			</tbody>
@@ -74,7 +74,7 @@
 		let Materia = ($(this).parents("tr").find("td").eq(0).text()).split("-");
 		let Semestre = $(this).parents("tr").find("td").eq(1).text();
 		let anio = $(this).parents("tr").find("td").eq(2).text();			
-		var link = "ServeletCurso?Materia="+Materia[0]+"&NombreMateria="+Materia[1]+"&Semestre="+Semestre+"&anio="+anio;
+		var link = "ServeletCurso?Materia="+Materia[0]+"&NombreMateria="+Materia[1]+"&Semestre="+Semestre+"&anio="+anio+"&tipo=lectura";
 
 		$('.codigo-curso').each(function(){
 		    $(this).attr("href", link);
@@ -82,7 +82,19 @@
 		
 	});
 	
-	
+	$("td").click(function(){
+		
+		let Materia = ($(this).parents("tr").find("td").eq(0).text()).split("-");
+		let Semestre = $(this).parents("tr").find("td").eq(1).text();
+		let anio = $(this).parents("tr").find("td").eq(2).text();			
+		var link = "ServeletCurso?Materia="+Materia[0]+"&NombreMateria="+Materia[1]+"&Semestre="+Semestre+"&anio="+anio+"&tipo=escritura";
+
+		$('.codigo-curso-vista').each(function(){
+		    $(this).attr("href", link);
+		 });
+		
+	});
+
 </script>
 </body>
 </html>

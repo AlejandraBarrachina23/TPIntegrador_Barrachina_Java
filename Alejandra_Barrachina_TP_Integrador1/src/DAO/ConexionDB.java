@@ -9,8 +9,8 @@ public class ConexionDB {
 
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
-	private String pass = "";
-	private String dbName = "sistemauniversitario?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	private String pass = "admin";
+	private String dbName = "SistemaUniversitario?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
 	protected Connection connection;
 	

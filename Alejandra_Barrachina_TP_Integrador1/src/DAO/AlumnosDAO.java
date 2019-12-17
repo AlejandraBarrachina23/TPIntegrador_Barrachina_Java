@@ -22,7 +22,8 @@ public class AlumnosDAO {
 		
 		
 		try {  
-			
+		
+			System.out.println(nuevaConexion);
 			ResultSet TablaResultados = nuevaConexion.query("SELECT * FROM Alumnos INNER JOIN Localidades ON Alumnos.IdLocalidad = Localidades.IdLocalidad INNER JOIN Provincias ON Provincias.IdProvincia = Alumnos.IdProvincias");
 			while(TablaResultados.next()) {
 				
@@ -73,7 +74,7 @@ public class AlumnosDAO {
 				
 		try {
 			
-			 CallableStatement SP_AgregarAlumno = (CallableStatement) nuevaConexion.Open().prepareCall("CALL AgregarAlumno(?,?,?,?,?,?,?,?");
+			 CallableStatement SP_AgregarAlumno = (CallableStatement) nuevaConexion.Open().prepareCall("CALL AgregarAlumno(?,?,?,?,?,?,?,?)");
 			 SP_AgregarAlumno.setString(1,unNuevoAlumno.getNombre());
 			 SP_AgregarAlumno.setString(2,unNuevoAlumno.getApellido());
 			 SP_AgregarAlumno.setString(3,unNuevoAlumno.getFechaNacimiento());

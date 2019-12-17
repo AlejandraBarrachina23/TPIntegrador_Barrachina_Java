@@ -74,6 +74,7 @@
 			unProfesor.setLegajo(usuarioLogeado.getUnProfesor().getLegajo());
 			cursoSeleccionado = (Curso)cursoxprofesor.getAttribute("cursoSeleccionado");
 			cursoSeleccionado.setProfesorTitular(unProfesor);
+
 			
 			for(Curso unCurso : unCursoNegocio.AlumnosxCurso(cursoSeleccionado)){%>	
 							
@@ -102,13 +103,20 @@
 				}%>
 			</tbody>
 			</table>
-				<input type="text" id="listado-legajos" value="" name="listado-legajos">
+				<input type="hidden" id="listado-legajos" value="" name="listado-legajos">
 				<input type="submit" id="btnAgregarCalificacion" name="btnAgregarCalificacion" class="btnFormulario" value="CARGAR CALIFICACIONES">			
 			</div>
 			</form>		
 </section>
 <script>
+
+<%if(request.getAttribute("ServidorCursos")!=null){
+	if(request.getAttribute("ServidorCursos") == "CalificacionesCargadas"){%>
+		alert("Las calificaciones fueron cargadas exitosamente");	
+	<%}
 	
+}%>
+
 	$(document).ready( function () {
 	    $('#table_id').DataTable();
 	    
@@ -147,7 +155,6 @@
 			}
 		});
 	}
-	
 	
 	
 </script>

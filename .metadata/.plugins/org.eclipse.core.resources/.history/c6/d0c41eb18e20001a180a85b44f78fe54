@@ -1,0 +1,59 @@
+package Negocio;
+
+import java.util.Properties;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+import sun.rmi.transport.Transport;
+
+public class MailNegocio {
+
+	public boolean enviarCorreo(String recepient) {
+		
+		boolean enviado = false;
+		
+		try {
+			
+			Properties propiedades = System.getProperties();
+			propiedades.put("mail.smtp.starttls.enable","true");
+			propiedades.put("mail.smtp.auth", "true");
+			propiedades.put("mail.smtp.host", "smtp.gmail.com");
+			propiedades.put("mail.smtp.port", 587);
+			
+			String MiMail = "alejandrabarrachina23@gmail.com";
+			String Password = "barr1512Tuas.";
+			
+			Session session = Session.getInstance(propiedades, new Authenticator() {
+				
+				protected PasswordAuthentication getPasswordAuthentication() {
+					
+					return new PasswordAuthentication(MiMail,Password,recepient);
+				}
+			});
+			
+			Message Mensaje = prepararMensaje(session,MiMail);
+			
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+
+	}
+	
+	private static Message prepararMensaje(Session session, String MiMail, String recepient) {
+		
+		try {
+			
+			Message mensaje = new MimeMessage(session);
+			mensaje.setFrom(new InternetAddress(MiMail));
+			mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
+			mensaje.setSubject("Mi primer mail");
+			
+		} catch (Exception e) {
+			
+		}
+	}
+}
