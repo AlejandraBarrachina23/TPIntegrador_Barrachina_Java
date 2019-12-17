@@ -85,10 +85,10 @@
 						<%for(Calificaciones calificacionxalumno : unCurso.getListadoNotas()){
 							
 							if(alumnosxcurso.getLegajo()==calificacionxalumno.getLegajoAlumno()){%>
-        						  <td><input type="number" name="notas" value="<%=calificacionxalumno.getParcialUno() %>" max="10" min="0"></td>
-								  <td><input type="number" name="notas" value="<%=calificacionxalumno.getParcialDos() %>" max="10" min="0"></td>
-								  <td><input type="number" name="notas" value="<%=calificacionxalumno.getRecuperatorioUno() %>" max="10" min="0"></td>
-								  <td><input type="number" name="notas" value="<%=calificacionxalumno.getRecuperatorioDos() %>" max="10" min="0"><input type="hidden" class="Estado-oculto" value="<%= calificacionxalumno.getEstado() %>"></td>
+        						  <td><input type="number" name="notas" value="<%=calificacionxalumno.getParcialUno() %>" max="10" min="0" required></td>
+								  <td><input type="number" name="notas" value="<%=calificacionxalumno.getParcialDos() %>" max="10" min="0" required></td>
+								  <td><input type="number" name="notas" value="<%=calificacionxalumno.getRecuperatorioUno() %>" max="10" min="0" required></td>
+								  <td><input type="number" name="notas" value="<%=calificacionxalumno.getRecuperatorioDos() %>" max="10" min="0"required><input type="hidden" class="Estado-oculto" value="<%= calificacionxalumno.getEstado() %>"></td>
 								  <td>
 								  <select class="cboxEstado" name="cboxEstado">
 									  <option value="Libre">Libre</option>
@@ -124,19 +124,16 @@
 					selectEstado[i].value = estadosAlumnos[j].value;
 				}
 			}
-			
-
-			
+		
 		}
-		
-		
-	   
+   
 	} );
 	
 	const AgregarCalificacion = document.getElementById('btnAgregarCalificacion');
 	
 	AgregarCalificacion.addEventListener('click', function(){
 		
+		document.getElementById('listado-legajos').value="";
 		ListadoLegajos();
 		
 	});

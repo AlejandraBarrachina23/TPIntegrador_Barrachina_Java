@@ -54,7 +54,7 @@
 					<td><%= unCurso.getSemestre() %></td>
 					<td><%= unCurso.getAnio() %></td>
 				    <td>
-				    	<a href="#" ><input type="button" class="btn-mostrar" value=""></a>
+				    	<a href="" class ="codigo-curso"><input type="button" class="btn-mostrar" value=""></a>
 				        <a href="" class ="codigo-curso"><input type="button" class="btn-calificaciones" value=""></a>
 				    </td>
 				</tr><%}%>

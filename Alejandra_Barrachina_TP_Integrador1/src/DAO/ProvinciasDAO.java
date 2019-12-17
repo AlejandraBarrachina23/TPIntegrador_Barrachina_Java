@@ -14,12 +14,11 @@ public class ProvinciasDAO {
 		
 		ArrayList<Provincia> ListadoProvincias = new ArrayList<Provincia>();
 		nuevaConexion = new ConexionDB();
-		nuevaConexion.EstablecerConexion();
+		nuevaConexion.Open();
 		
 		try {  
 			
-			Statement st= (Statement) nuevaConexion.EstablecerConexion().createStatement();
-			ResultSet TablaResultados= st.executeQuery("SELECT * FROM Provincias");
+			ResultSet TablaResultados= nuevaConexion.query("SELECT * FROM Provincias");
 			
 			while(TablaResultados.next()) {
 				Provincia unaProvincia = new Provincia();
@@ -31,7 +30,12 @@ public class ProvinciasDAO {
 		}
 		catch (Exception e) {
 			
+			e.printStackTrace();
 			System.out.print("No cargo "+ e);
+		}
+		
+		finally {
+			nuevaConexion.close();
 		}
 		
 		return ListadoProvincias;

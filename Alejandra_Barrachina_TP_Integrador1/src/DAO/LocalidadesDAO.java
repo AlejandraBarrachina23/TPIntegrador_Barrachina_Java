@@ -14,12 +14,11 @@ public class LocalidadesDAO {
 		
 		ArrayList<Localidad> ListadoLocalidades = new ArrayList<Localidad>();
 		nuevaConexion = new ConexionDB();
-		nuevaConexion.EstablecerConexion();
+		nuevaConexion.Open();
 		
 		try {  
 			
-			Statement st= (Statement) nuevaConexion.EstablecerConexion().createStatement();
-			ResultSet TablaResultados= st.executeQuery("SELECT * FROM Localidades WHERE IdProvincia = " + CodigoProvincia);
+			ResultSet TablaResultados= nuevaConexion.query("SELECT * FROM Localidades WHERE IdProvincia = " + CodigoProvincia);
 			
 			while(TablaResultados.next()) {
 				Localidad unaLocalidad = new Localidad();
@@ -29,9 +28,15 @@ public class LocalidadesDAO {
 			}
 	
 		}
+		
 		catch (Exception e) {
 			
+			e.printStackTrace();
 			System.out.print("No cargo "+ e);
+		}
+		
+		finally {
+			nuevaConexion.close();
 		}
 		
 		return ListadoLocalidades;
@@ -42,12 +47,11 @@ public class LocalidadesDAO {
 		
 		ArrayList<Localidad> ListadoLocalidades = new ArrayList<Localidad>();
 		nuevaConexion = new ConexionDB();
-		nuevaConexion.EstablecerConexion();
+		nuevaConexion.Open();
 		
 		try {  
 			
-			Statement st= (Statement) nuevaConexion.EstablecerConexion().createStatement();
-			ResultSet TablaResultados= st.executeQuery("SELECT * FROM Localidades");
+			ResultSet TablaResultados= nuevaConexion.query("SELECT * FROM Localidades");
 			
 			while(TablaResultados.next()) {
 				Localidad unaLocalidad = new Localidad();
@@ -60,9 +64,15 @@ public class LocalidadesDAO {
 			}
 	
 		}
+		
 		catch (Exception e) {
 			
+			e.printStackTrace();
 			System.out.print("No cargo "+ e);
+		}
+		
+		finally {
+			nuevaConexion.close();
 		}
 		
 		return ListadoLocalidades;

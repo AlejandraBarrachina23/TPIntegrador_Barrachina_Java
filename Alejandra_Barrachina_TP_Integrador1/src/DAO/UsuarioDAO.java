@@ -17,10 +17,9 @@ public class UsuarioDAO {
 		try {
 			
 			nuevaConexion = new ConexionDB();
-			nuevaConexion.EstablecerConexion();
+			nuevaConexion.Open();
 			Usuario usuarioDB = new Usuario();
-			Statement st= (Statement) nuevaConexion.EstablecerConexion().createStatement();		
-			ResultSet TablaResultados= st.executeQuery("SELECT * from Usuario WHERE Usuario='"+ unUsuario.getUsuario()+"'");
+			ResultSet TablaResultados= nuevaConexion.query("SELECT * from Usuario WHERE Usuario='"+ unUsuario.getUsuario()+"'");
 				
 			while(TablaResultados.next()) {
 				
@@ -36,8 +35,15 @@ public class UsuarioDAO {
 		}
 
 		catch (Exception e) {
-
+			
+			e.printStackTrace();
+			System.out.print("No cargo "+ e);
 		}
+		
+		finally {
+			nuevaConexion.close();
+		}
+		
 		return null;
 	
 	}	
@@ -48,7 +54,7 @@ public class UsuarioDAO {
 		
 		try {
 
-			 CallableStatement SP_BloquearUsuario = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL BloquearUsuario(?)");
+			 CallableStatement SP_BloquearUsuario = (CallableStatement) nuevaConexion.Open().prepareCall("CALL BloquearUsuario(?)");
 			 SP_BloquearUsuario.setString(1,NombreUsuario);
 			 SP_BloquearUsuario.execute();
 			
@@ -56,7 +62,12 @@ public class UsuarioDAO {
 		
 		catch (Exception e) {
 			
-			System.out.print("Error al bloquear "+ e);
+			e.printStackTrace();
+			System.out.print("No cargo "+ e);
+		}
+		
+		finally {
+			nuevaConexion.close();
 		}
 	}
 }

@@ -11,22 +11,20 @@ import Dominio.Localidad;
 import Dominio.Provincia;
 
 public class AlumnosDAO {
-
+	
 	private ConexionDB nuevaConexion;
 	
 	public ArrayList<Alumno> ListadoAlumnos() throws SQLException{
 		
-		ArrayList<Alumno> ListadoAlumnos = new ArrayList<Alumno>();
 		nuevaConexion = new ConexionDB();
-		nuevaConexion.EstablecerConexion();
+		nuevaConexion.Open();
+		ArrayList<Alumno> ListadoAlumnos = new ArrayList<Alumno>();
+		
 		
 		try {  
 			
-			Statement st= (Statement) nuevaConexion.EstablecerConexion().createStatement();
-			ResultSet TablaResultados= st.executeQuery("SELECT * FROM Alumnos INNER JOIN Localidades ON Alumnos.IdLocalidad = Localidades.IdLocalidad INNER JOIN Provincias ON Provincias.IdProvincia = Alumnos.IdProvincias");
-			
+			ResultSet TablaResultados = nuevaConexion.query("SELECT * FROM Alumnos INNER JOIN Localidades ON Alumnos.IdLocalidad = Localidades.IdLocalidad INNER JOIN Provincias ON Provincias.IdProvincia = Alumnos.IdProvincias");
 			while(TablaResultados.next()) {
-				
 				
 				Alumno unAlumno = new Alumno();
 				Localidad unaLocalidad = new Localidad();
@@ -53,15 +51,17 @@ public class AlumnosDAO {
 					unAlumno.setLocalidad(unaLocalidad);
 					
 					ListadoAlumnos.add(unAlumno);
-					
 				}
-		
 			}
-	
 		}
 		catch (Exception e) {
 			
+			e.printStackTrace();
 			System.out.print("No cargo "+ e);
+		}
+		
+		finally {
+			nuevaConexion.close();
 		}
 		
 		return ListadoAlumnos;
@@ -70,9 +70,10 @@ public class AlumnosDAO {
 	public void AgregarAlumno(Alumno unNuevoAlumno) throws SQLException{
 		
 		nuevaConexion = new ConexionDB();
+				
 		try {
 			
-			 CallableStatement SP_AgregarAlumno = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL AgregarAlumno(?,?,?,?,?,?,?,?)");
+			 CallableStatement SP_AgregarAlumno = (CallableStatement) nuevaConexion.Open().prepareCall("CALL AgregarAlumno(?,?,?,?,?,?,?,?");
 			 SP_AgregarAlumno.setString(1,unNuevoAlumno.getNombre());
 			 SP_AgregarAlumno.setString(2,unNuevoAlumno.getApellido());
 			 SP_AgregarAlumno.setString(3,unNuevoAlumno.getFechaNacimiento());
@@ -87,7 +88,12 @@ public class AlumnosDAO {
 		
 		catch (Exception e) {
 			
+			e.printStackTrace();
 			System.out.print("Error al cargar "+ e);
+		}
+		
+		finally {
+			nuevaConexion.close();
 		}
 	}
 	
@@ -97,7 +103,7 @@ public class AlumnosDAO {
 		
 		try {
 						 
-			 CallableStatement SP_ModificarAlumno = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL ModificarAlumno(?,?,?,?,?,?,?,?,?)");
+			 CallableStatement SP_ModificarAlumno = (CallableStatement) nuevaConexion.Open().prepareCall("CALL ModificarAlumno(?,?,?,?,?,?,?,?,?)");
 			
 			 SP_ModificarAlumno.setInt(1,modificarAlumno.getLegajo());
 			 SP_ModificarAlumno.setString(2,modificarAlumno.getNombre());
@@ -124,15 +130,20 @@ public class AlumnosDAO {
 		
 		try {
 			 
-			 CallableStatement SP_EliminarAlumno = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL EliminarAlumno(?)");
+			 CallableStatement SP_EliminarAlumno = (CallableStatement) nuevaConexion.Open().prepareCall("CALL EliminarAlumno(?)");
 			 SP_EliminarAlumno.setInt(1,eliminarAlumno);
 			 SP_EliminarAlumno.execute();
 	
 		} 
 		
-		catch (Exception e) {
+	catch (Exception e) {
 			
-			System.out.print("Error al borrar "+ e);
+			e.printStackTrace();
+			System.out.print("Error al cargar "+ e);
+		}
+		
+		finally {
+			nuevaConexion.close();
 		}
 	}
 	
@@ -143,7 +154,7 @@ public class AlumnosDAO {
 		
 		try {
 			
-			Statement st= (Statement) nuevaConexion.EstablecerConexion().createStatement();
+			Statement st= (Statement) nuevaConexion.Open().createStatement();
 			ResultSet TablaResultados= st.executeQuery("select legajo from alumnos order by legajo desc limit 1");
 					
 			while(TablaResultados.next()) {
@@ -155,11 +166,15 @@ public class AlumnosDAO {
 		
 		catch (Exception e) {
 			
-			System.out.print("Error al borrar "+ e);
+			e.printStackTrace();
+			System.out.print("Error al cargar "+ e);
+		}
+		
+		finally {
+			nuevaConexion.close();
 		}
 			
 		return Legajo+1;
 
 	}
-	
 }

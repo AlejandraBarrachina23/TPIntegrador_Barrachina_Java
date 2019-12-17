@@ -19,7 +19,7 @@ public class CursoDAO {
 		
 		try {
 			
-			 CallableStatement SP_AgregarCurso = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL AgregarCurso(?,?,?,?,?)");
+			 CallableStatement SP_AgregarCurso = (CallableStatement) nuevaConexion.Open().prepareCall("CALL AgregarCurso(?,?,?,?,?)");
 			 SP_AgregarCurso.setInt(1,unNuevoCurso.getMateria().getIdMateria());
 			 SP_AgregarCurso.setString(2,unNuevoCurso.getSemestre());
 			 SP_AgregarCurso.setInt(3,unNuevoCurso.getAnio());
@@ -30,20 +30,26 @@ public class CursoDAO {
 		
 		catch (Exception e) {
 			
-			System.out.print("Error al cargar "+ e);
-		}		
+			e.printStackTrace();
+			System.out.print("No cargo "+ e);
+		}
+		
+		finally {
+			
+			nuevaConexion.close();
+		}
 	}
 	
 	public ArrayList<Curso> CursosxProfesor(int IdProfesor) {
 		
 		ArrayList<Curso> ListadoCursos = new ArrayList<Curso>();
 		nuevaConexion = new ConexionDB();
-		nuevaConexion.EstablecerConexion();
+		nuevaConexion.Open();
 		
 		try {  
 			
-			Statement st= (Statement) nuevaConexion.EstablecerConexion().createStatement();
-			ResultSet TablaResultados= st.executeQuery("SELECT DISTINCT materia.IdMateria,materia.nombre, alumnosxcurso.semestre, alumnosxcurso.anio FROM alumnosxcurso INNER JOIN materia ON alumnosxcurso.idMateria = materia.idMateria\r\n" + 
+			
+			ResultSet TablaResultados= nuevaConexion.query("SELECT DISTINCT materia.IdMateria,materia.nombre, alumnosxcurso.semestre, alumnosxcurso.anio FROM alumnosxcurso INNER JOIN materia ON alumnosxcurso.idMateria = materia.idMateria\r\n" + 
 					"WHERE IdProfesor = " + IdProfesor);
 			
 			while(TablaResultados.next()) {
@@ -59,9 +65,16 @@ public class CursoDAO {
 			}
 	
 		}
+		
 		catch (Exception e) {
 			
+			e.printStackTrace();
 			System.out.print("No cargo "+ e);
+		}
+		
+		finally {
+			
+			nuevaConexion.close();
 		}
 		
 		return ListadoCursos;
@@ -73,12 +86,12 @@ public ArrayList<Curso> AlumnosxCurso(Curso CursoSeleccionado) {
 		ArrayList<Alumno> ListadoAlumnos = new ArrayList<Alumno>();
 		ArrayList<Calificaciones> ListadoNotas = new ArrayList<Calificaciones>();
 		nuevaConexion = new ConexionDB();
-		nuevaConexion.EstablecerConexion();
+		nuevaConexion.Open();
 		
 		try {  
 			
-			Statement st= (Statement) nuevaConexion.EstablecerConexion().createStatement();
-			ResultSet TablaResultados= st.executeQuery("SELECT Alumnos.Legajo,Alumnos.Nombre, Alumnos.Apellido,NotaUno,NotaDos,RecuperatorioUno,RecuperatorioDos,alumnosxcurso.Estado FROM alumnosxcurso INNER JOIN "
+			
+			ResultSet TablaResultados= nuevaConexion.query("SELECT Alumnos.Legajo,Alumnos.Nombre, Alumnos.Apellido,NotaUno,NotaDos,RecuperatorioUno,RecuperatorioDos,alumnosxcurso.Estado FROM alumnosxcurso INNER JOIN "
 					+ "Alumnos ON Alumnos.Legajo = alumnosxcurso.legajo WHERE idMateria="+ CursoSeleccionado.getMateria().getIdMateria() + " AND Semestre= '"+ CursoSeleccionado.getSemestre()
 					+ "' AND Anio = " + CursoSeleccionado.getAnio() + " AND Idprofesor =" + CursoSeleccionado.getProfesorTitular().getLegajo());
 		
@@ -107,9 +120,16 @@ public ArrayList<Curso> AlumnosxCurso(Curso CursoSeleccionado) {
 			ListadoAlumnosxCurso.add(unCurso);	
 			
 		}
+		
 		catch (Exception e) {
 			
+			e.printStackTrace();
 			System.out.print("No cargo "+ e);
+		}
+		
+		finally {
+			
+			nuevaConexion.close();
 		}
 		
 		return ListadoAlumnosxCurso;
@@ -121,7 +141,7 @@ public ArrayList<Curso> AlumnosxCurso(Curso CursoSeleccionado) {
 		
 		try {
 
-			 CallableStatement SP_ModificarNotas = (CallableStatement) nuevaConexion.EstablecerConexion().prepareCall("CALL ModificarNotas(?,?,?,?,?,?,?,?,?,?)");
+			 CallableStatement SP_ModificarNotas = (CallableStatement) nuevaConexion.Open().prepareCall("CALL ModificarNotas(?,?,?,?,?,?,?,?,?,?)");
 			 SP_ModificarNotas.setInt(1,cursoModificar.getMateria().getIdMateria());
 			 SP_ModificarNotas.setString(2,cursoModificar.getSemestre());
 			 SP_ModificarNotas.setInt(3,cursoModificar.getAnio());
@@ -137,7 +157,13 @@ public ArrayList<Curso> AlumnosxCurso(Curso CursoSeleccionado) {
 		
 		catch (Exception e) {
 			
-			System.out.print("Error al modificar "+ e);
+			e.printStackTrace();
+			System.out.print("No cargo "+ e);
+		}
+		
+		finally {
+			
+			nuevaConexion.close();
 		}
 		
 	}
@@ -145,14 +171,12 @@ public ArrayList<Curso> AlumnosxCurso(Curso CursoSeleccionado) {
 	public boolean CursoExistente(Curso unCurso) {
 		
 		nuevaConexion = new ConexionDB();
-		nuevaConexion.EstablecerConexion();
+		nuevaConexion.Open();
 		boolean valor=false;
 		
 		try {  
 		
-		
-			Statement st= (Statement) nuevaConexion.EstablecerConexion().createStatement();
-			ResultSet TablaResultados= st.executeQuery("select distinct IdMateria,Semestre,Anio,IdProfesor from alumnosxcurso where IdMateria= " + unCurso.getMateria().getIdMateria()+ " AND Semestre='" 
+			ResultSet TablaResultados= nuevaConexion.query("select distinct IdMateria,Semestre,Anio,IdProfesor from alumnosxcurso where IdMateria= " + unCurso.getMateria().getIdMateria()+ " AND Semestre='" 
 			+ unCurso.getSemestre() + "' AND Anio=" + unCurso.getAnio() + " AND IdProfesor=" + unCurso.getProfesorTitular().getLegajo());
 			
 			
@@ -163,12 +187,17 @@ public ArrayList<Curso> AlumnosxCurso(Curso CursoSeleccionado) {
 			}
 	
 		}
+		
 		catch (Exception e) {
 			
-			System.out.println("No consulto "+ e);
+			e.printStackTrace();
+			System.out.print("No cargo "+ e);
 		}
 		
-		System.out.println(valor);
+		finally {
+			
+			nuevaConexion.close();
+		}
 			
 		return valor;
 	}

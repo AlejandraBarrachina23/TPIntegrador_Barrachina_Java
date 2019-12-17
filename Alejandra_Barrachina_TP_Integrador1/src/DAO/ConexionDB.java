@@ -7,37 +7,35 @@ import java.sql.SQLException;
 
 public class ConexionDB {
 
-	private Connection Conexion;
-	private final String host = "jdbc:mysql://localhost:3306/";
-	private final String user = "root";
-	private final String password = "";
-	private final String NombreDB = "sistemauniversitario?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-	
-	public Connection EstablecerConexion() {
-		
-		Connection Conexion = null;
-		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Conexion = DriverManager.getConnection(host+NombreDB, user, password);
-		} 
-		catch (Exception e) {
+	private String host = "jdbc:mysql://localhost:3306/";
+	private String user = "root";
+	private String pass = "";
+	private String dbName = "sistemauniversitario?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
-			System.out.println("no conecto " + e);
-		}
-		
-		return Conexion;
-	}
+	protected Connection connection;
 	
-	public ResultSet EstablecerConsulta(String Consulta){
-
-		ResultSet rs=null;
-		Statement st;
-		
+	public Connection Open()
+	{
 		try
 		{
-			st= Conexion.createStatement();
-			rs= st.executeQuery(Consulta);
+			Class.forName("com.mysql.jdbc.Driver");
+			this.connection = DriverManager.getConnection(host+dbName, user, pass);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return this.connection;
+	}
+	
+	public ResultSet query(String query)
+	{
+		Statement st;
+		ResultSet rs=null;
+		try
+		{
+			st= connection.createStatement();
+			rs= st.executeQuery(query);
 		}
 		catch(SQLException e)
 		{
@@ -46,12 +44,27 @@ public class ConexionDB {
 		return rs;
 	}
 	
-	public boolean close()
+	public boolean execute(String query)
+	{
+		Statement st;
+		boolean save = true;
+		try {
+			st = connection.createStatement();
+		    st.executeUpdate(query);
+		}
+		catch(SQLException e)
+		{
+			save = false;
+			e.printStackTrace();
+		}
+		return save;
+	}
 	
+	public boolean close()
 	{
 		boolean ok=true;
 		try {
-			if(Conexion!=null) Conexion.close();
+			connection.close();
 		}
 		catch(Exception e)
 		{
@@ -60,6 +73,7 @@ public class ConexionDB {
 		}
 		return ok;
 	}
+		
 	
 }
 

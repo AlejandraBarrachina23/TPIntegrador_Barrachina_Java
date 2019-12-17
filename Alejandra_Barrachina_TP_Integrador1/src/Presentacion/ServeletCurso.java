@@ -167,6 +167,9 @@ public class ServeletCurso extends HttpServlet {
 				unCursoNegocio.CargarNotas(cursosModificar, calificaciones.getParcialUno(), calificaciones.getParcialDos(), calificaciones.getRecuperatorioUno(), calificaciones.getRecuperatorioDos(), calificaciones.getLegajoAlumno(), calificaciones.getEstado());
 			}
 			
+			RequestDispatcher Request = request.getRequestDispatcher("calificaciones.jsp");
+			Request.forward(request, response);
+			
 		}
 
 	}

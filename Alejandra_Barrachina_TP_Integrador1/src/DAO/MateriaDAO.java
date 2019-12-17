@@ -13,28 +13,29 @@ public class MateriaDAO {
 		
 		ArrayList<Materia> ListadoMaterias = new ArrayList<Materia>();
 		nuevaConexion = new ConexionDB();
-		nuevaConexion.EstablecerConexion();
+		nuevaConexion.Open();
 		
 		try {  
 			
-			Statement st= (Statement) nuevaConexion.EstablecerConexion().createStatement();
-			ResultSet TablaResultados= st.executeQuery("SELECT * FROM Materia;");
+			ResultSet TablaResultados= nuevaConexion.query("SELECT * FROM Materia;");
 			
 			while(TablaResultados.next()) {
 				
 				Materia unaMateria = new Materia();
-				
-				
-					
-					unaMateria.setIdMateria(TablaResultados.getInt("IdMateria"));
-					unaMateria.setNombre(TablaResultados.getString("Nombre"));
-					ListadoMaterias.add(unaMateria);
-						
+				unaMateria.setIdMateria(TablaResultados.getInt("IdMateria"));
+				unaMateria.setNombre(TablaResultados.getString("Nombre"));
+				ListadoMaterias.add(unaMateria);
+			
 			}
 		}
-		catch (Exception e) {
+	catch (Exception e) {
 			
+			e.printStackTrace();
 			System.out.print("No cargo "+ e);
+		}
+		
+		finally {
+			nuevaConexion.close();
 		}
 		
 		return ListadoMaterias;
