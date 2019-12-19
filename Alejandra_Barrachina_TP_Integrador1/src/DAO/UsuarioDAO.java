@@ -70,4 +70,38 @@ public class UsuarioDAO {
 			nuevaConexion.close();
 		}
 	}
+	
+	public Profesor ComprobarMail(String Mail) {
+		
+		nuevaConexion = new ConexionDB();
+		Profesor unProfesor = new Profesor();
+		
+		try {
+			
+			nuevaConexion.Open();
+			ResultSet TablaResultados= nuevaConexion.query("select nombre, apellido, email, usuario.contrasenia, usuario.estado from profesores inner join usuario on usuario.idprofesor=profesores.idprofesor where email ='" + Mail + "'");
+			while(TablaResultados.next()) {
+				
+				unProfesor.setNombre(TablaResultados.getString("nombre"));
+				unProfesor.setApellido(TablaResultados.getString("apellido"));
+				unProfesor.setEmail(TablaResultados.getString("email"));
+				unProfesor.setDireccion(TablaResultados.getString("contrasenia"));
+				unProfesor.setTelefono(TablaResultados.getString("estado"));
+			}
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			System.out.print("No cargo "+ e);
+		}
+		
+		finally {
+			nuevaConexion.close();
+		}
+				
+		return unProfesor;
+	}
+		
+		
+	
 }

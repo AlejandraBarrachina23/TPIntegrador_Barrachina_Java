@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="ServidorCursos"/>
+		<item key="selection" value="recuper"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="recuper"/>
+			<item value="login-av"/>
+			<item value="sessi"/>
+			<item value="fession"/>
+			<item value="sessio"/>
+			<item value="estadologin"/>
+			<item value="login-avi"/>
+			<item value="elimina"/>
+			<item value="estado"/>
+			<item value="100vh"/>
+			<item value="section-index"/>
+			<item value="index-descripcion-contenido"/>
 			<item value="servidorCursos"/>
 			<item value="servidor"/>
 			<item value="ListadoAsistencia"/>
-			<item value="requ"/>
-			<item value="read"/>
-			<item value="TablaResultado.clo"/>
-			<item value="dao"/>
-			<item value="cursodao"/>
-			<item value="cursonego"/>
-			<item value="ServeletCurso"/>
-			<item value="form"/>
-			<item value="from"/>
-			<item value="Selecc"/>
-			<item value="selecc"/>
-			<item value="hidden"/>
 		</list>
 		<list key="replacehistory">
 		</list>

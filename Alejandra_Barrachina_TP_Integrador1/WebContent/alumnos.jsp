@@ -23,18 +23,20 @@
 <script src="jquery.dataTables.min.js"></script>
 </head>
 <body>
-<% /*
+<% 
 	if((Usuario) request.getSession(true).getAttribute("usuario")!=null){
 		
 		Usuario unUsuario = new Usuario();
 		unUsuario = (Usuario) request.getSession(true).getAttribute("usuario");
+		System.out.println(unUsuario);
+		
 		if(!unUsuario.getTipoUsuario().equals("administrador")){response.sendRedirect("error404.jsp");}
-	
+		else return;
 	}
-
-	else {
-		response.sendRedirect("error404.jsp");
-	}*/%>
+		else {
+			response.sendRedirect("error404.jsp");
+		}
+%>
 	
 <nav>
 <div id="user">

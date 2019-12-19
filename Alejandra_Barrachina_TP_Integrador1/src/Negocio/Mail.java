@@ -1,45 +1,59 @@
 package Negocio;
- 
-import java.util.Properties;
-import javax.mail.Message;
+
+import java.util.Properties;//
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.Authenticator;//
+import javax.mail.Message;//
 import javax.mail.MessagingException;
-import javax.mail.Session;
+import javax.mail.PasswordAuthentication;//
+import javax.mail.Session;//
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage;//
+import javax.mail.internet.AddressException;
+
  
 public class Mail {
 	
 	   
 	   
-public void EnviarMail() {
-	
-	  try {
+	public static void EnviarMail(String recibe, String envia, String contrasenia, String asunto, String contenido) throws Exception{
+		
+		System.out.println("PREPARANDO PARA ENVIAR MAIL");
+		
+		Properties properties = new Properties();
 		  
+		properties.put("mail.smtp.auth", "true");
+		properties.put("mail.smtp.starttls.enable", "true");
+		properties.put("mail.smtp.host", "smtp.gmail.com");
+		properties.put("mail.smtp.port", "587");
+		  
+		Session session = Session.getInstance(properties, new Authenticator(){
+			@Override
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(envia, contrasenia);
+			}
+		});
+		  
+		Message mensaje = prepararMensaje(session, envia, recibe, asunto, contenido);
+		
+		Transport.send(mensaje);
+		System.out.println("MENSAJE ENVIADO SATISFACTORAMENTE");
+	}
 
-		   String to = "federicolamas95@gmail.com";
-		   String from = "alejandrabarrachina23@gmail.com";
-		   String host = "localhost";   
-		   
-		  Properties properties = System.getProperties();
-		  properties.setProperty("mail.smtp.host", host);
-		  Session mailSession = Session.getDefaultInstance(properties);
-	      MimeMessage message = new MimeMessage(mailSession);
-	      
-	      message.setFrom(new InternetAddress(from));
-	      message.addRecipient(Message.RecipientType.TO,
-	                               new InternetAddress(to));
-	      message.setSubject("This is the Subject Line!");
-	      message.setText("This is actual message");
-	      Transport.send(message);
-
-	   } 
-	  
-	  catch (MessagingException mex) {
-	      mex.printStackTrace();
-	   }
-	
-}
-
+	private static Message prepararMensaje(Session session, String envia, String recibe, String asunto, String contenido) {
+		try {
+			Message mensaje = new MimeMessage(session);
+			mensaje.setFrom(new InternetAddress(envia));
+			mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(recibe));
+			mensaje.setSubject(asunto);//Carga el asunto del mensahe
+			mensaje.setText(contenido);//Carga el texto del mensaje
+			return mensaje;
+		} catch (Exception ex) {
+			Logger.getLogger(Mail.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return null;
+	}
 	 
 }

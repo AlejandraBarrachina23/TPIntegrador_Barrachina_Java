@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Refresh" content="5;url=login.jsp">
 <meta charset="ISO-8859-1">
 <title>Sistema Universitario</title>
 <link href="https://fonts.googleapis.com/css?family=Oswald:300,400&display=swap" rel="stylesheet">

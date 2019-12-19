@@ -2,11 +2,12 @@
     pageEncoding="ISO-8859-1"%>
     <%@page import="Dominio.Alumno"%>
     <%@page import="Dominio.Materia"%>
+    <%@page import="Dominio.Usuario"%>
      <%@page import="DAO.AlumnosDAO"%>
      <%@page import="Dominio.Profesor"%>
      <%@page import="Negocio.MateriaNegocio"%>
      <%@page import="Negocio.ProfesorNegocio"%>
-    <%@page import="java.util.ArrayList"%>    
+    <%@page import="java.util.ArrayList"%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +21,20 @@
 <link href="jquery.dataTables.min.css" type="text/css" rel=sytlesheet>
 <script src="jquery-3.4.1.min.js"></script>
 <script src="jquery.dataTables.min.js"></script>
-
 </head>
+<% 
+	if((Usuario) request.getSession(true).getAttribute("usuario")!=null){
+		
+		Usuario unUsuario = new Usuario();
+		unUsuario = (Usuario) request.getSession(true).getAttribute("usuario");
+		if(!unUsuario.getTipoUsuario().equals("administrador")){response.sendRedirect("error404.jsp");}
+	
+	}
+
+	else {
+		response.sendRedirect("error404.jsp");
+	}%>
+
 <body>
 <nav>
 <div id="user">

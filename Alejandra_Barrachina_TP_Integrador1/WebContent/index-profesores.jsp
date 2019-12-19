@@ -22,10 +22,9 @@
 		</div>
 		
 		<div id="index-descripcion-contenido-profesores">
-			<div class="index-item-descripcion"><img src="img/cursos-big.png" alt="cursos">
+			<div class="index-item-descripcion"><a href="cursosporprofesor.jsp"><img src="img/cursos-big.png" alt="cursos"></a>
 				<h3>Cursos</h3>
-				<p> Accede a los cursos a los que estas asociado, modifica las calificaciones y asistencias de tus alumnos </p>
-				<a href="cursosporprofesor.jsp" class="btn-index">IR A CURSOS</a>		 
+				<p> Accede a los cursos a los que estas asociado, modifica las calificaciones y asistencias de tus alumnos </p>	 
 			</div>
 		</div>
 	</div>

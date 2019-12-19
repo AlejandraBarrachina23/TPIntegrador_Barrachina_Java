@@ -15,7 +15,6 @@
 <fullyQualifiedTypeName name="Negocio.INegocioMateria"/>
 <fullyQualifiedTypeName name="DAO.CursoDAO"/>
 <fullyQualifiedTypeName name="com.mysql.cj.Session"/>
-<fullyQualifiedTypeName name="Negocio.UsuarioNegocio"/>
 <fullyQualifiedTypeName name="Negocio.INegocioProfesores"/>
 <fullyQualifiedTypeName name="Negocio.IProvinciasNegocio"/>
 <fullyQualifiedTypeName name="DAO.LocalidadesDAO"/>
@@ -28,7 +27,6 @@
 <fullyQualifiedTypeName name="DAO.MateriaDAO"/>
 <fullyQualifiedTypeName name="Dominio.Curso"/>
 <fullyQualifiedTypeName name="Dominio.Materia"/>
-<fullyQualifiedTypeName name="Dominio.Profesor"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
 <fullyQualifiedTypeName name="Negocio.IAlumno"/>
@@ -53,4 +51,8 @@
 <fullyQualifiedTypeName name="javax.mail.Message.RecipientType"/>
 <fullyQualifiedTypeName name="sun.rmi.transport.Transport"/>
 <fullyQualifiedTypeName name="javax.mail.Transport"/>
+<fullyQualifiedTypeName name="Negocio.UsuarioNegocio"/>
+<fullyQualifiedTypeName name="Negocio.IUsuario"/>
+<fullyQualifiedTypeName name="Dominio.Profesor"/>
+<fullyQualifiedTypeName name="org.apache.catalina.ha.backend.Sender"/>
 </qualifiedTypeNameHistroy>

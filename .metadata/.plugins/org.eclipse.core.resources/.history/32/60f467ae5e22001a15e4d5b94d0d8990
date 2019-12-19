@@ -1,0 +1,32 @@
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+
+<script src="https://kit.fontawesome.com/735f5623c2.js"></script>
+<link href="estilos.css" type="text/css" rel=stylesheet>
+</head>
+<body>
+
+	<form id="form-login" method="post" action="index.jsp">
+	<div id="form-login-left">				
+			<img src="img/fondo-error.png" alt="fondo-universidad">
+		</div>	
+		<div id="form-login-right">
+			<div id="login-informacion">
+					<div id="form-advertencia">
+						<img src="img/cancel.svg" alt="icono-advertencia" class="icono-advertencia">
+						<h2>PAGINA NO ENCONTRADA</h2>
+						<p>as intentando ingresar a un enlace que no está disponible.</p>
+						<a href="javascript:window.history.back();">&laquo; Volver atrás</a>
+					</div>
+			</div>
+		</div>
+	</form>
+<script>
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+package Negocio;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import Dominio.Alumno;
+
+public interface IUsuario {
+	
+
+
+}

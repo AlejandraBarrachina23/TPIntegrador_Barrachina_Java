@@ -1,0 +1,14 @@
+package Negocio;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import Dominio.Alumno;
+import Dominio.Usuario;
+
+public interface IUsuario {
+	
+	public void VerificarExistenciaUsuario(Usuario UsuarioIngresado) throws Exception;
+	public void VerificarInicioSesion(Usuario UsuarioIngresado) throws Exception
+
+}

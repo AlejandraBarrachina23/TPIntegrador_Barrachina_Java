@@ -22,7 +22,7 @@ public class AlumnoNegocio implements IAlumno {
 
 	public String EstadoAlumno(float promedio, String estado, int notauno, int notados) {
 		
-		if(notauno <6 || notados<6 || estado =="Libre") return "Recursa";
+		if(notauno <6 || notados<6 || estado.equals("Libre")) return "Recursa";
 		else if(promedio>=8) return "Promociona";
 		else if(promedio>=6 && promedio<8) return "Regulariza";
 		else return "Recursa";

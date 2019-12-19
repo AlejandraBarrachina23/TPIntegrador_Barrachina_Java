@@ -26,7 +26,7 @@
 </head>
 <body>
 
-<%/*
+<% 
 	if((Usuario) request.getSession(true).getAttribute("usuario")!=null){
 		
 		Usuario unUsuario = new Usuario();
@@ -37,7 +37,7 @@
 
 	else {
 		response.sendRedirect("error404.jsp");
-	}*/%>
+	}%>
 	
 
 <nav>

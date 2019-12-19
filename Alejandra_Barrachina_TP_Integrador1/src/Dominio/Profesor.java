@@ -10,7 +10,14 @@ public class Profesor {
 	private Provincia Provincia;
 	private String Email;
 	private String Telefono;
+	private boolean Estado;
 	
+	public boolean isEstado() {
+		return Estado;
+	}
+	public void setEstado(boolean estado) {
+		Estado = estado;
+	}
 	public int getLegajo() {
 		return Legajo;
 	}

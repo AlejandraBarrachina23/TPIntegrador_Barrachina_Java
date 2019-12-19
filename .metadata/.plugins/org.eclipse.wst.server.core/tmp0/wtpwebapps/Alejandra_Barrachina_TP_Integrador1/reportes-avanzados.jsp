@@ -4,6 +4,7 @@
     <%@page import="Dominio.Materia"%>
     <%@page import="Dominio.Curso"%>
     <%@page import="Dominio.Profesor"%>
+     <%@page import="Dominio.Usuario"%>
     <%@page import="Negocio.AlumnoNegocio"%>
     <%@page import="Dominio.Calificaciones"%>
     <%@page import="Negocio.MateriaNegocio"%>
@@ -24,10 +25,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
 <script src="jquery-3.4.1.min.js"></script>
 <script src="jquery.dataTables.min.js"></script>
-
 </head>
 <body>
 
+<% 
+	if((Usuario) request.getSession(true).getAttribute("usuario")!=null){
+		
+		Usuario unUsuario = new Usuario();
+		unUsuario = (Usuario) request.getSession(true).getAttribute("usuario");
+		if(!unUsuario.getTipoUsuario().equals("administrador")){response.sendRedirect("error404.jsp");}
+	
+	}
+
+	else {
+		response.sendRedirect("error404.jsp");
+	}%>
 <nav>
 <div id="user">
 		<a href="index.jsp"><img id="icon-usuario" src="iconos/usuario-admin.svg" alt="imagen-usuario"></a>

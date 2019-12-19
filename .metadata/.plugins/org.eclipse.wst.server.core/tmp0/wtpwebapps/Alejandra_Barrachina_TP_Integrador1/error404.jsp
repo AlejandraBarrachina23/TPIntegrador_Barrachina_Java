@@ -12,7 +12,7 @@
 <body>
 
 <div id="error-404">
-		<img src="img/404.svg" alt="icono-advertencia" class="">
+		<img src="img/fondo-error.png" alt="icono-advertencia" class="">
 		<h2>ERROR 404</h2>
 		<h3>PAGINA NO ENCONTRADA</h3>
 		<p>Has intentando ingresar a un enlace que no está disponible.</p>

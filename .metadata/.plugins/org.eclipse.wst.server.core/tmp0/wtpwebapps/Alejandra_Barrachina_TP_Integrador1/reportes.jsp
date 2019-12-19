@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="Dominio.Alumno"%>
+     <%@page import="Dominio.Usuario"%>
     <%@page import="Negocio.ReportesNegocio"%>
     <%@page import="Dominio.Curso"%>
     <%@page import="Dominio.Reporte"%>
@@ -20,8 +21,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
 <script src="jquery-3.4.1.min.js"></script>
 <script src="jquery.dataTables.min.js"></script>
-
 </head>
+
+<% 
+	if((Usuario) request.getSession(true).getAttribute("usuario")!=null){
+		
+		Usuario unUsuario = new Usuario();
+		unUsuario = (Usuario) request.getSession(true).getAttribute("usuario");
+		if(!unUsuario.getTipoUsuario().equals("administrador")){response.sendRedirect("error404.jsp");}
+	
+	}
+
+	else {
+		response.sendRedirect("error404.jsp");
+	}%>
 <body>
 
 <nav>

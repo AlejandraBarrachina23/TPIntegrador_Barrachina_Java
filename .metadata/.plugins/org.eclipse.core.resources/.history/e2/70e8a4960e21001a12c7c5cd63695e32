@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Sistema Universitario</title>
+<link href="estilos.css" type="text/css" rel=stylesheet>
+<link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Staatliches&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<section id="section-index">
+	<div id="index-descripcion">
+		<div id="index-descripcion-encabezado">
+			<img src="img/fondo-index.svg">
+			<h2>HERRAMIENTAS DE ADMINISTRACIÓN</h2>
+			<p>Campus Virtual proporciona las herramientas necesarias para administrar y rediseñar el flujo de trabajo, haciendo más eficiente la gestión y adaptándolo a tus necesidades.</p>
+		</div>
+		<div id="index-descripcion-contenido">
+			<a href="cursos.jsp"><div class="index-item-descripcion"><img src="img/cursos-big.png" alt="cursos"></a>
+				<h3>Cursos</h3>
+				<p> Agrega cursos a cada una de las carreras dictada en la universidad </p>	 
+			</div>
+			<div class="index-item-descripcion"><a href="alumnos.jsp"><img src="img/estudiantes-big.png" alt="cursos"></a>
+				<h3>Estudiantes</h3>
+				<p> Agrega, modifica, elimina y lista a cada unos de los estudiantes de la
+				universidad. </p>		
+			</div>
+			<div class="index-item-descripcion"><a href="profesores.jsp"><img src="img/profesores-big.png" alt="cursos"></a>
+				<h3>Profesores</h3>
+				<p> Agrega, modifica, elimina y lista a cada unos de los profesores de la
+				universidad. </p>	
+			</div>
+			<div class="index-item-descripcion"><a href="reportes.jsp"><img src="img/reportes-big.png" alt="cursos"></a>
+				<h3>Reportes</h3>
+				<p> Accedé a los informes más reciente de actividad de la universidad. </p> 	
+			</div>
+		</div>
+	</div>
+</section>
+</body>
+</html>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+     <%@page import="Dominio.Usuario"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,18 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap" rel="stylesheet">
 </head>
 <body>
+<% 
+	if((Usuario) request.getSession(true).getAttribute("usuario")!=null){
+		
+		Usuario unUsuario = new Usuario();
+		unUsuario = (Usuario) request.getSession(true).getAttribute("usuario");
+		if(!unUsuario.getTipoUsuario().equals("administrador")){response.sendRedirect("error404.jsp");}
+	
+	}
 
+	else {
+		response.sendRedirect("error404.jsp");
+	}%>
 <section id="section-index">
 	<div id="index-descripcion">
 		<div id="index-descripcion-encabezado">
@@ -19,29 +31,24 @@
 			<h2>HERRAMIENTAS DE ADMINISTRACIÓN</h2>
 			<p>Campus Virtual proporciona las herramientas necesarias para administrar y rediseñar el flujo de trabajo, haciendo más eficiente la gestión y adaptándolo a tus necesidades.</p>
 		</div>
-		
 		<div id="index-descripcion-contenido">
-			<div class="index-item-descripcion"><img src="img/cursos-big.png" alt="cursos">
+			<div class="index-item-descripcion"><a href="cursos.jsp"><img src="img/cursos-big.png" alt="cursos"></a>
 				<h3>Cursos</h3>
-				<p> Agrega cursos a cada una de las carreras dictada en la universidad </p>
-				<a href="cursos.jsp" class="btn-index">IR A CURSOS</a>		 
+				<p> Agrega cursos a cada una de las carreras dictada en la universidad </p>	 
 			</div>
-			<div class="index-item-descripcion"><img src="img/estudiantes-big.png" alt="cursos">
+			<div class="index-item-descripcion"><a href="alumnos.jsp"><img src="img/estudiantes-big.png" alt="cursos"></a>
 				<h3>Estudiantes</h3>
 				<p> Agrega, modifica, elimina y lista a cada unos de los estudiantes de la
-				universidad. </p>
-				<a href="alumnos.jsp" class="btn-index">IR A ESTUDIANTES</a>	 		
+				universidad. </p>		
 			</div>
-			<div class="index-item-descripcion"><img src="img/profesores-big.png" alt="cursos">
+			<div class="index-item-descripcion"><a href="profesores.jsp"><img src="img/profesores-big.png" alt="cursos"></a>
 				<h3>Profesores</h3>
 				<p> Agrega, modifica, elimina y lista a cada unos de los profesores de la
-				universidad. </p>
-				<a href="profesores.jsp" class="btn-index">IR A PROFESORES</a>	 		
+				universidad. </p>	
 			</div>
-			<div class="index-item-descripcion"><img src="img/reportes-big.png" alt="cursos">
+			<div class="index-item-descripcion"><a href="reportes.jsp"><img src="img/reportes-big.png" alt="cursos"></a>
 				<h3>Reportes</h3>
 				<p> Accedé a los informes más reciente de actividad de la universidad. </p> 	
-				<a href="reportes.jsp" class="btn-index">IR A REPORTES</a>	
 			</div>
 		</div>
 	</div>
