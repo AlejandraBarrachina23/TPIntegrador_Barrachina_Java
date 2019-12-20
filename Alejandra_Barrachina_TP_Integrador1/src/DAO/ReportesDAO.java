@@ -385,7 +385,7 @@ public class ReportesDAO {
 		try {  
 
 			ResultSet TablaResultados= nuevaConexion.query("select alumnosxcurso.idMateria, materia.Nombre, alumnosxcurso.semestre, profesores.nombre, profesores.apellido,count(*) as cantidad from alumnosxcurso inner join materia on materia.idmateria=alumnosxcurso.idmateria inner join profesores on profesores.idprofesor = alumnosxcurso.idprofesor\r\n" + 
-					"where ((notaUno>=6 or RecuperatorioUno>=6) and (notaDos>=6 or RecuperatorioDos >=6)) and (alumnosxcurso.estado='regular') group by materia.nombre order by cantidad desc;");
+					"where ((notaUno>=6 or RecuperatorioUno>=6) and (notaDos>=6 or RecuperatorioDos >=6)) and (alumnosxcurso.estado='regular') group by materia.nombre order by cantidad desc limit 5;");
 			
 			while(TablaResultados.next()) {
 
@@ -426,7 +426,7 @@ public ArrayList<Curso> MateriasConMasAbandono(){
 		try {  
 
 			ResultSet TablaResultados= nuevaConexion.query("select alumnosxcurso.idMateria,materia.Nombre,semestre, profesores.nombre, profesores.apellido, count(*) as cantidad from alumnosxcurso inner join materia on materia.idmateria=alumnosxcurso.idmateria inner join profesores on profesores.idprofesor = alumnosxcurso.idprofesor\r\n" + 
-					"where ((notaUno<6 and RecuperatorioUno<6) or (notaDos<6 and RecuperatorioDos<6)) and (notaUno!=0 and notaDos!=0) group by materia.nombre order by cantidad desc;");
+					"where ((notaUno<6 and RecuperatorioUno<6) or (notaDos<6 and RecuperatorioDos<6)) and (notaUno!=0 and notaDos!=0) group by materia.nombre order by cantidad desc limit 5;");
 			
 			while(TablaResultados.next()) {
 
@@ -570,12 +570,12 @@ public ArrayList<Reporte> MejoresPromedios(int anio) {
 
 		ResultSet TablaResultados= nuevaConexion.query("select alumnosxcurso.legajo,nombre,apellido,anio, avg(case "
 				+ "when (NotaUno>=6 and NotaDos>=6) THEN (NotaUno+ NotaDos) / 2"
-				+ " when (NotaUno<6 and NotaDos>6 and NotaUno!=0) THEN (RecuperatorioUno+NotaDos)/2"
+				+ " when (NotaUno<6 and NotaDos>=6 and NotaUno!=0) THEN (RecuperatorioUno+NotaDos)/2"
 				+ " when (NotaUno>=6 and NotaDos<6 and NotaDos!=0) THEN (NotaUno+RecuperatorioDos)/2"
 				+ " when (RecuperatorioUno<6 and RecuperatorioDos<6 and RecuperatorioUno!=0 and RecuperatorioDos!=0) THEN (RecuperatorioUno+RecuperatorioDos)/2"
 				+ " END)as Promedio"
 				+ " from alumnosxcurso inner join Alumnos on alumnosxcurso.legajo = alumnos.legajo"
-				+ " group by legajo having Promedio is not null and anio=" + anio +" order by Promedio desc limit 5");
+				+ " group by legajo having Promedio is not null order by Promedio desc limit 5");
 
 		while(TablaResultados.next()) {
 			
@@ -616,12 +616,12 @@ public ArrayList<Reporte> PeoresPromedios(int anio) {
 
 		ResultSet TablaResultados= nuevaConexion.query("select alumnosxcurso.legajo,nombre,apellido,anio, avg(case "
 				+ "when (NotaUno>=6 and NotaDos>=6) THEN (NotaUno+ NotaDos) / 2"
-				+ " when (NotaUno<6 and NotaDos>6 and NotaUno!=0) THEN (RecuperatorioUno+NotaDos)/2"
+				+ " when (NotaUno<6 and NotaDos>=6 and NotaUno!=0) THEN (RecuperatorioUno+NotaDos)/2"
 				+ " when (NotaUno>=6 and NotaDos<6 and NotaDos!=0) THEN (NotaUno+RecuperatorioDos)/2"
 				+ " when (RecuperatorioUno<6 and RecuperatorioDos<6 and RecuperatorioUno!=0 and RecuperatorioDos!=0) THEN (RecuperatorioUno+RecuperatorioDos)/2"
 				+ " END)as Promedio"
 				+ " from alumnosxcurso inner join Alumnos on alumnosxcurso.legajo = alumnos.legajo"
-				+ " group by legajo having Promedio is not null and anio=" + anio +" order by Promedio asc limit 5");
+				+ " group by legajo having Promedio is not null order by Promedio asc limit 5");
 
 		while(TablaResultados.next()) {
 			

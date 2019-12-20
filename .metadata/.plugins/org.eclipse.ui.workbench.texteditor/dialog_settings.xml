@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="Promed"/>
+		<item key="selection" value="PEORES"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="peores"/>
+			<item value="masab"/>
+			<item value="mas ab"/>
+			<item value="mas"/>
+			<item value="mas e"/>
+			<item value="mas egr"/>
+			<item value="mejores"/>
 			<item value="promed"/>
 			<item value="nota"/>
 			<item value="materias"/>
@@ -16,13 +23,6 @@
 			<item value="usuarione"/>
 			<item value="usuario"/>
 			<item value="resultado-busqueda-asistencias"/>
-			<item value="titulo"/>
-			<item value="resultado"/>
-			<item value="reportes"/>
-			<item value="resultado-busque"/>
-			<item value="estado-asi"/>
-			<item value="cursos-avan"/>
-			<item value="form-cur"/>
 		</list>
 		<list key="replacehistory">
 		</list>
