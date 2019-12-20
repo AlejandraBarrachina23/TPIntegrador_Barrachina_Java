@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="recuper"/>
+		<item key="selection" value="cursos-avan"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="recuper"/>
-			<item value="login-av"/>
-			<item value="sessi"/>
-			<item value="fession"/>
-			<item value="sessio"/>
-			<item value="estadologin"/>
-			<item value="login-avi"/>
-			<item value="elimina"/>
-			<item value="estado"/>
-			<item value="100vh"/>
-			<item value="section-index"/>
-			<item value="index-descripcion-contenido"/>
-			<item value="servidorCursos"/>
-			<item value="servidor"/>
-			<item value="ListadoAsistencia"/>
+			<item value="cursos-avan"/>
+			<item value="form-cur"/>
+			<item value="resultado"/>
+			<item value="table"/>
+			<item value="reportes"/>
+			<item value="reportes a"/>
+			<item value="btn-bus"/>
+			<item value="estadolo"/>
+			<item value="form"/>
+			<item value="form-b"/>
+			<item value="from"/>
+			<item value="repor"/>
+			<item value="form-"/>
+			<item value="set"/>
+			<item value="setatr"/>
 		</list>
 		<list key="replacehistory">
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1968"/>
-		<item key="DIALOG_Y_ORIGIN" value="169"/>
+		<item key="DIALOG_X_ORIGIN" value="2418"/>
+		<item key="DIALOG_Y_ORIGIN" value="795"/>
 		<item key="DIALOG_WIDTH" value="385"/>
 		<item key="DIALOG_HEIGHT" value="523"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>

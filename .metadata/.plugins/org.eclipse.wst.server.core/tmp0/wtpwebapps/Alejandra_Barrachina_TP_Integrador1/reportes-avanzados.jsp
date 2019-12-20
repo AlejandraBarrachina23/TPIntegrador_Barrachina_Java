@@ -27,19 +27,9 @@
 <script src="jquery.dataTables.min.js"></script>
 </head>
 <body>
-
 <% 
-	if((Usuario) request.getSession(true).getAttribute("usuario")!=null){
-		
-		Usuario unUsuario = new Usuario();
-		unUsuario = (Usuario) request.getSession(true).getAttribute("usuario");
-		if(!unUsuario.getTipoUsuario().equals("administrador")){response.sendRedirect("error404.jsp");}
-	
-	}
 
-	else {
-		response.sendRedirect("error404.jsp");
-	}%>
+%>
 <nav>
 <div id="user">
 		<a href="index.jsp"><img id="icon-usuario" src="iconos/usuario-admin.svg" alt="imagen-usuario"></a>
@@ -54,9 +44,9 @@
 	<div class="encabezados">
 		<h3>REPORTES AVANZADOS</h3>
 	</div>
-	
+		
 	<div id="form-reportes-avanzados">
-			<form method="post" action="serveletReportes">
+			<form method="post" action="serveletReportes" id="cursos-avanzados" onsubmit='return validarFormulario();'>
 			<div class="busqueda-califaciones">
 				<h2>SELECCIONE CURSO</h2>
 				<select name="cboxMaterias" id="cboxMaterias" required>
@@ -78,11 +68,11 @@
 							for(Profesor unProfesor : ProfesorNegocio.ListadoProfesores()){%>
 							<option class="opciones" value="<%=unProfesor.getLegajo()%>"><%= unProfesor.getNombre() + " " + unProfesor.getApellido()%></option><%}%>
 				</select>
-				<input name="anio" type="number" placeholder="Seleccione año" max=2030 min=2000>
-				<input type="submit" value="Buscar" name="btnBuscar">
+				<input name="anio" id="tboxAnio" type="number" placeholder="Seleccione año" max=2030 min=2000>
+				<input type="submit" id="btnBuscar" value="Buscar" name="btnBuscar">
 			</div>
 		</form>
-			<div class="resultado-busqueda">
+			<div id="resultado-busqueda">
 			<h2 class="titulos">ESTADO DE CALIFICACIONES DE LOS ALUMNOS</h2>
 				<div class="tabla-resultado-busqueda">				
 					<table class="content-table" id="tabla-primera">
@@ -385,6 +375,33 @@ var myChart = new Chart(ctx, {
         ]
     }
 });
+
+	
+function validarFormulario(){
+	
+	const formulario = document.getElementById('cursos-avanzados');
+	const cboxMaterias = document.getElementById('cboxMaterias');
+	const cboxSemestre = document.getElementById('cboxSemestre');
+	const cboxProfesores = document.getElementById('cboxProfesores');
+	const tboxAnio = document.getElementById('tboxAnio');
+	let contador=0;
+	    
+	    for(var i=0;i<formulario.length;i++){
+		   
+	    	if(formulario[i].type==='select-one') {
+		    	
+		    	if(formulario[i].selectedIndex===0) contador++;
+		    }
+		    
+	    	else if(formulario[i].type==='number'){
+		    	
+		    	if(formulario[i].value == null || formulario[i].value.length == 0 || /^\s*$/.test(formulario[i].value)) contador++;
+		    }
+	    }
+	    	   	
+	    if(contador>0) return false;
+    
+};
 
 </script>
 </body>

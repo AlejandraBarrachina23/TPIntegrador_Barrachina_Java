@@ -24,6 +24,13 @@
 
 </head>
 <body>
+
+<% 
+if((Usuario) request.getSession(true).getAttribute("usuario")==null){
+	response.sendRedirect("error404.jsp");return;
+}
+	
+%>
 <nav>
 <div id="user">
 		<a href="index.jsp"><img id="icon-usuario" src="iconos/usuario-admin.svg" alt="imagen-usuario"></a>
@@ -42,6 +49,7 @@
 		
 	<div class="busqueda-califaciones">
 		<h2>1. CURSO SELECCIONADO</h2>
+			
 			<input type="text" value="<%=cursoActivo.getMateria().getNombre() %>" disabled>
 			<input type="text" value="<%=cursoActivo.getSemestre() %>" disabled>
 			<input type="number" value="<%=cursoActivo.getAnio() %>" disabled>
@@ -68,13 +76,17 @@
 			CursoNegocio unCursoNegocio = new CursoNegocio();
 			Curso cursoSeleccionado = new Curso();
 			Profesor unProfesor = new Profesor();
-			
+			try{
 			HttpSession cursoxprofesor = request.getSession();
 			Usuario usuarioLogeado = (Usuario)cursoxprofesor.getAttribute("usuario");
 			unProfesor.setLegajo(usuarioLogeado.getUnProfesor().getLegajo());
 			cursoSeleccionado = (Curso)cursoxprofesor.getAttribute("cursoSeleccionado");
 			cursoSeleccionado.setProfesorTitular(unProfesor);
-
+			}
+			catch(Exception e){
+				
+				e.getMessage();
+			}
 			
 			for(Curso unCurso : unCursoNegocio.AlumnosxCurso(cursoSeleccionado)){%>	
 							

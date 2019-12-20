@@ -28,11 +28,11 @@
 		
 		Usuario unUsuario = new Usuario();
 		unUsuario = (Usuario) request.getSession(true).getAttribute("usuario");
-		System.out.println(unUsuario);
+		System.out.println(unUsuario.getTipoUsuario());
 		
 		if(!unUsuario.getTipoUsuario().equals("administrador")){response.sendRedirect("error404.jsp");}
-		else return;
-	}
+		
+		}
 		else {
 			response.sendRedirect("error404.jsp");
 		}

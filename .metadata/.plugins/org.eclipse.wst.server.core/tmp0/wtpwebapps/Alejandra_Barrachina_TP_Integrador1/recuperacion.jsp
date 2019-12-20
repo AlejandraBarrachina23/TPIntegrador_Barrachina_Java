@@ -38,6 +38,7 @@
 	let Aviso = document.getElementById("recuperacion-aviso");
 		
 		if (EstadoUsuario === 'NoExiste') Aviso.textContent= "EL CORREO ELECTRONICO INGRESADO ES INCORRECTO";	
+		else Aviso.textContent ="";
 		
 	
 	</script>

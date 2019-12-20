@@ -145,7 +145,7 @@ public class serveletUsuario extends HttpServlet {
 				if(unProfesor.getNombre()!=null) {
 					
 					System.out.println("entro");
-					Mail.EnviarMail(email, "alejandrabarrachina23@gmail.com", "barr1989Share.", "Recuperación Contraseña", "Hola "+ unProfesor.getNombre()+" "+unProfesor.getApellido() + "tu constraseña es: " + unProfesor.getDireccion() );
+					Mail.EnviarMail(email, "suniversitariorecuperacion@gmail.com", "sistemauniversitario1234", "Recuperación Contraseña", "Hola "+ unProfesor.getNombre()+" "+unProfesor.getApellido() + " tu constraseña es: " + unProfesor.getDireccion() );
 					RequestDispatcher Request = request.getRequestDispatcher("advertencia2.jsp");
 					Request.forward(request, response);
 					

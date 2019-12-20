@@ -1,7 +1,0 @@
-package Dominio;
-
-public class Reporte {
-
-	private int Anios;
-	private int Cantidad;
-}

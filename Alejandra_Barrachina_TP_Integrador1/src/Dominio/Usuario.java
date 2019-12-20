@@ -2,6 +2,11 @@ package Dominio;
 
 public class Usuario {
 
+	@Override
+	public String toString() {
+		return "Usuario [Usuario=" + Usuario + ", Contrasenia=" + Contrasenia + ", TipoUsuario=" + TipoUsuario
+				+ ", Estado=" + Estado + ", IntentosIncio=" + IntentosIncio + ", unProfesor=" + unProfesor + "]";
+	}
 	private String Usuario;
 	private String Contrasenia;
 	private String TipoUsuario;

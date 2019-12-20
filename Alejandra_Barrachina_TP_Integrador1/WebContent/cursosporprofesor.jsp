@@ -43,6 +43,9 @@
 					</tr>
 				</thead>
 				<tbody>
+			<%	if((Usuario) request.getSession(true).getAttribute("usuario")==null){
+				response.sendRedirect("error404.jsp");return; 
+			}%>
 				
 					<%CursoNegocio unCursoNegocio = new CursoNegocio();
 					HttpSession sesion = request.getSession();

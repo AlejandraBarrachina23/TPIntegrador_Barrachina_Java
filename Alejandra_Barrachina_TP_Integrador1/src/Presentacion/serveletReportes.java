@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Dominio.Alumno;
 import Dominio.Curso;
@@ -39,6 +40,7 @@ public class serveletReportes extends HttpServlet {
 			Curso CursoSeleccionado = new Curso();
 			Materia unaMateria = new Materia();
 			Profesor unProfesor = new Profesor();
+			String Estado = "";
 			
 			//GUARDO LOS VALORES DEL CURSO PARA LA BUSQUEDA
 			unaMateria.setIdMateria(Integer.parseInt(request.getParameter("cboxMaterias")));
@@ -54,12 +56,20 @@ public class serveletReportes extends HttpServlet {
 			//LISTADO DE ALUMNOS DEL CURSO SELECCIONADO ESTADO
 			ArrayList<Alumno>ListadoAsistenciaAlumnosxCurso = reporte.EstadoAsistenciasxCurso(CursoSeleccionado);
 			
+			
+			if(ListadoAlumnosxCurso.size()==0) Estado="vacia";
+			else Estado = "llena";
+			
+			System.out.println(ListadoAlumnosxCurso.size());
+			
 			//LLENO GRÁFICOS
 			
 			//LLEVO AL HTML
 			request.setAttribute("ListadoAlumnoxCursoSeleccionado", ListadoAlumnosxCurso);
 			request.setAttribute("ParcialUnoAprobados", reporte.NotasPrimerParcial(CursoSeleccionado));
 			request.setAttribute("ListadoAsistencia", ListadoAsistenciaAlumnosxCurso);
+			HttpSession estadoBusquedaAvanzada = request.getSession();	
+			estadoBusquedaAvanzada.setAttribute("ResultadoBusquedaAvanzada", Estado );
 			
 			//REDIRECCION
 			RequestDispatcher Request = request.getRequestDispatcher("reportes-avanzados.jsp");
