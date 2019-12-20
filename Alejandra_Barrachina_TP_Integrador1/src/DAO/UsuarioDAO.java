@@ -101,6 +101,35 @@ public class UsuarioDAO {
 				
 		return unProfesor;
 	}
+	
+	public void AgregarUsuario(Usuario unNuevoUsuario) {
+		
+	nuevaConexion = new ConexionDB();
+		
+		try {
+			System.out.println(unNuevoUsuario.getUsuario());
+			System.out.println(unNuevoUsuario.getIntentosIncio());
+			 
+			CallableStatement SP_AgregarUsuario = (CallableStatement) nuevaConexion.Open().prepareCall("CALL AgregarUsuario(?,?,?,?)");
+			 SP_AgregarUsuario.setString(1,unNuevoUsuario.getUsuario());
+			 SP_AgregarUsuario.setString(2,unNuevoUsuario.getContrasenia());
+			 SP_AgregarUsuario.setString(3,unNuevoUsuario.getTipoUsuario());
+			 SP_AgregarUsuario.setInt(4,unNuevoUsuario.getIntentosIncio());
+			 SP_AgregarUsuario.execute();
+	
+			
+		} 
+		
+		catch (Exception e) {
+			
+			e.printStackTrace();
+			System.out.print("No cargo "+ e);
+		}
+		
+		finally {
+			nuevaConexion.close();
+		}
+	}
 		
 		
 	

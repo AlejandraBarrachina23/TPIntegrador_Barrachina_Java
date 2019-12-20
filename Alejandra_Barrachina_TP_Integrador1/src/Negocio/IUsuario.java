@@ -12,5 +12,6 @@ public interface IUsuario {
 	public Usuario VerificarExistencia(Usuario unUsuario) throws SQLException;
 	public void BloquearUsuario(String NombreUsuario);
 	public Profesor ComprobarMail(String Mail);
+	public void AgregarUsuario(Usuario unNuevoUsuario);
 
 }

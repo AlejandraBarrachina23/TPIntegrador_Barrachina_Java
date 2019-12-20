@@ -1,6 +1,7 @@
 package Negocio;
 
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import DAO.AlumnosDAO;
 import Dominio.Alumno;
@@ -18,6 +19,8 @@ public class AlumnoNegocio implements IAlumno {
 	public float calcularPromedio(int notaUno, int notaDos) {
 		
 		return (notaUno+notaDos)/2;
+		
+		
 	}
 
 	public String EstadoAlumno(float promedio, String estado, int notauno, int notados) {

@@ -253,7 +253,7 @@ public class ReportesDAO {
 		
 		try {  
 
-			ResultSet TablaResultados= nuevaConexion.query("select count(*) as cantidad, Materia.nombre from alumnosxcurso inner join Materia ON Materia.idMateria = alumnosxcurso.idMateria WHERE anio=" + AnioActual +" group by alumnosxcurso.idMateria");
+			ResultSet TablaResultados= nuevaConexion.query("select count(*) as cantidad, Materia.nombre from alumnosxcurso inner join Materia ON Materia.idMateria = alumnosxcurso.idMateria WHERE anio=" + AnioActual +" group by alumnosxcurso.idMateria  order by cantidad desc limit 5");
 			
 			while(TablaResultados.next()) {
 

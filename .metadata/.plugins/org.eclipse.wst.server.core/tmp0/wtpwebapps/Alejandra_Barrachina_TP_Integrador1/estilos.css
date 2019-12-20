@@ -37,24 +37,31 @@ margin:0px;
  	text-align:center;
  	font-family: 'Francois One', sans-serif;
  	border-radius: 15px;
+ 	color:#1D789E;
  	
  }
  
  #error-404 a{
  
-	color:black;
+	color:#1D789E;
 		
+ }
+ 
+ #error-404 p{
+ 
+ 	color:#1D789E;
  }
  
   #error-404 img {
   
-  width:70%;
+  width:60%;
  
   }
   
   #error-404 h2 {
   
   font-size:50px;
+  color:#1D789E;
   }
   
   

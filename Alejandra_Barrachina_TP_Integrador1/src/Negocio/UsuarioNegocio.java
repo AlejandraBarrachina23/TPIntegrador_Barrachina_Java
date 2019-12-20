@@ -47,4 +47,9 @@ public Profesor ComprobarMail(String Mail) {
 	return unUsuarioDAO.ComprobarMail(Mail);
 }
 
+public void AgregarUsuario(Usuario unNuevoUsuario) {
+
+	 unUsuarioDAO.AgregarUsuario(unNuevoUsuario);
+}
+
 }

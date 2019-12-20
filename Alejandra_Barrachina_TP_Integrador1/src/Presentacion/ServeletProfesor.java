@@ -11,6 +11,8 @@ import DAO.ProfesoresDAO;
 import Dominio.Localidad;
 import Dominio.Profesor;
 import Dominio.Provincia;
+import Dominio.Usuario;
+import Negocio.UsuarioNegocio;
 
 @WebServlet("/ServeletProfesor")
 public class ServeletProfesor extends HttpServlet {
@@ -53,7 +55,7 @@ public class ServeletProfesor extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String TipoFormulario = request.getParameter("tipoFormulario");
-		System.out.print(TipoFormulario);
+
 		
 		try {
 			
@@ -75,7 +77,17 @@ public class ServeletProfesor extends HttpServlet {
 			
 				ProfesoresDAO Profesor = new ProfesoresDAO();
 					
-					if(TipoFormulario.equals("agregar")) {Profesor.AgregarProfesor(unNuevoProfesor);request.setAttribute("ServidorProfesores", "agregar");}
+					if(TipoFormulario.equals("agregar")) {
+						Profesor.AgregarProfesor(unNuevoProfesor);request.setAttribute("ServidorProfesores", "agregar");
+						Usuario unNuevoUsuario = new Usuario();
+						UsuarioNegocio unUsuarioNegocio = new UsuarioNegocio();
+						String Nombre =(unNuevoProfesor.getNombre().replaceAll("\\s","")+"."+unNuevoProfesor.getApellido()).toLowerCase();
+						unNuevoUsuario.setUsuario(Nombre);
+						unNuevoUsuario.setContrasenia("1234");
+						unNuevoUsuario.setTipoUsuario("profesor");
+						unNuevoUsuario.setIntentosIncio(Integer.parseInt(request.getParameter("tboxLegajo")));
+						unUsuarioNegocio.AgregarUsuario(unNuevoUsuario);
+					}
 					else if(TipoFormulario.equals("modificar")) {
 						unNuevoProfesor.setLegajo(Integer.parseInt(request.getParameter("tboxLegajo")));
 						Profesor.ModificarProfesor(unNuevoProfesor);request.setAttribute("ServidorProfesores", "modificar");}							

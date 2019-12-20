@@ -39,8 +39,8 @@ public class serveletUsuario extends HttpServlet {
 				Usuario UsuarioIngresado = new Usuario();
 				Usuario UsuarioDB = new Usuario();
 				UsuarioDAO usuarioDAO = new UsuarioDAO();
-				UsuarioIngresado.setUsuario(request.getParameter("tboxUsuario"));
-				UsuarioIngresado.setContrasenia(request.getParameter("tboxContrasenia"));
+				UsuarioIngresado.setUsuario(request.getParameter("tboxUsuario").toLowerCase());
+				UsuarioIngresado.setContrasenia(request.getParameter("tboxContrasenia").toLowerCase());
 				UsuarioDB = usuarioDAO.VerificarExistencia(UsuarioIngresado);
 				String Estado ="";
 				HttpSession estadoLogin = request.getSession();	

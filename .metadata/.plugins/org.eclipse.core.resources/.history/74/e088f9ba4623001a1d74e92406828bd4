@@ -1,0 +1,62 @@
+package Negocio;
+
+import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
+import DAO.AlumnosDAO;
+import Dominio.Alumno;
+
+public class AlumnoNegocio implements IAlumno {
+
+	AlumnosDAO unAlumnoDAO = new AlumnosDAO();
+	
+	public int calcularNota(int parcial, int recuperatorio) {
+		
+		if(parcial>recuperatorio) return parcial;
+		else return recuperatorio;
+	}
+
+	public float calcularPromedio(int notaUno, int notaDos) {
+		
+		
+		float ValorFinal = Math.round(resulado*100d)/100d;
+		return Float.parseFloat(formato1.format((notaUno+notaDos)/2));
+		
+	}
+
+	public String EstadoAlumno(float promedio, String estado, int notauno, int notados) {
+		
+		if(notauno <6 || notados<6 || estado.equals("Libre")) return "Recursa";
+		else if(promedio>=8) return "Promociona";
+		else if(promedio>=6 && promedio<8) return "Regulariza";
+		else return "Recursa";
+	}
+
+	public ArrayList<Alumno> ListadoAlumnos() throws SQLException {
+		
+		return unAlumnoDAO.ListadoAlumnos();
+	}
+
+
+	public void AgregarAlumno(Alumno unNuevoAlumno) throws SQLException {
+	
+		unAlumnoDAO.AgregarAlumno(unNuevoAlumno);
+	}
+
+	public void ModificarAlumno(Alumno modificarAlumno) throws SQLException {
+	
+		unAlumnoDAO.ModificarAlumno(modificarAlumno);
+	}
+
+	public void EliminarAlumo(int eliminarAlumno) throws SQLException {
+	
+		unAlumnoDAO.EliminarAlumo(eliminarAlumno);
+	}
+
+	public int NuevoLegajo() {
+	
+		return unAlumnoDAO.NuevoLegajo();
+	}
+
+}
