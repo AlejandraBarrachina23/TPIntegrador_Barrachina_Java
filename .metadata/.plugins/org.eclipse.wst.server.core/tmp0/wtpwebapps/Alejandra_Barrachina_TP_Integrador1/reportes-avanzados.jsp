@@ -72,6 +72,7 @@
 				<input type="submit" id="btnBuscar" value="Buscar" name="btnBuscar">
 			</div>
 		</form>
+		<div id="resultados">
 			<div id="resultado-busqueda">
 			<h2 class="titulos">ESTADO DE CALIFICACIONES DE LOS ALUMNOS</h2>
 				<div class="tabla-resultado-busqueda">				
@@ -175,9 +176,19 @@
 					</table>
 				</div>
 			</div>		
-	</div>		
+	</div>	
+	</div>	
 </section>
 <script>
+
+
+let EstadoUsuario ='<%=session.getAttribute("ResultadoBusquedaAvanzada")%>';
+const divOcultar = document.getElementById("resultados");	
+	if (EstadoUsuario === 'lleno'){ resultados.style.display="block";}
+	else if(EstadoUsuario ==="vacio"){ resultados.style.display="none"; alert("No se encontró ningún curso con esas características.")}
+	
+	 
+	
 
 function ListadoEstados(){
 	
@@ -399,9 +410,10 @@ function validarFormulario(){
 		    }
 	    }
 	    	   	
-	    if(contador>0) return false;
-    
+	    if(contador>0){alert('Falta seleccionar algún campo');return false;}
+    	
 };
+
 
 </script>
 </body>

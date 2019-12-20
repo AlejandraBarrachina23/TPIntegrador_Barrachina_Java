@@ -1255,6 +1255,12 @@ td .btn-calificaciones {
 	
 }
 
+#resultados {
+	
+	display:none;
+	
+}
+
 .resultado-busqueda{
 	
 	width:98%;
@@ -1270,6 +1276,7 @@ td .btn-calificaciones {
 	heigth:500px;
 	overflow:hidden;
 	margin-left:1%;
+	text-align:center;
 	
 }
 

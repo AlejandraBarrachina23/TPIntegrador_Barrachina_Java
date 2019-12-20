@@ -55,12 +55,17 @@ public class serveletReportes extends HttpServlet {
 			ArrayList<Curso>ListadoAlumnosxCurso = unCursoNegocio.AlumnosxCurso(CursoSeleccionado);
 			//LISTADO DE ALUMNOS DEL CURSO SELECCIONADO ESTADO
 			ArrayList<Alumno>ListadoAsistenciaAlumnosxCurso = reporte.EstadoAsistenciasxCurso(CursoSeleccionado);
+			int Contador=0;
 			
+			for (Alumno alumno : ListadoAsistenciaAlumnosxCurso) {
+				
+				Contador++;
+			}
 			
-			if(ListadoAlumnosxCurso.size()==0) Estado="vacia";
-			else Estado = "llena";
+			if(Contador>0) Estado="lleno";
+			else Estado="vacio";
 			
-			System.out.println(ListadoAlumnosxCurso.size());
+			System.out.println(Contador);
 			
 			//LLENO GRÁFICOS
 			
